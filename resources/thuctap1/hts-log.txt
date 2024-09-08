@@ -1,0 +1,21 @@
+HTTrack3.49-2+htsswf+htsjava launched on Sun, 08 Sep 2024 14:03:09 at https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/index.html +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/index.html -O1 "D:Template\thuctap1" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+14:03:52	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/contact.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/index.html)
+14:03:52	Error: 	"Not Found" (404) at link https://demo-egenslab.b-cdn.net/html/zorik/assets/image/Vector-112.png (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/index.html)
+14:03:52	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/food.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/index.html)
+14:03:52	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/Image-44.png (from https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/css/style.css)
+14:03:52	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/gaming.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/standard-formate.html)
+14:03:53	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/life-style.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/editor-profile.html)
+14:03:53	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/fashion.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/editor-profile.html)
+14:03:53	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/travel2.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/editor-profile.html)
+14:03:53	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/beauty.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/editor-profile.html)
+14:03:53	Error: 	"Forbidden" (403) at link https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/tech.html (from https://demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/editor-profile.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 44 seconds : 148 links scanned, 137 files written (25618436 bytes overall) [23159252 bytes received at 526346 bytes/sec], 3308277 bytes transferred using HTTP compression in 56 files, ratio 20%, 29.8 requests per connection
+(10 errors, 0 warnings, 0 messages)
