@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admins\HomeController as AdminsHomeController;
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,'home']);
+
+Route::group(['prefix'=>'admin'], function ()  {
+    Route::get('/',[AdminsHomeController::class,'home']);
+});
