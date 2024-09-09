@@ -137,6 +137,7 @@
                                     </li>
                                 </ul>
                             </li>
+                            <li><a href="{{route('admin.Home')}}">Login Admin</a></li>
                         </ul>
                     </div>
                 </div>
