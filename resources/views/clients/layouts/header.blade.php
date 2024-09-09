@@ -48,7 +48,7 @@
                     </div>
                     <div class="main-menu d-xl-flex d-none">
                         <ul class="menu-list">
-                            <li class="menu-item-has-children active">
+                            {{-- <li class="menu-item-has-children active">
                                 <a href="#" class="drop-down">DEMO</a><i class="bi bi-plus dropdown-icon"></i>
                                 <ul class="sub-menu">
                                     <li><a href="https://demo-egenslab.b-cdn.net/html/zorik/preview/index.html">Life
@@ -70,7 +70,8 @@
                                             href="https://demo-egenslab.b-cdn.net/html/zorik/preview/minimal.html">Minimal</a>
                                     </li>
                                 </ul>
-                            </li>
+                            </li> --}}
+                            <li><a href="{{route('Home')}}">Home</a></li>
                             <li><a href="pet-category.html">PET BEHAVIOR</a></li>
                             <li><a href="pet-category.html">PET FOOD</a></li>
                             <li><a href="pet-category.html">HEALTH</a></li>
@@ -115,12 +116,32 @@
                                     <li><a href="error.html">404</a></li>
                                 </ul>
                             </li>
-                            <li><a href="contact-us.html">CONTACT</a></li>
+                            <li class="menu-item-has-children active">
+                                <a href="#" class="drop-down">MORE</a><i class="bi bi-plus dropdown-icon"></i>
+                                <ul class="sub-menu">
+                                    <li><a href="{{route('Contact')}}">Contact</a></li>
+                                    <li><a
+                                            href="{{route('Faq')}}">FAQ’s</a>
+                                    </li>
+                                    <li><a href="index.html">Pet Care</a></li>
+                                    <li><a
+                                            href="{{route('Feedback')}}">Feedback</a></li>
+                                    <li><a
+                                            href="https://demo-egenslab.b-cdn.net/html/zorik/preview/ai-technology/index.html">AI
+                                            Technology</a></li>
+                                    <li><a
+                                            href="https://demo-egenslab.b-cdn.net/html/zorik/preview/podcast/index.html">Podcast</a>
+                                    </li>
+                                    <li><a
+                                            href="https://demo-egenslab.b-cdn.net/html/zorik/preview/minimal.html">Minimal</a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     </div>
                 </div>
                 <div class="nav-right d-flex jsutify-content-end align-items-center">
-                    <a href="contact.html" class="header-btn hover-btn">
+                    <a href="{{route('Contact')}}" class="header-btn hover-btn">
                         <svg width="11" height="11" viewBox="0 0 11 11" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M1 10L10 1M10 1C8 1.375 3.625 2.125 1 1M10 1C9.625 2.875 8.875 7 10 10"

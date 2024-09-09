@@ -100,7 +100,7 @@
                     <li><a href="error.html">404</a></li>
                 </ul>
             </li>
-            <li><a href="contact-us.html">CONTACT</a></li>
+            <li><a href="{{route('Contact')}}">CONTACT</a></li>
         </ul>
         <div class="menu-bottom-content">
             <div class="subscribe-area">

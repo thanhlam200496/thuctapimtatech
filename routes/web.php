@@ -15,7 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,'home']);
+Route::get('/', [HomeController::class,'home'])->name('Home');
+Route::get('contact', [HomeController::class,'contact'])->name('Contact');
+Route::get('faq', [HomeController::class,'faq'])->name('Faq');
+Route::get('feedback', [HomeController::class,'feedback'])->name('Feedback');
 
 Route::group(['prefix'=>'admin'], function ()  {
     Route::get('/',[AdminsHomeController::class,'home']);
