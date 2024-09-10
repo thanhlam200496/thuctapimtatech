@@ -1,4 +1,4 @@
-@extends('clients.layouts.default')
+@extends('clients.partials.default')
 @section('content')
 <div class="breadcrumb-and-page-title mb-70">
     <div class="container">
