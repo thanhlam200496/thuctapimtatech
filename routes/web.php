@@ -1,6 +1,8 @@
 <?php
 
-use App\Http\Controllers\admins\HomeController as AdminsHomeController;
+
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,6 +22,9 @@ Route::get('contact', [HomeController::class,'contact'])->name('Contact');
 Route::get('faq', [HomeController::class,'faq'])->name('Faq');
 Route::get('feedback', [HomeController::class,'feedback'])->name('Feedback');
 
-Route::group(['prefix'=>'admin','as'=>'admin.'], function ()  {
-    Route::get('/',[AdminsHomeController::class,'home'])->name('Home');
-});
+// Route::group(['prefix'=>'admin','as'=>'admin.'], function ()  {
+//     Route::get('/',[AdminsHomeController::class,'home'])->name('Home');
+// });
+
+Route::resource('dashboard', DashboardController::class);
+Route::get('admin', [AdminController::class, 'index']);
