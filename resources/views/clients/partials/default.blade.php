@@ -170,10 +170,10 @@
         </div>
     </div>
 {{-- menu --}}
-@include('clients.layouts.header')
+@include('clients.partials.header')
 
 @yield('content')
-@include('clients/layouts.footer')
+@include('clients/partials.footer')
 
 
 

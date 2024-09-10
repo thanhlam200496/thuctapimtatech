@@ -1,4 +1,4 @@
-@extends('clients.layouts.default')
+@extends('clients.partials.default')
 @section('content')
 
 

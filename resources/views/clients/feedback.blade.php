@@ -1,4 +1,4 @@
-@extends('clients.layouts.default')
+@extends('clients.partials.default')
 @section('content')
 <div class="blog-post-10 pt-20 mb-120">
     <div class="container">
