@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('feedbacks', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->text('content');
-            $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+        Schema::table('articles', function (Blueprint $table) {
+            $table->tinyInteger('stock');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('feedbacks');
+        Schema::table('articles', function (Blueprint $table) {
+            //
+        });
     }
 };

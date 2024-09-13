@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,3 +29,9 @@ Route::get('feedback', [HomeController::class,'feedback'])->name('Feedback');
 
 Route::resource('dashboard', DashboardController::class);
 Route::get('admin', [AdminController::class, 'index']);
+
+
+Route::resource('category', CategoryController::class);
+Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
+Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
+Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
