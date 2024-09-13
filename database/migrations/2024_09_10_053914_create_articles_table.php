@@ -13,14 +13,15 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->unsignedBigInteger('author_id');
+            $table->string('name', 100);
+            $table->text('news_summary')->nullable();
+            $table->string('image', 255)->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->tinyInteger('status');
+            $table->foreign('category_id')->references('id')->on('categories');
+            $table->string('slug', 100)->unique();
+            $table->text('description')->nullable();
+            
             $table->timestamps();
-            $table->foreign('author_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
         });
     }
 
