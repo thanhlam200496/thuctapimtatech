@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ArticleController;
+use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -52,7 +53,10 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/articles/{id}/restore', [ArticleController::class, 'restore'])->name('articles.restore');
     Route::get('/articles/{id}/forceDelete', [ArticleController::class, 'forceDelete'])->name('articles.forceDelete');
 
-    
+    Route::resource('advertisement', AdvertisementController::class);
+    // Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
+    // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
+    // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 
 
 
