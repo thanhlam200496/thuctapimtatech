@@ -166,7 +166,7 @@
                     <div class="row mb-70">
                         <div class="col-lg-12 d-flex ">
                             <div class="add-area-image">
-                                <a href="#"><img src="{{asset('assets/image/pet-care/add-banner.png')}}" alt></a>
+                                <a href="{{$bannerAds->link}}"><img src="{{asset('storage/images/'.$bannerAds->image_url)}}" alt></a>
                             </div>
                         </div>
                     </div>
@@ -1313,11 +1313,13 @@
                             </div>
                         </div>
                         <div class="single-widget-add-area four">
-                            <a href="#"><img src="{{asset('assets/image/pet-care/Ads-Banner2.png')}}" alt></a>
+                            <a href="{{$sidebarAds->link}}"><img src="{{asset('storage/images/'.$sidebarAds->image_url)}}" alt></a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    
 @endsection
