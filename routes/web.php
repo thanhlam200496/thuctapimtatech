@@ -6,9 +6,13 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ArticleController;
 use App\Http\Controllers\Admin\AdvertisementController;
+use App\Http\Controllers\AuthenController;
+use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\HomeController;
+use App\Http\Middleware\IsAdmin;
+use App\Http\Middleware\IsClient;
 use Illuminate\Support\Facades\Route;
-
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,8 +63,32 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 
 
-
-
-
 });
+
+Route::controller(AuthenController::class)
+    ->group(function () {
+        Route::get('login', 'showLoginForm')->name('login');
+        Route::post('login', 'handLogin');
+        Route::post('logout', 'logout')->name('logout');
+        Route::get('register', 'showRegisterForm')->name('register');
+        Route::post('register', 'handRegister');
+    });
+
+Route::get('clients', [ClienController::class, 'dashboard'])
+    ->name('clients.dashboard');
+    // ->middleware(['auth', IsClient::class]);
+
+Route::get('admin', [AdminController::class, 'dashboard'])
+    ->name('admin.dashboard');
+    // ->middleware(['auth', IsAdmin::class]);
+
+    // Route::controller(AdminController::class)
+    // ->group(function () {
+    //     Route::get('admin/login', 'showLoginForm')->name('login');
+    //     Route::post('admin/login', 'handLogin');
+    //     Route::post('admin/logout', 'logout')->name('logout');
+    //     Route::get('admin/register', 'showRegisterForm')->name('register');
+    //     Route::post('admin/register', 'handRegister');
+    // });
+
 

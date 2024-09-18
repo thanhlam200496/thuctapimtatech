@@ -9,9 +9,10 @@ use Auth;
 
 class AdminController extends Controller
 {
-//   public function logon(){
-//         return view('admin.logon');
-//     }
+  public function dashboard(){
+        return view('admin.logon');
+    }
+    
 
 //     public function postlogon(Request $request){
 //         if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password, 'role'=>1])){
