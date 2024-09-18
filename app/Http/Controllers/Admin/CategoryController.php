@@ -32,7 +32,9 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_id',null)->get();
+        // dd($categories);
+
         return view("admin.category.create", compact("categories"));
     }
 
@@ -63,7 +65,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::all();
+        $categories = Category::where('parent_id',null)->get();
         return view('admin.category.edit', compact('category', 'categories'));
     }
 

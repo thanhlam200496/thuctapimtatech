@@ -1,5 +1,5 @@
 <?php
-$loaitin = DB::table('categories')->select('id', 'name')->get();
+$loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'name', 'parent_id')->get();
 ?>
 <div class="topbar">
     <div class="container-md">
@@ -49,9 +49,71 @@ $loaitin = DB::table('categories')->select('id', 'name')->get();
                     <div class="main-menu d-xl-flex d-none">
                         <ul class="menu-list">
                             <li><a href="{{ route('Home') }}">Trang chủ</a></li>
+                            {{-- <li class="menu-item-has-children">
+                                <a href="#" class="drop-down"> FEATURES</a><i
+                                    class="bi bi-plus dropdown-icon"></i>
+                                <ul class="sub-menu">
+                                    <li><a href="about-us.html">About Us</a></li>
+                                    <li>
+                                        <a href="standard-formate.html">Post Format</a>
+                                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                                        <ul class="sub-menu">
+                                            <li><a href="standard-formate.html">Standard Format</a></li>
+                                            <li><a href="gallery-formate.html">Gallery Format</a></li>
+                                            <li><a href="video-formate.html">Video Format</a></li>
+                                            <li><a href="audio-formate.html">Audio Format</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="full-widht-with-sideber.html">Post Sidebar</a>
+                                        <i class="d-lg-flex d-none bi bi-chevron-right dropdown-icon"></i>
+                                        <i class="d-lg-none d-flex bi bi-plus dropdown-icon"></i>
+                                        <ul class="sub-menu">
+                                            <li><a href="full-widht-with-sideber.html">Full Width with sidebar</a>
+                                            </li>
+                                            <li><a href="full-widht-with-no-sidebar.html">Full Width No sidebar</a>
+                                            </li>
+                                            <li><a href="classic-with-sidebar.html">Classic with Sidebar</a></li>
+                                            <li><a href="vertical-with-sidebar.html">Vertical with Sidebar</a></li>
+                                            <li><a href="vertical-with-no-sidebar.html">Vertical with No Sidebar</a>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="editor-profile.html">Editor Profile</a></li>
+                                    <li><a href="post-pagination.html">Post Pagination</a></li>
+                                    <li><a href="only-for-subscriber.html">Only for subscriber</a></li>
+                                    <li><a href="faq.html">FAQ's </a></li>
+                                    <li><a href="terms%26condition.html">Terms & Conditions </a></li>
+                                    <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                                    <li><a href="error.html">404</a></li>
+                                </ul>
+                            </li> --}}
                             @foreach ($loaitin as $lt)
-                            <li><a class="dropdown-item" href="{{ route('result', [$lt->id]) }}">{{ $lt->name }}</a></li>
-                        @endforeach
+                                @if ($lt->parent_id == null)
+                                @php
+                                // Kiểm tra nếu có bất kỳ $item nào có parent_id khớp với id của $lt
+                                $hasChildren = $loaitin->where('parent_id', $lt->id)->isNotEmpty();
+                            @endphp
+                    
+                            <li class="{{ $hasChildren ? 'menu-item-has-children' : '' }}">
+                                        <a class="dropdown-item"
+                                            href="{{ route('result', [$lt->id]) }}">{{ $lt->name }}</a>
+                                            @if ($hasChildren==true)
+                                                <ul class="sub-menu">
+                                            @foreach ($loaitin as $item)
+                                                @if ($item->parent_id == $lt->id)
+                                                    <li><a class="dropdown-item"
+                                                            href="{{ route('result', [$item->id]) }}">{{ $item->name }}</a>
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                            @endif
+                                        
+                                    </li>
+                                @endif
+                            @endforeach
                             <li><a href="{{ route('Contact') }}">Liên hệ</a></li>
                             <li><a href="{{ route('Faq') }}">FAQ’s</a></li>
                         </ul>
