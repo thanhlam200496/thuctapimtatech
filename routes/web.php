@@ -5,8 +5,13 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ArticleController;
+
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\admins\CommentController;
+
+use App\Http\Controllers\Admin\AdvertisementController;
+use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
+
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +59,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/articles/{id}/restore', [ArticleController::class, 'restore'])->name('articles.restore');
     Route::get('/articles/{id}/forceDelete', [ArticleController::class, 'forceDelete'])->name('articles.forceDelete');
 
+
     
     Route::resource('comments', AdminCommentController::class);
     Route::get('/comments-trash', [AdminCommentController::class, 'trash'])->name('comments.trash');
@@ -63,6 +69,19 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::post('/comments/{id}/update-status', [AdminCommentController::class, 'updatestt'])->name('comments.updatestt');
 
     
+    Route::resource('advertisement', AdvertisementController::class);
+    // Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
+    // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
+    // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 
 });
+
+    Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
+
+    Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+    
+    Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
+
+
+
 
