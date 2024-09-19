@@ -42,17 +42,18 @@ Route::get('feedback', [HomeController::class, 'feedback'])->name('Feedback');
 //     Route::get('/',[AdminsHomeController::class,'home'])->name('Home');
 // });
 
-// Route::resource('dashboard', DashboardController::class);
-// Route::get('admin', [AdminController::class, 'index']);
-
-// Route::get('/logon', [AdminController::class, 'logon'])->name('logon');
-// Route::post('/logon', [AdminController::class, 'postlogon'])->name('admin.logon');
-// Route::get('/sign-out', [AdminController::class, 'signOut'])->name('admin.signout');
-
+Route::resource('dashboard', DashboardController::class);
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
-    
+    Route::get('login', [AuthenController::class, 'showLoginForm'])->name('login');
+    Route::post('login', [AuthenController::class, 'login']);
+    Route::post('logout', [AuthenController::class, 'logout'])->name('logout');
+    Route::get('register', [AuthenController::class, 'showRegisterForm'])->name('register');
+    Route::post('register', [AuthenController::class, 'register'])->name('register');
+
+
+
     Route::resource('category', CategoryController::class);
     Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
     Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
@@ -65,7 +66,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/articles/{id}/forceDelete', [ArticleController::class, 'forceDelete'])->name('articles.forceDelete');
 
 
-    
+
     Route::resource('comments', AdminCommentController::class);
     Route::get('/comments-trash', [AdminCommentController::class, 'trash'])->name('comments.trash');
     Route::get('/comments/{id}/restore', [AdminCommentController::class, 'restore'])->name('comments.restore');
@@ -73,7 +74,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/comments/{id}/detail', [AdminCommentController::class, 'detail'])->name('comments.detail');
     Route::post('/comments/{id}/update-status', [AdminCommentController::class, 'updatestt'])->name('comments.updatestt');
 
-    
+
     Route::resource('advertisement', AdvertisementController::class);
     // Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
     // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
@@ -81,39 +82,23 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 });
 
-Route::controller(AuthenController::class)
-    ->group(function () {
-        Route::get('login', 'showLoginForm')->name('login');
-        Route::post('login', 'handLogin');
-        Route::post('logout', 'logout')->name('logout');
-        Route::get('register', 'showRegisterForm')->name('register');
-        Route::post('register', 'handRegister');
-    });
 
-Route::get('clients', [ClienController::class, 'dashboard'])
-    ->name('clients.dashboard');
-    // ->middleware(['auth', IsClient::class]);
-
-Route::get('admin', [AdminController::class, 'dashboard'])
-    ->name('admin.dashboard');
-    // ->middleware(['auth', IsAdmin::class]);
-
-    // Route::controller(AdminController::class)
-    // ->group(function () {
-    //     Route::get('admin/login', 'showLoginForm')->name('login');
-    //     Route::post('admin/login', 'handLogin');
-    //     Route::post('admin/logout', 'logout')->name('logout');
-    //     Route::get('admin/register', 'showRegisterForm')->name('register');
-    //     Route::post('admin/register', 'handRegister');
-    // });
+// Route::controller(AdminController::class)
+// ->group(function () {
+//     Route::get('admin/login', 'showLoginForm')->name('login');
+//     Route::post('admin/login', 'handLogin');
+//     Route::post('admin/logout', 'logout')->name('logout');
+//     Route::get('admin/register', 'showRegisterForm')->name('register');
+//     Route::post('admin/register', 'handRegister');
+// });
 
 
 
-    Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
+Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
-    Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
-    
-    Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
+Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+
+Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
 
 

@@ -10,10 +10,10 @@ class AuthenController extends Controller
 {
     public function showLoginForm()
     {
-        return view('admin.logon');
+        return view('admin.login');
     }
 
-    public function handLogin()
+    public function login()
     {
         // dd(request()->all());
         $credentials = request()->validate([
@@ -29,10 +29,10 @@ class AuthenController extends Controller
              */
             $user = Auth::user();
             if ($user->isAdmin()) {
-                return redirect()->route('admin.dashboard');
+                return view('admin.dasboard');
             }
 
-            return redirect()->route('clients.dashboard');
+            return view('clients.dashboard');
         }
 
         return back()
@@ -45,7 +45,7 @@ class AuthenController extends Controller
         return view('auth.register');
     }
 
-    public function handRegister()
+    public function register()
     {
         $data = request()->validate([
             'name' => 'required|string|max:255',
@@ -59,7 +59,7 @@ class AuthenController extends Controller
 
         request()->session()->regenerate();
 
-        return redirect()->route('clients.dashboard');
+        return view('clients.dashboard');
     }
 
     public function logout()
