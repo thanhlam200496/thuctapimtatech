@@ -8,7 +8,7 @@
             <div class="stats-tile">
                 <div class="sale-icon shade-red"><i class="bi bi-pie-chart"></i></div>
                 <div class="sale-details">
-                    <h3 class="text-red">{{ $userCount }}</h3>
+                    {{-- <h3 class="text-red">{{ $userCount }}</h3> --}}
                     <p> <a href="" class="small-box-footer">Tài khoản<i class="fa fa-arrow-circle-right"></i></a></p>
                 </div>
 
@@ -18,7 +18,7 @@
             <div class="stats-tile">
                 <div class="sale-icon shade-blue"><i class="bi bi-box-seam"></i></div>
                 <div class="sale-details">
-                    <h3 class="text-blue">{{ $categoryCount }}</h3>
+                    {{-- <h3 class="text-blue">{{ $categoryCount }}</h3> --}}
                     <p><a href="{{ route('category.index') }}" class="small-box-footer">Loại tin <i
                                 class="fa fa-arrow-circle-right"></i></a></p>
                 </div>
@@ -29,7 +29,7 @@
             <div class="stats-tile">
                 <div class="sale-icon shade-yellow"><i class=" bi bi-handbag"></i></div>
                 <div class="sale-details">
-                    <h3 class="text-yellow">{{ $articleCount }}</h3>
+                    {{-- <h3 class="text-yellow">{{ $articleCount }}</h3> --}}
                     <p> <a href="{{ route('article.index') }}" class="small-box-footer">Bài viết<i
                                 class="fa fa-arrow-circle-right"></i></a></p>
                 </div>
