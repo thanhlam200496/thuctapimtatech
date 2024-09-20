@@ -99,7 +99,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
 Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
-
+Route::get("/search", [HomeController::class, "home"])->name("search");
 Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
 
