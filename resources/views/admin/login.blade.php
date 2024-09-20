@@ -225,7 +225,7 @@ body{
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form a action="{{ route('admin.logon') }}" method="post" >
+            <form  action="{{ route('login') }}" method="POST" >
                 <h1>Sign In</h1>
                 @csrf
                 @if ($message = Session::get('error'))
