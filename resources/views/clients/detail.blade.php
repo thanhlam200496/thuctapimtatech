@@ -1,8 +1,6 @@
-@extends('fe.index')
-
-@section('title', 'Chi Tiết')
-
-@section('main')
+@extends('clients.partials.default')
+<!-- @section('title', 'Chi Tiết') -->
+@section('content')
 <section class="section mt-5">
     <div class="container">
         <h2 class="h5 section-title">Chi tiết</h2>
@@ -25,11 +23,11 @@
                 <div class="mb-5 border-top mt-4 pt-5">
                     <h3 class="mb-4">Bình Luận</h3>
                     <div style="max-height: 400px; overflow-y: auto;">
-                        @php
+                        <!-- @php
                             $filePath = storage_path("comments/{$slug}.json");
                             $comments = File::exists($filePath) ? json_decode(File::get($filePath), true) : [];
-                        @endphp
-                        @foreach ($comments as $index => $comment)
+                        @endphp -->
+                        <!-- @foreach ($comments as $index => $comment)
                             <div class="d-flex mb-4 pb-4 border-bottom">
                                 <div class="me-3">
                                     <img src="{{ asset('client/images/author.jpg') }}" class="rounded-circle" alt="User Avatar" width="50" height="50">
@@ -86,33 +84,59 @@
                                     @endif
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach -->
+                        <div class="d-flex mb-4 pb-4 border-bottom">
+                            <form action="{{ route('comment', ['article' => $article->id]) }}" method="POST">
+                                @csrf
+                                <div class="comment-form">
+
+                                    <div class="row mb-6">
+                                        <div class="col-md-6">
+                                            <label for="name">Name:</label>
+                                            <!-- <input id="name" placeholder="Name" name="name" value="{{Auth::user()->name ?? ''}}" type="text" class="form-control"> -->
+                                            <input id="name" placeholder="Name" name="name" value="" type="text" class="form-control">
+                                        </div>
+                                        <div class="mb-6">
+                                            <label for="your-review">Your Review:</label>
+                                            <textarea id="your-review" name="comments_content" placeholder="Write a review" class="form-control"></textarea>
+                                        </div>
+                                       
+                                    </div>
+                                    <div class="col-12 mt-3">
+                                            <input value="Bình Luận" type="submit" class="btn btn-primary">
+                                        </div>
+                                    
+                                </div>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
 
-                <div>
-                    <h3 class="mb-4">Để lại bình luận</h3>
-                    <form method="POST" action="{{ route('detail.comment', ['slug' => $slug]) }}">
-                        @csrf
-                        <div class="mb-3">
-                            <textarea class="form-control" name="comment" id="comment" rows="5" required placeholder="Viết bình luận của bạn..."></textarea>
-                        </div>
-                        <button class="btn btn-primary w-100" type="submit">Bình luận ngay</button>
-                    </form>
-                </div>
+
+
+
+
+
+
             </div>
         </div>
+
+
+    </div>
+    </div>
     </div>
 </section>
 
 <script>
-function showReplyForm(index) {
-    const replyForm = document.getElementById(`reply-form-${index}`);
-    replyForm.style.display = replyForm.style.display === "none" ? "block" : "none";
-}
+    function showReplyForm(index) {
+        const replyForm = document.getElementById(`reply-form-${index}`);
+        replyForm.style.display = replyForm.style.display === "none" ? "block" : "none";
+    }
 
-function confirmDelete() {
-    return confirm('Bạn có chắc chắn muốn xóa bình luận này không?');
-}
+    function confirmDelete() {
+        return confirm('Bạn có chắc chắn muốn xóa bình luận này không?');
+    }
 </script>
+
 @endsection

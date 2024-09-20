@@ -11,7 +11,7 @@ use App\Http\Controllers\admins\CommentController;
 
 use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
-
+use App\Http\Controllers\clients\CommentController as ClientsCommentController;
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -78,10 +78,11 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
     Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
-    Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+    Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
     
     Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
+    Route::post('comment', [ClientsCommentController::class, 'addcomment'])->name('comment');
 
 
 
