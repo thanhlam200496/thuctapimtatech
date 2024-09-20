@@ -14,7 +14,7 @@ use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
 
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
-
+use App\Http\Controllers\clients\CommentController as ClientsCommentController;
 use App\Http\Controllers\clients\HomeController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsClient;
@@ -83,6 +83,8 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 });
 
 
+    Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
+   
 // Route::controller(AdminController::class)
 // ->group(function () {
 //     Route::get('admin/login', 'showLoginForm')->name('login');
@@ -101,6 +103,8 @@ Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('a
 Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
 
+
+    Route::post('comment', [ClientsCommentController::class, 'addcomment'])->name('comment');
 
 
 
