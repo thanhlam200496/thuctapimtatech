@@ -47,7 +47,7 @@ Route::resource('dashboard', DashboardController::class);
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
     Route::get('login', [AuthenController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AuthenController::class, 'login']);
+    Route::post('login', [AuthenController::class, 'login'])->name('admin.login');
     Route::post('logout', [AuthenController::class, 'logout'])->name('logout');
     Route::get('register', [AuthenController::class, 'showRegisterForm'])->name('register');
     Route::post('register', [AuthenController::class, 'register'])->name('register');
