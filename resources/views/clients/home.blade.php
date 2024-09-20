@@ -17,9 +17,9 @@
                             <div class="right-content">
                                 <p>Feel free to mix and match words or adjust the titles to fit your blog's specific
                                     niche and tone.</p>
-                                <form>
+                                <form method="GET" action="{{route('search')}}">
                                     <div class="form-inner">
-                                        <input type="text" placeholder="Search post , tag etc ...">
+                                        <input type="text" placeholder="Search post , tag etc ..." name="name">
                                         <button type="submit">
                                             <svg width="14" height="14" viewBox="0 0 14 14"
                                                 xmlns="http://www.w3.org/2000/svg">
@@ -88,31 +88,31 @@
                             </div>
                             <div class="swiper blog-slider">
                                 <div class="swiper-wrapper">
-                                    <div class="swiper-slide">
+                                    @foreach ($randomArticle as $item)
+                                        <div class="swiper-slide">
                                         <div class="blog-card2 two">
                                             <div class="blog-card-img-wrap">
-                                                <a href="standard-formate.html"><img
-                                                        src="{{asset('assets/image/pet-care/swiper-img.png')}}" alt></a>
+                                                <a href="{{ route('article.show', $item->slug) }}"><img
+                                                        src="{{asset('storage/images/'.$item->image)}}" width="800px" height="400px" style="object-fit: cover" alt></a>
                                                 <ul>
-                                                    <li><a class="category" href="pet-category.html">Pet Care</a></li>
+                                                    <li><a class="category" href="pet-category.html">{{ $item->category->name }}</a></li>
                                                 </ul>
                                             </div>
                                             <div class="blog-content">
                                                 <ul class="blog-meta">
                                                     <li>
-                                                        <a href="editor-profile.html">Robert Kcarery</a>
+                                                        <a href="#">By {{ $item->author->name ?? 'Admin' }}</a>
                                                     </li>
                                                     <li>
-                                                        <a class="publish-date" href="pet-category.html">08 Jan,
-                                                            2024</a>
+                                                        <a class="publish-date" href="pet-category.html">{{ $item->created_at->format('d M, Y') }}</a>
                                                     </li>
                                                 </ul>
-                                                <h3><a href="standard-formate.html">Grooming Gadgets: Tools That Make a
-                                                        Pet Parent's
-                                                        Life Easier.</a></h3>
+                                                <h3><a href="{{ route('article.show', $item->slug) }}">{{ $item->name }}</a></h3>
                                             </div>
                                         </div>
                                     </div>
+                                    @endforeach
+                                    
                                     <div class="swiper-slide">
                                         <div class="blog-card2 two">
                                             <div class="blog-card-img-wrap">
@@ -288,24 +288,13 @@
                                 </a>
                             </div>
                             <ul class="category">
-                                <li>
-                                    <a href="pet-category.html">Pet Behavior (03)</a>
+                                @foreach ($categories as $item)
+                                    <li>
+                                    <a href="pet-category.html">{{$item->name}} ({{$item->article_count}})</a>
                                 </li>
-                                <li>
-                                    <a href="pet-category.html">Breeds (02)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Pet Health (06)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Pet Food (04)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Nurtitions (12)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Pet Gear (05)</a>
-                                </li>
+                                @endforeach
+                                
+                                
                             </ul>
                         </div>
                         <div class="single-widget mb-50 three">
