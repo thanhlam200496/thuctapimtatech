@@ -10,7 +10,7 @@ class AuthenController extends Controller
 {
     public function showLoginForm()
     {
-        return view('admin.login');
+        return view(view: 'auth.login');
     }
 
     public function login()
@@ -20,7 +20,7 @@ class AuthenController extends Controller
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
-
+       
         if (Auth::attempt($credentials)) {
             request()->session()->regenerate();
 
@@ -29,17 +29,17 @@ class AuthenController extends Controller
              */
             $user = Auth::user();
             if ($user->isAdmin()) {
-                return view('admin.dasboard');
+                return redirect()->route('admin.dashboard');
             }
 
-            return view('clients.dashboard');
-        } else {
-            return back()
+            return redirect()->route('clients.dashboard');
+        }
+        return back()
             ->withErrors(['email' => 'Email hoặc mật khẩu không đúng.'])
             ->onlyInput('email');
-        }
+       
 
-        
+   
     }
 
     public function showRegisterForm()
@@ -61,7 +61,7 @@ class AuthenController extends Controller
 
         request()->session()->regenerate();
 
-        return view('clients.dashboard');
+         return view('auth.login');
     }
 
     public function logout()
