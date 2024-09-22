@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     const ROLE_ADMIN = 'admin';
-    const ROLE_CLIEN = 'clien';
+    const ROLE_CLIENT = 'client';
 
 
     /**
@@ -53,8 +53,8 @@ class User extends Authenticatable
         return $this->role == self::ROLE_ADMIN;
     }
 
-    public function isClien()
+    public function isClient()
     {
-        return $this->role == self::ROLE_CLIEN;
+        return $this->role == self::ROLE_CLIENT;
     }
 }

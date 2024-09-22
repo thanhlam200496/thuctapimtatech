@@ -31,7 +31,7 @@ $loaitin = DB::table('categories')->select('id', 'name')->get();
                                 </svg>
                             </li>
                         </ul>
-                        <a class="sign-in" href="#">SIGN IN</a>
+                        <a class="sign-in" href="{{ route('register')}}">SIGN IN</a>
                     </div>
                 </div>
             </div>
