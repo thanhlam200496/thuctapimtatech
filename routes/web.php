@@ -14,8 +14,6 @@ use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
 
 use App\Http\Controllers\clients\HomeController;
-use App\Http\Middleware\IsAdmin;
-use App\Http\Middleware\IsClient;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
