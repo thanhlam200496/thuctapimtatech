@@ -30,6 +30,21 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
+                        <div class="form-group mb-3 @error('name') has-error @enderror">
+                            <label for="parent_id" class="form-label">Danh mục cha</label>
+                            <select name="parent_id" class="form-control" id="">
+                                <option value="">--Trống--</option>
+                                @foreach ($categories as $item)
+                                @if ($item->id==$category->parent_id)
+                                    <option value="{{$item->id}}" selected>{{$item->name}}</option>
+                                @else
+                                <option value="{{$item->id}}" >{{$item->name}}</option>
+                                @endif
+                                    
+                                @endforeach
+                            </select>
+                            
+                        </div>
                         {{-- <div class="mb-3">
                             <label for="parent_id" class="form-label">Chọn LT-Cha</label>
                             <select name="parent_id" id="parent_id" class="form-select">

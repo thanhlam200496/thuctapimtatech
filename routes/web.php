@@ -12,7 +12,7 @@ use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
-
+use App\Http\Controllers\clients\CommentController as ClientsCommentController;
 use App\Http\Controllers\clients\HomeController;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
@@ -45,6 +45,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('dashboard', [AdminController::class, 'dashboard'])
     ->name('admin.dashboard')
     ->middleware('isAdmin');
+    
 
 
     Route::resource('category', CategoryController::class);
@@ -93,6 +94,8 @@ Route::controller(AuthenController::class)
     });
     
 
+    Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
+   
 // Route::controller(AdminController::class)
 // ->group(function () {
 //     Route::get('admin/login', 'showLoginForm')->name('login');
@@ -106,11 +109,13 @@ Route::controller(AuthenController::class)
 
 Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
-
+Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
+Route::get("/search", [HomeController::class, "home"])->name("search");
 Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
 
+
+    Route::post('comment', [ClientsCommentController::class, 'addcomment'])->name('comment');
 
 
 

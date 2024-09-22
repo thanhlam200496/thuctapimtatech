@@ -38,6 +38,8 @@ class AuthenController extends Controller
             ->withErrors(['email' => 'Email hoặc mật khẩu không đúng.'])
             ->onlyInput('email');
        
+
+   
     }
 
     public function showRegisterForm()
