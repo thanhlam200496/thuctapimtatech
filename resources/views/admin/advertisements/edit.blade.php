@@ -33,10 +33,16 @@
                             <input type="text" class="form-control " id="link" name="link" value="{{$advertisements->link }}" style="background-color: white; color: black;">
                             
                         </div>
-                        <div class="form-group mb-3 ">
-                            <label for="name" class="form-label">Position </label>
-                            <input type="text" class="form-control " id="position" name="position" value="{{ $advertisements->position }}" style="background-color: white; color: black;">
-                            
+                        <div class="form-group mb-3">
+                            <label for="status" class="form-label">Chọn vị trí hiển thị</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="position" id="status1" value="banner"  {{$advertisements->position=='banner'?'checked':''}}>
+                                <label class="form-check-label" for="status1">Banner</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="position" id="status0" value="sidebar" {{$advertisements->position=='sidebar'?'checked':''}}>
+                                <label class="form-check-label" for="status0">Sidebar</label>
+                            </div>
                         </div>
                        
                     </div>

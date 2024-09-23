@@ -17,16 +17,10 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form role="form" method="POST" action="{{ route('advertisement.store') }}" enctype="multipart/form-data">
+                <form  method="POST" action="{{ route('advertisement.post') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
-                        {{-- <div class="form-group mb-3 @error('name') has-error @enderror">
-                            <label for="name" class="form-label">Tên Loại Tin</label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" style="background-color: white; color: black;">
-                            @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
-                        </div> --}}
+                       
                         <div class="form-group mb-3 ">
                             <label for="name" class="form-label">Image </label>
                             <input type="file" class="form-control " id="image_url" name="image_url" value="{{ old('image_url') }}" style="background-color: white; color: black;">
@@ -41,12 +35,16 @@
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror --}}
                         </div>
-                        <div class="form-group mb-3 ">
-                            <label for="name" class="form-label">Position </label>
-                            <input type="text" class="form-control " id="position" name="position" value="{{ old('position') }}" style="background-color: white; color: black;">
-                            {{-- @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror --}}
+                        <div class="form-group mb-3">
+                            <label for="status" class="form-label">Chọn vị trí hiển thị</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="position" id="status1" value="banner" checked>
+                                <label class="form-check-label" for="status1">Banner</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="position" id="status0" value="sidebar">
+                                <label class="form-check-label" for="status0">Sidebar</label>
+                            </div>
                         </div>
                         {{-- <div class="form-group mb-3">
                             <label for="parent_id" class="form-label">Chọn LT-Cha</label>
