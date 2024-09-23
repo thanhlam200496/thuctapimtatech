@@ -11,12 +11,15 @@ class Comment extends Model
     use HasFactory;
     use SoftDeletes;
 
+    protected $table='comments';
     
+
     protected $fillable = [
         'comments_content',
         'user_id',
         'article_id',
-        'status'
+        'status',
+        'email'
     ];
     public function article()
     {
@@ -27,4 +30,5 @@ class Comment extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
 }

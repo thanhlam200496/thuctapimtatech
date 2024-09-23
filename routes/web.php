@@ -104,7 +104,11 @@ Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("r
 
 
 
-    Route::post('comment', [ClientsCommentController::class, 'addcomment'])->name('comment');
 
+
+Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+
+// Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
+    
 
 
