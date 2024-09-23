@@ -31,7 +31,20 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'nam
                                 </svg>
                             </li>
                         </ul>
-                        <a class="sign-in" href="{{ route('register')}}">SIGN IN</a>
+                        @if (auth()->check())
+                        <a class="sign-in" href="#">{{ auth()->user()->name }}</a>
+                        <a class="sign-out" href="{{ route('logout') }}" 
+                        style="color: black;" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    @else
+                        <a class="sign-in" href="{{ route('login') }}">SIGN IN</a>
+                    @endif
+                    
                     </div>
                 </div>
             </div>
@@ -91,26 +104,26 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'nam
                             </li> --}}
                             @foreach ($loaitin as $lt)
                                 @if ($lt->parent_id == null)
-                                @php
-                                // Kiểm tra nếu có bất kỳ $item nào có parent_id khớp với id của $lt
-                                $hasChildren = $loaitin->where('parent_id', $lt->id)->isNotEmpty();
-                            @endphp
-                    
-                            <li class="{{ $hasChildren ? 'menu-item-has-children' : '' }}">
+                                    @php
+                                        // Kiểm tra nếu có bất kỳ $item nào có parent_id khớp với id của $lt
+                                        $hasChildren = $loaitin->where('parent_id', $lt->id)->isNotEmpty();
+                                    @endphp
+
+                                    <li class="{{ $hasChildren ? 'menu-item-has-children' : '' }}">
                                         <a class="dropdown-item"
                                             href="{{ route('result', [$lt->id]) }}">{{ $lt->name }}</a>
-                                            @if ($hasChildren==true)
-                                                <ul class="sub-menu">
-                                            @foreach ($loaitin as $item)
-                                                @if ($item->parent_id == $lt->id)
-                                                    <li><a class="dropdown-item"
-                                                            href="{{ route('result', [$item->id]) }}">{{ $item->name }}</a>
-                                                    </li>
-                                                @endif
-                                            @endforeach
-                                        </ul>
-                                            @endif
-                                        
+                                        @if ($hasChildren == true)
+                                            <ul class="sub-menu">
+                                                @foreach ($loaitin as $item)
+                                                    @if ($item->parent_id == $lt->id)
+                                                        <li><a class="dropdown-item"
+                                                                href="{{ route('result', [$item->id]) }}">{{ $item->name }}</a>
+                                                        </li>
+                                                    @endif
+                                                @endforeach
+                                            </ul>
+                                        @endif
+
                                     </li>
                                 @endif
                             @endforeach
