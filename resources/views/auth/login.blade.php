@@ -225,7 +225,7 @@ body{
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in">
-            <form  action="{{ route('admin.login') }}" method="POST" >
+            <form  action="{{ route('login') }}" method="POST" >
                 <h1>Sign In</h1>
                 @csrf
                 @if ($message = Session::get('error'))
@@ -245,6 +245,10 @@ body{
                 <input type="password" placeholder="Password" name="password" />
 
                 <button>Đăng nhập</button>
+                    <button>
+                        <a style="color: #fff" href="{{ route('register') }}">Bạn chưa có tài khoản? Sign-up</a>
+                    </button>
+               
             </form>
         </div>
         <div class="toggle-container">

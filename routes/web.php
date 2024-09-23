@@ -1,20 +1,18 @@
 <?php
 
-
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\ArticleController;
 
 use App\Http\Controllers\Admin\CommentController as AdminCommentController;
-use App\Http\Controllers\admins\CommentController;
+use App\Http\Controllers\admin\CommentController;
 
 use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
-
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
-use App\Http\Controllers\clients\CommentController as ClientsCommentController;
+
 use App\Http\Controllers\clients\HomeController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsClient;
@@ -46,12 +44,9 @@ Route::resource('dashboard', DashboardController::class);
 
 Route::prefix('admin')->middleware('admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
-    Route::get('login', [AuthenController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AuthenController::class, 'login'])->name('admin.login');
-    Route::post('logout', [AuthenController::class, 'logout'])->name('logout');
-    Route::get('register', [AuthenController::class, 'showRegisterForm'])->name('register');
-    Route::post('register', [AuthenController::class, 'register'])->name('register');
-
+    Route::get('dashboard', [AdminController::class, 'dashboard'])
+    ->name('admin.dashboard')
+    ->middleware('isAdmin');
 
 
     Route::resource('category', CategoryController::class);
@@ -80,11 +75,26 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 
+    
+
 });
 
+//Auth::routes();
+Route::controller(AuthenController::class)
+    ->group(function () {
+        Route::get('login', 'showLoginForm')->name('login');
+        Route::post('login', 'login');
+        Route::post('logout', 'logout')->name('logout');
+        Route::get('register', 'showRegisterForm')->name('register');
+        Route::post('register', 'register');
+    });
+    Route::prefix('clients')->middleware('auth')->group(function () {
+        Route::get('dashboard', [ClienController::class, 'dashboard'])
+            ->name('clients.dashboard')
+            ->middleware('isClient');
+    });
+    
 
-    Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
-   
 // Route::controller(AdminController::class)
 // ->group(function () {
 //     Route::get('admin/login', 'showLoginForm')->name('login');
@@ -98,10 +108,11 @@ Route::prefix('admin')->middleware('admin')->group(function () {
 
 Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
+Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
 
 Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
+Route::get("/search", [HomeController::class, "home"])->name("search");
 
 
 

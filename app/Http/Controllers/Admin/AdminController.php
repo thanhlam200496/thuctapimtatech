@@ -9,12 +9,13 @@ use Auth;
 
 class AdminController extends Controller
 {
-  public function dashboard(){
-        return view('admin.logon');
-    }
-    
+  public function dashboard()
+  {
+    return view('admin.dashboard');
+  }
 
-//     public function postlogon(Request $request){
+
+  //     public function postlogon(Request $request){
 //         if(Auth::attempt(['email'=>$request->email, 'password'=>$request->password, 'role'=>1])){
 //             return redirect()->route('admin.index');
 //         }else{
@@ -22,7 +23,7 @@ class AdminController extends Controller
 //         }
 //     }
 
-//     public function signOut(){
+  //     public function signOut(){
 //         Auth::logout();
 //         return redirect()->route('admin.logon');
 //     }
