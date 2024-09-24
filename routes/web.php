@@ -108,16 +108,17 @@ Route::controller(AuthenController::class)
 
 Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
 
 Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
 Route::get("/search", [HomeController::class, "home"])->name("search");
 
 
+Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->name('filter.articles');
 
 
-Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+// Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
 
 // Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
     
