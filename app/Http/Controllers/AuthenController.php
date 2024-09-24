@@ -54,6 +54,7 @@ class AuthenController extends Controller
         ]);
 
         $user = User::query()->create($data);
+        // dd($data);
 
         Auth::login($user);
 
