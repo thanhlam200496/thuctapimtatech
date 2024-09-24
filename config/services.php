@@ -31,9 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'google' => [
-        'client_id' => '941704180967-8kd1gtlbb34kicl5upikp585rc5bq8m7.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => env('APP_URL').'auth/google/callback',
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT'),
     ],
 
 ];
