@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\clients;
 
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Comment;
@@ -27,6 +28,7 @@ class ArticleController extends Controller
 
     public function filter(Request $request)
     {
+
         $query = Article::query();
         
         // Lọc theo ngày đăng
@@ -61,6 +63,7 @@ class ArticleController extends Controller
         $categories = Category::all();
     
         return view('clients.home', compact('filteredArticles', 'randomArticle', 'newArticle', 'categories'));
+
     }
 
 

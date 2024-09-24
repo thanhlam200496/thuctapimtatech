@@ -19,11 +19,11 @@ class CommentController extends Controller
 
 
 
-    public function addcmt(Request $request, $articleId)
+    public function addcmt(Request $request, $id)
 {
-    $article = Article::findOrFail($articleId);
+    $article = Article::findOrFail($id);
     // Lấy tất cả các comment theo bài viết
-    $comments = Comment::where('article_id', $articleId)->orderBy('created_at', 'desc')->get();
+    $comments = Comment::where('article_id', $id)->orderBy('created_at', 'desc')->get();
 
     if ($request->isMethod('post')) {
         $request->validate([
@@ -31,7 +31,7 @@ class CommentController extends Controller
         ]);
 
         Comment::create([
-            'article_id' => $articleId,
+            'article_id' => $id,
             'user_id' => Auth::id(),
             'comments_content' => $request->comments_content,
         ]);

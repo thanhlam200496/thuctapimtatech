@@ -22,10 +22,14 @@ class AdvertisementController extends Controller
 
         return view("admin.advertisements.create");
     }
-    public function store(StoreAdvertisementRequest $request)
+    public function store(Request $request)
     {
 
-
+        $request->validate([
+            'link'=>'required',
+        ],[
+            'link.required'=>'Bắt buộc nhập vào trường này'
+        ]);
         $fileName = $request->file('image_url')->getClientOriginalName();
 
         $request->file('image_url')->storeAs("public/images", $fileName);
@@ -51,6 +55,11 @@ class AdvertisementController extends Controller
     }
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'link'=>'required',
+        ],[
+            'link.required'=>'Bắt buộc nhập vào trường này'
+        ]);
         $data = [
             'link' => $request->link,
             'position' => $request->position

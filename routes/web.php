@@ -12,8 +12,9 @@ use App\Http\Controllers\Admin\AdvertisementController;
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
-
+use App\Http\Controllers\clients\CommentController as ClientsCommentController;
 use App\Http\Controllers\clients\HomeController;
+use App\Http\Controllers\LoginGoogleController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsClient;
 use Illuminate\Support\Facades\Route;
@@ -94,6 +95,10 @@ Route::controller(AuthenController::class)
             ->middleware('isClient');
     });
     
+    Route::controller(LoginGoogleController::class)->group(function(){
+        Route::get('auth/google', 'redirectToGoogle')->name('login-by-google');
+        Route::get('auth/google/callback', 'handleGoogleCallback');
+    });
 
 // Route::controller(AdminController::class)
 // ->group(function () {
@@ -119,6 +124,7 @@ Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->nam
 
 
 // Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+// Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
 
 // Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
     
