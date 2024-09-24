@@ -31,9 +31,7 @@
                         <div class="form-group mb-3 ">
                             <label for="name" class="form-label">Link </label>
                             <input type="text" class="form-control " id="link" name="link" value="{{ old('link') }}" style="background-color: white; color: black;">
-                            {{-- @error('name')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror --}}
+                            <p style="color: red">{{$errors->first('link')}}</p>
                         </div>
                         <div class="form-group mb-3">
                             <label for="status" class="form-label">Chọn vị trí hiển thị</label>
