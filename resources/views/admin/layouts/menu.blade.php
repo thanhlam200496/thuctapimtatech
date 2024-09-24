@@ -86,6 +86,20 @@
                         </ul>
                     </div>
                 </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="bi bi-book"></i>
+                        <span class="menu-text">Quản Lý Quảng Cáo</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                        <ul>
+                            <li><a href="{{ route('advertisement.index') }}">Danh Sách Quảng Cáo</a></li>
+                            <li><a href="{{ route('advertisement.create') }}">Thêm Quảng Cáo</a></li>
+                        </ul>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>

@@ -93,7 +93,7 @@
                                         <div class="blog-card2 two">
                                             <div class="blog-card-img-wrap">
                                                 <a href="{{ route('article.show', $item->slug) }}"><img
-                                                        src="{{asset('storage/images/'.$item->image)}}" width="800px" height="400px" style="object-fit: cover" alt></a>
+                                                        src="{{asset('storage/images/'.$item->image)}}" style="width: 800px; height: 400px; object-fit: cover" alt></a>
                                                 <ul>
                                                     <li><a class="category" href="pet-category.html">{{ $item->category->name }}</a></li>
                                                 </ul>
@@ -169,7 +169,7 @@
                         <div class="col-lg-12 d-flex ">
                             <div class="add-area-image">
                                 @if (isset($bannerAds))
-                                    <a href="{{$bannerAds->link??''}}"><img src="{{asset('storage/images/'.$bannerAds->image_url)}}" alt></a>
+                                    <a href="{{$bannerAds->link??''}}"><img src="{{asset('storage/images/'.$bannerAds->image_url)}}" alt style="width: 872px; height: 158px; object-fit: cover; border-radius: 10px"></a>
                                 @endif
                                 
                             </div>
@@ -329,7 +329,7 @@
                         </div>
                         <div class="single-widget-add-area four">
                             @if (isset($sidebarAds))
-                                <a href="{{$sidebarAds->link??''}}"><img src="{{asset('storage/images/'.$sidebarAds->image_url)}}" alt></a>
+                                <a href="{{$sidebarAds->link??''}}"><img src="{{asset('storage/images/'.$sidebarAds->image_url)}}" alt style="width: 424px; height: 493px; object-fit: cover; border-radius: 10px"></a>
                             @endif
                             
                         </div>
