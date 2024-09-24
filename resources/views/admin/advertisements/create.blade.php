@@ -17,7 +17,7 @@
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form  method="POST" action="{{ route('advertisement.post') }}" enctype="multipart/form-data">
+                <form  method="POST" action="{{ route('advertisement.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                        
