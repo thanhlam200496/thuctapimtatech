@@ -2018,6 +2018,7 @@
                 }
             ],
             "time": "2024-09-21T08:32:55+00:00"
+
         },
         {
             "name": "league/oauth1-client",
@@ -2094,6 +2095,7 @@
                 "source": "https://github.com/thephpleague/oauth1-client/tree/v1.10.1"
             },
             "time": "2022-04-15T14:02:14+00:00"
+
         },
         {
             "name": "monolog/monolog",
