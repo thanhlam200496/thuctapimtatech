@@ -120,9 +120,11 @@ Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("r
 Route::get("/search", [HomeController::class, "home"])->name("search");
 
 
+Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->name('filter.articles');
 
 
-Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+// Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+// Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
 
 // Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
     

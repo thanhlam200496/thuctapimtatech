@@ -82,26 +82,26 @@ class ArticleController extends Controller
             'category_id' => 'required|exists:categories,id',
             'slug' => 'required|string|max:100|unique:articles,slug,' . $id,
             'description' => 'nullable|string',
+            'views' => 'nullable|integer|min:0', // Validate views
         ]);
-
+    
         $article = Article::findOrFail($id);
-
+    
         // Xử lý file ảnh
         if ($request->hasFile('photo')) {
             $fileName = $request->photo->getClientOriginalName();
             $request->photo->storeAs("public/images", $fileName);
             $article->image = $fileName;
         }
-
+    
         // Cập nhật các trường khác
         $article->name = $request->input('name');
         $article->news_summary = $request->input('news_summary');
         $article->category_id = $request->input('category_id');
         $article->slug = $request->input('slug');
         $article->description = $request->input('description');
-       
-        // $product->user_id = auth()->id();
-
+        $article->views = $request->input('views', 0); // Cập nhật views
+    
         try {
             $article->save();
             return redirect()->route('article.index')->with('success', 'article updated successfully.');
@@ -110,7 +110,7 @@ class ArticleController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred while updating the article.']);
         }
     }
-
+    
 
 
 
