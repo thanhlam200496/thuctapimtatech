@@ -6,6 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="Your Website Title" />
+<meta property="og:description"   content="Your description" />
+<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
 
 
@@ -198,6 +203,8 @@
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 
     <script src="{{asset('assets/js/custom.js')}}"></script>
+    <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v20.0&appId=1071378784562764"></script>
 </body>
 
 <!-- Mirrored from demo-egenslab.b-cdn.net/html/zorik/preview/pet-care/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 08 Sep 2024 07:03:30 GMT -->

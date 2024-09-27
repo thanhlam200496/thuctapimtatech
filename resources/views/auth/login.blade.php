@@ -244,7 +244,8 @@ body{
                 <input type="email" placeholder="Email" name="email"/>
                 <input type="password" placeholder="Password" name="password" />
 
-                <button>Đăng nhập</button><p>Hoặc<br><a href="{{route('login-by-google')}}"><img src="{{asset('assets/image/icons8-google-48.png')}}" alt=""></a></p>
+                <button>Đăng nhập</button><p>Hoặc<br><a href="{{route('login-by-google')}}"><img src="{{asset('assets/image/icons8-google-48.png')}}" alt=""></a>
+                    <a href="{{route('login-by-faceebook')}}"><img src="{{asset('assets/image/icons8-google-48.png')}}" alt=""></a></p>
                     
                         <a style="color: #000000" href="{{ route('register') }}">Bạn chưa có tài khoản? Sign-up</a>
                     
