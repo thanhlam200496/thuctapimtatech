@@ -14,6 +14,7 @@ use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
 use App\Http\Controllers\clients\CommentController as ClientsCommentController;
 use App\Http\Controllers\clients\HomeController;
+use App\Http\Controllers\LoginFacebookController;
 use App\Http\Controllers\LoginGoogleController;
 use App\Http\Middleware\IsAdmin;
 use App\Http\Middleware\IsClient;
@@ -100,6 +101,10 @@ Route::controller(AuthenController::class)
         Route::get('auth/google/callback', 'handleGoogleCallback');
     });
 
+    Route::controller(LoginFacebookController::class)->group(function(){
+        Route::get('auth/facebook', 'redirectToFacebook')->name('login-by-faceebook');
+        Route::get('auth/facebook/callback', 'handleFacebookCallback');
+    });
 // Route::controller(AdminController::class)
 // ->group(function () {
 //     Route::get('admin/login', 'showLoginForm')->name('login');
