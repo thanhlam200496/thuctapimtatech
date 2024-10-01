@@ -8,14 +8,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
-    use HasFactory;
-
-    use SoftDeletes;
+    use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'name',
         'status',
         'parent_id',
+
     ] ;
     
 
@@ -23,5 +22,13 @@ class Category extends Model
     public function faqs()
     {
         return $this->hasMany(Faq::class);
+
+    ];
+
+    // Thêm mối quan hệ với model Article
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+
     }
 }
