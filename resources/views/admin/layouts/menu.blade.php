@@ -100,6 +100,20 @@
                         </ul>
                     </div>
                 </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="bi bi-book"></i>
+                        <span class="menu-text">Quản Lý FAQ's</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                        <ul>
+                            <li><a href="{{ route('faqs.index') }}">Danh Sách faq</a></li>
+                            <li><a href="{{ route('faqs.create') }}">Thêm faq</a></li>
+                        </ul>
+                        </ul>
+                    </div>
+                </li>
             </ul>
         </div>
     </div>
