@@ -3,51 +3,152 @@
 @section('title', 'Trang Chủ')
 
 @section('main-content')
-    <div class="row">
-        <div class="col-xxl-3 col-sm-6 col-12">
-            <div class="stats-tile">
-                <div class="sale-icon shade-red"><i class="bi bi-pie-chart"></i></div>
-                <div class="sale-details">
-                    {{-- <h3 class="text-red">{{ $userCount }}</h3> --}}
-                    <p> <a href="" class="small-box-footer">Tài khoản<i class="fa fa-arrow-circle-right"></i></a></p>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-xxl-3 col-sm-6 col-12">
-            <div class="stats-tile">
-                <div class="sale-icon shade-blue"><i class="bi bi-box-seam"></i></div>
-                <div class="sale-details">
-                    {{-- <h3 class="text-blue">{{ $categoryCount }}</h3> --}}
-                    <p><a href="{{ route('category.index') }}" class="small-box-footer">Loại tin <i
-                                class="fa fa-arrow-circle-right"></i></a></p>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-xxl-3 col-sm-6 col-12">
-            <div class="stats-tile">
-                <div class="sale-icon shade-yellow"><i class=" bi bi-handbag"></i></div>
-                <div class="sale-details">
-                    {{-- <h3 class="text-yellow">{{ $articleCount }}</h3> --}}
-                    <p> <a href="{{ route('article.index') }}" class="small-box-footer">Bài viết<i
-                                class="fa fa-arrow-circle-right"></i></a></p>
-                </div>
-
-            </div>
-        </div>
-        <div class="col-xxl-3 col-sm-6 col-12">
-            <div class="stats-tile">
-                <div class="sale-icon shade-green"><i class=" bi bi-emoji-smile"></i></div>
-                <div class="sale-details">
-                    {{-- <h3 class="text-green">{{ $contactCount }}</h3> --}}
-                    <p> <a href="" class="small-box-footer">Liên hệ<i
-                                class="fa fa-arrow-circle-right"></i></a></p>
-                </div>
-
+<div class="row">
+    <div class="col-xxl-3 col-sm-6 col-12">
+        <div class="stats-tile">
+            <div class="sale-icon shade-red"><i class="bi bi-pie-chart"></i></div>
+            <div class="sale-details">
+                <h3 class="text-red">{{ $userCount }}</h3>
+                <p><a href="" class="small-box-footer">Tài khoản<i class="fa fa-arrow-circle-right"></i></a></p>
             </div>
         </div>
     </div>
+
+    <div class="col-xxl-3 col-sm-6 col-12">
+        <div class="stats-tile">
+            <div class="sale-icon shade-blue"><i class="bi bi-box-seam"></i></div>
+            <div class="sale-details">
+                <h3 class="text-blue">{{ $categoryCount }}</h3>
+                <p><a href="{{ route('category.index') }}" class="small-box-footer">Loại tin<i class="fa fa-arrow-circle-right"></i></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xxl-3 col-sm-6 col-12">
+        <div class="stats-tile">
+            <div class="sale-icon shade-yellow"><i class="bi bi-handbag"></i></div>
+            <div class="sale-details">
+                <h3 class="text-yellow">{{ $articleCount }}</h3>
+                <p><a href="{{ route('article.index') }}" class="small-box-footer">Bài viết<i class="fa fa-arrow-circle-right"></i></a></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xxl-3 col-sm-6 col-12">
+        <div class="stats-tile">
+            <div class="sale-icon shade-green"><i class="bi bi-eye"></i></div>
+            <div class="sale-details">
+                <h3 class="text-green">{{ $totalViews }}</h3>
+                <p><a href="{{ route('article.index') }}" class="small-box-footer">Lượt xem tin tức<i class="fa fa-arrow-circle-right"></i></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Thêm biểu đồ lượt xem trong 7 ngày gần nhất -->
+<div class="card">
+    <div class="card-header">
+        <h4>Biểu đồ lượt xem trong 7 ngày</h4>
+    </div>
+    <div class="card-body">
+        <canvas id="viewsChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<!-- Bảng bài viết nhiều lượt xem nhất -->
+<div class="card">
+    <div class="card-header">
+        <h4>Bài viết nhiều lượt xem nhất</h4>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tiêu đề</th>
+                    <th>Lượt xem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($topArticles as $article)
+                <tr>
+                    <td>{{ $article->name }}</td>
+                    <td>{{ $article->views }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Bảng danh mục nhiều lượt xem nhất -->
+<div class="card">
+    <div class="card-header">
+        <h4>Danh mục nhiều lượt xem nhất</h4>
+    </div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Tên danh mục</th>
+                    <th>Tổng lượt xem</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($topCategories as $category)
+                <tr>
+                    <td>{{ $category->name }}</td>
+                    <td>{{ $category->articles_sum_views }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Thêm mã JavaScript cho biểu đồ Chart.js -->
+@section('custom-js')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var ctx = document.getElementById('viewsChart').getContext('2d');
+    var viewsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {!! json_encode($viewsPerDay->keys()) !!}, // Ngày từ $viewsPerDay
+            datasets: [{
+                label: 'Lượt xem',
+                data: {!! json_encode($viewsPerDay->values()) !!}, // Dữ liệu lượt xem từ $viewsPerDay
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+                fill: false
+            }]
+        },
+        options: {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Ngày'
+                    }
+                },
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: 'Lượt xem'
+                    }
+                }
+            }
+        }
+    });
+});
+</script>
+@endsection
+
+
+
+
+
+
     <div class="card-body">
         <div class="row">
             <div class="col-xxl-2 col-lg-3 col-sm-12 col-12">
