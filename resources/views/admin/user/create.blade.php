@@ -57,15 +57,17 @@
                     <div class="mb-3">
                         <label for="status" class="form-label">Chọn Trạng Thái</label>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status1" value="1" {{ old('status', '1') == '1' ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="status" id="status1" value="1"
+                                {{ old('status', $user->status) == '1' ? 'checked' : '' }}>
                             <label class="form-check-label" for="status1">
-                                Hoạt động
+                                Hoạt động
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" name="status" id="status0" value="0" {{ old('status') == '0' ? 'checked' : '' }}>
+                            <input class="form-check-input" type="radio" name="status" id="status0" value="0"
+                                {{ old('status', $user->status) == '0' ? 'checked' : '' }}>
                             <label class="form-check-label" for="status0">
-                                Ngừng hoạt động
+                                Ngừng hoạt động
                             </label>
                         </div>
                         @error('status')

@@ -9,13 +9,12 @@ use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\admin\CommentController;
 
 use App\Http\Controllers\Admin\AdvertisementController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
 
 use App\Http\Controllers\clients\HomeController;
-use App\Http\Middleware\IsAdmin;
-use App\Http\Middleware\IsClient;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -42,11 +41,9 @@ Route::get('feedback', [HomeController::class, 'feedback'])->name('Feedback');
 
 Route::resource('dashboard', DashboardController::class);
 
-Route::prefix('admin')->middleware('admin')->group(function () {
+Route::prefix('admin')->middleware('isAdmin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
-    Route::get('dashboard', [AdminController::class, 'dashboard'])
-    ->name('admin.dashboard')
-    ->middleware('isAdmin');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
 
     Route::resource('category', CategoryController::class);
@@ -75,7 +72,7 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 
-    
+
 
 });
 
@@ -88,12 +85,17 @@ Route::controller(AuthenController::class)
         Route::get('register', 'showRegisterForm')->name('register');
         Route::post('register', 'register');
     });
-    Route::prefix('clients')->middleware('auth')->group(function () {
-        Route::get('dashboard', [ClienController::class, 'dashboard'])
-            ->name('clients.dashboard')
-            ->middleware('isClient');
-    });
-    
+Route::prefix('clients')->middleware('auth')->group(function () {
+    Route::get('dashboard', [ClienController::class, 'dashboard'])
+        ->name('clients.dashboard')
+        ->middleware('isClient');
+});
+
+//quản lý user
+Route::resource('user', UserController::class);
+    // Route::get('/user', [UserController::class, 'index'])->name('user.index'); // Danh sách người dùng
+    // Route::get('/user/create', [UserController::class, 'create'])->name('user.create'); // Thêm mới người dùng
+
 
 // Route::controller(AdminController::class)
 // ->group(function () {
