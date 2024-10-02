@@ -9,12 +9,27 @@ use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\admin\CommentController;
 
 use App\Http\Controllers\Admin\AdvertisementController;
+
 use App\Http\Controllers\Admin\UserController;
+
+use App\Http\Controllers\Admin\ContactController as AdminsContactController;
+
+use App\Http\Controllers\admin\FAQController;
+
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
+use App\Http\Controllers\clients\CommentController as ClientsCommentController;
+
+use App\Http\Controllers\clients\ContactController;
+
+use App\Http\Controllers\clients\FAQController as ClientsFAQController;
 
 use App\Http\Controllers\clients\HomeController;
+
+use App\Http\Controllers\LoginFacebookController;
+use App\Http\Controllers\LoginGoogleController;
+
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -30,8 +45,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('Home');
-Route::get('contact', [HomeController::class, 'contact'])->name('Contact');
+
+Route::get('form-contact', [HomeController::class, 'contact'])->name('form-contact');
 Route::get('faq', [HomeController::class, 'faq'])->name('Faq');
+
 Route::get('feedback', [HomeController::class, 'feedback'])->name('Feedback');
 
 
@@ -74,6 +91,13 @@ Route::prefix('admin')->middleware('isAdmin')->group(function () {
 
 
 
+    Route::resource('contact', AdminsContactController::class);
+    
+
+
+    Route::resource('faqs', FAQController::class);
+
+
 });
 
 //Auth::routes();
@@ -85,6 +109,7 @@ Route::controller(AuthenController::class)
         Route::get('register', 'showRegisterForm')->name('register');
         Route::post('register', 'register');
     });
+
 Route::prefix('clients')->middleware('auth')->group(function () {
     Route::get('dashboard', [ClienController::class, 'dashboard'])
         ->name('clients.dashboard')
@@ -97,6 +122,17 @@ Route::resource('user', UserController::class);
     // Route::get('/user/create', [UserController::class, 'create'])->name('user.create'); // Thêm mới người dùng
 
 
+    
+    Route::controller(LoginGoogleController::class)->group(function(){
+        Route::get('auth/google', 'redirectToGoogle')->name('login-by-google');
+        Route::get('auth/google/callback', 'handleGoogleCallback');
+    });
+
+
+    Route::controller(LoginFacebookController::class)->group(function(){
+        Route::get('auth/facebook', 'redirectToFacebook')->name('login-by-faceebook');
+        Route::get('auth/facebook/callback', 'handleFacebookCallback');
+    });
 // Route::controller(AdminController::class)
 // ->group(function () {
 //     Route::get('admin/login', 'showLoginForm')->name('login');
@@ -110,12 +146,29 @@ Route::resource('user', UserController::class);
 
 Route::get('category/{id}', [CategoryController::class, 'show'])->name('category.show');
 
-Route::get('article/{slug}', [ArticleController::class, 'show'])->name('article.show');
+Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
 
 Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
 
 Route::get("/search", [HomeController::class, "home"])->name("search");
 
 
+Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->name('filter.articles');
 
 
+
+// Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+
+Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
+    
+// Route::resource('contact', ContactController::class);
+
+
+Route::middleware(['checklogin'])->group(function () {
+    Route::post('comments/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+});
+
+
+Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
+Route::get('/faqs', [ClientsFAQController::class, 'index'])->name('clients.faq');

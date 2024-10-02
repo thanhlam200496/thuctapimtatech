@@ -6,50 +6,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>@yield('title')</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="description" content="Admin dashboard for managing the application.">
+    <meta name="keywords" content="Admin, Dashboard, Laravel">
+    <meta name="author" content="Your Name">
 
-    <!-- Meta -->
     <link rel="shortcut icon" href="{{ asset('adminn/assets/images/favicon.svg') }}">
-
-    <!-- Common Css Files -->
     <link rel="stylesheet" href="{{ asset('adminn/assets/css/animate.css') }}">
     <link rel="stylesheet" href="{{ asset('adminn/assets/fonts/bootstrap/bootstrap-icons.css') }}">
     <link rel="stylesheet" href="{{ asset('adminn/assets/css/main.min.css') }}">
-
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Vendor Css Files -->
     <link rel="stylesheet" href="{{ asset('adminn/assets/vendor/overlay-scroll/OverlayScrollbars.min.css') }}">
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">
     <div class="page-wrapper">
-        <!-- Site wrapper -->
         <div class="main-container">
             @include('admin.layouts.header')
-
-            <!-- Left side column. contains the sidebar -->
             @include('admin.layouts.menu')
-
-            <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
+                {{-- <section class="content-header">
                     <div class="alert">
                         <h4>@yield('title-page')</h4>
                     </div>
-                </section>
-
-                <!-- Main content -->
+                </section> --}}
                 @yield('main-content')
-                <!-- /.content -->
             </div>
-            <!-- /.content-wrapper -->
-
             @include('admin.layouts.footer')
-
         </div>
-        <!-- ./wrapper -->
+
+        <!-- Chart.js and date-fns adapter -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/date-fns@2.27.0/dist/date-fns.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns@2.0.0/dist/chartjs-adapter-date-fns.umd.js"></script>
 
         <!-- jQuery 3 -->
         <script src="{{ asset('adminn/assets/js/jquery.min.js') }}"></script>

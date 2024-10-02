@@ -2,17 +2,17 @@
 
 @section('title', 'Thêm Mới')
 
-@section('title-page', 'Thêm Mới Loại Tin')
+{{-- @section('title-page', 'Thêm Mới Loại Tin') --}}
 
 @section('main-content')
     <!-- Main content -->
     <section class="container mt-4">
 
         <!-- Default box -->
-        <div class="col-md-5 mx-auto">
+        
             <!-- general form elements -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
+            <div class="card card-primary">
+                <div class="card-header bg-primary text-white" style="padding-bottom: 16px">
                     <h3 class="card-title text-white">Chỉnh sửa quảng cáo</h3>
                 </div>
                 <!-- /.card-header -->
@@ -33,10 +33,16 @@
                             <input type="text" class="form-control " id="link" name="link" value="{{$advertisements->link }}" style="background-color: white; color: black;">
                             
                         </div>
-                        <div class="form-group mb-3 ">
-                            <label for="name" class="form-label">Position </label>
-                            <input type="text" class="form-control " id="position" name="position" value="{{ $advertisements->position }}" style="background-color: white; color: black;">
-                            
+                        <div class="form-group mb-3">
+                            <label for="status" class="form-label">Chọn vị trí hiển thị</label>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="position" id="status1" value="banner"  {{$advertisements->position=='banner'?'checked':''}}>
+                                <label class="form-check-label" for="status1">Banner</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="position" id="status0" value="sidebar" {{$advertisements->position=='sidebar'?'checked':''}}>
+                                <label class="form-check-label" for="status0">Sidebar</label>
+                            </div>
                         </div>
                        
                     </div>
@@ -49,7 +55,7 @@
             </div>
             <!-- /.card -->
 
-        </div>
+        
         <!-- /.col -->
 
     </section>

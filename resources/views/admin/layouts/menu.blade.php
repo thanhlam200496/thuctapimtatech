@@ -40,12 +40,12 @@
                 <li class="sidebar-dropdown">
                     <a href="#">
                         <i class="bi bi-globe"></i>
-                        <span class="menu-text">Vai Trò</span>
+                        <span class="menu-text">Liên hệ</span>
                     </a>
                     <div class="sidebar-submenu">
                         <ul>
-                            {{-- <li><a href="{{ route('roleUs.index') }}">Danh sách Vai Trò</a></li>
-                            <li><a href="{{ route('roleUs.create') }}">Thêm mới Vai Trò</a></li> --}}
+                            <li><a href="{{ route('contact.index') }}">Danh sách Liên hệ</a></li>
+                            {{-- <li><a href="{{ route('roleUs.create') }}">Thêm mới Vai Trò</a></li> --}}
                         </ul>
                     </div>
                 </li>
@@ -82,6 +82,34 @@
                         <ul>
                             <li><a href="{{ route('comments.index') }}">Danh Sách Bình Luận</a></li>
                            
+                        </ul>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="bi bi-book"></i>
+                        <span class="menu-text">Quản Lý Quảng Cáo</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                        <ul>
+                            <li><a href="{{ route('advertisement.index') }}">Danh Sách Quảng Cáo</a></li>
+                            <li><a href="{{ route('advertisement.create') }}">Thêm Quảng Cáo</a></li>
+                        </ul>
+                        </ul>
+                    </div>
+                </li>
+                <li class="sidebar-dropdown">
+                    <a href="#">
+                        <i class="bi bi-book"></i>
+                        <span class="menu-text">Quản Lý FAQ's</span>
+                    </a>
+                    <div class="sidebar-submenu">
+                        <ul>
+                        <ul>
+                            <li><a href="{{ route('faqs.index') }}">Danh Sách faq</a></li>
+                            <li><a href="{{ route('faqs.create') }}">Thêm faq</a></li>
                         </ul>
                         </ul>
                     </div>
