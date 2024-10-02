@@ -127,10 +127,9 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'nam
                                     </li>
                                 @endif
                             @endforeach
-
                             <li><a href="{{route('form-contact')}}">Liên hệ</a></li>
                             <li><a href="{{ route('Faq') }}">FAQ’s</a></li>
-
+>>>>>>>>> Temporary merge branch 2
                         </ul>
                     </div>
                 </div>

@@ -161,5 +161,3 @@ Route::middleware(['checklogin'])->group(function () {
 
 Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
 Route::get('/faqs', [ClientsFAQController::class, 'index'])->name('clients.faq');
-
-

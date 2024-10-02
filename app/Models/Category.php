@@ -23,7 +23,7 @@ class Category extends Model
     {
         return $this->hasMany(Faq::class);
 
-    ];
+    }
 
     // Thêm mối quan hệ với model Article
     public function articles()
