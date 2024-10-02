@@ -9,7 +9,6 @@ use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\admin\CommentController;
 
 use App\Http\Controllers\Admin\AdvertisementController;
-use App\Http\Controllers\admin\FAQController;
 
 use App\Http\Controllers\Admin\ContactController as AdminsContactController;
 
@@ -47,6 +46,7 @@ Route::get('/', [HomeController::class, 'home'])->name('Home');
 
 Route::get('form-contact', [HomeController::class, 'contact'])->name('form-contact');
 Route::get('faq', [HomeController::class, 'faq'])->name('Faq');
+
 Route::get('feedback', [HomeController::class, 'feedback'])->name('Feedback');
 
 
@@ -147,9 +147,9 @@ Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->nam
 
 
 // Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
-// Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
 
-// Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
+Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
     
 // Route::resource('contact', ContactController::class);
 
@@ -161,4 +161,3 @@ Route::middleware(['checklogin'])->group(function () {
 
 Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
 Route::get('/faqs', [ClientsFAQController::class, 'index'])->name('clients.faq');
-
