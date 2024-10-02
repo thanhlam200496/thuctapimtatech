@@ -14,33 +14,37 @@
                     <div class=" title">
                         <h1>Contact Us!</h1>
                     </div>
-                    <form>
+                    <form action="{{route('contact.store')}}" method="POST">
+                        @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-inner mb-20">
                                     <label>Your Name* :</label>
-                                    <input type="text" placeholder="Jackson Mile">
+                                    <input type="text" name="name" value="{{old('name')}}" placeholder="Jackson Mile">
+                                    <p style="color: red">{{$errors->first('name')}}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-inner mb-20">
                                     <label>Your Email* :</label>
-                                    <input type="email" placeholder="example@gamil.com">
+                                    <input type="email" name="email" value="{{old('email')}}" placeholder="example@gamil.com">
+                                    <p style="color: red">{{$errors->first('email')}}</p>
                                 </div>
                             </div>
-                            <div class="col-lg-12">
+                            {{-- <div class="col-lg-12">
                                 <div class="form-inner mb-20">
                                     <label>Subject*</label>
-                                    <input type="text" placeholder="What’s kind of topic">
+                                    <input type="text" name="name" placeholder="What’s kind of topic">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="col-md-12">
                                 <div class="form-inner mb-15">
                                     <label>Message <span> (Optional)</span></label>
-                                    <textarea class="contact-massage" placeholder="Write Something..."></textarea>
+                                    <textarea class="contact-massage" value="{{old('message')}}" name="message" placeholder="Write Something..."></textarea>
+                                    <p style="color: red">{{$errors->first('message')}}</p>
                                 </div>
                             </div>
-                            <div class="col-md-12">
+                            {{-- <div class="col-md-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="checkbox" value id="contactCheck">
                                     <label class="form-check-label" for="contactCheck">
@@ -48,7 +52,7 @@
                                         comment.
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                         <div class="form-inner">
                             <button class="primary-btn1 contact-btn" data-text="Post Comment" type="submit">

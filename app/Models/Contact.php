@@ -14,6 +14,8 @@ class Contact extends Model
         'name',
         'email',
         'message',
+        'status',
+        'mess_return',
     ];
     public function user()
     {

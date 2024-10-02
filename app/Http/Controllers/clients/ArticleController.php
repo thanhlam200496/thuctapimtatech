@@ -20,7 +20,7 @@ class ArticleController extends Controller
     $article->increment('views');
     
     // Lấy tất cả bình luận (nếu cần)
-    $comments = Comment::where('article_id', $article->id)->get(); // Đây phải trả về một Collection
+    $comments = Comment::where('article_id', $article->id)->where('status','approved')->orderBy('created_at', 'desc')->get(); // Đây phải trả về một Collection
 
     return view('clients.detail', compact('article', 'slug', 'comments'));
 }

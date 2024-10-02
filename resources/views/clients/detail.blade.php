@@ -5,13 +5,6 @@
     <div class="blog-post-9 pt-20">
         <div class="container">
             <div class="row g-lg-4 gy-5">
-
-
-
-
-
-
-
                 <div class="col-lg-8">
                     <div class="inner-page-breadcrumb-wrapper mb-20">
                         <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>                        <ul>
