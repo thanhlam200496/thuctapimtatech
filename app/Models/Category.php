@@ -14,11 +14,21 @@ class Category extends Model
         'name',
         'status',
         'parent_id',
+
+    ] ;
+    
+
+    // Một category có nhiều câu hỏi (FAQs)
+    public function faqs()
+    {
+        return $this->hasMany(Faq::class);
+
     ];
 
     // Thêm mối quan hệ với model Article
     public function articles()
     {
         return $this->hasMany(Article::class);
+
     }
 }

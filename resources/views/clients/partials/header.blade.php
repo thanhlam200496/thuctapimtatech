@@ -127,8 +127,10 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'nam
                                     </li>
                                 @endif
                             @endforeach
+
                             <li><a href="{{route('form-contact')}}">Liên hệ</a></li>
                             <li><a href="{{ route('Faq') }}">FAQ’s</a></li>
+
                         </ul>
                     </div>
                 </div>

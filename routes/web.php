@@ -9,12 +9,20 @@ use App\Http\Controllers\Admin\CommentController as AdminCommentController;
 use App\Http\Controllers\admin\CommentController;
 
 use App\Http\Controllers\Admin\AdvertisementController;
+
 use App\Http\Controllers\Admin\ContactController as AdminsContactController;
+
+use App\Http\Controllers\admin\FAQController;
+
 use App\Http\Controllers\AuthenController;
 use App\Http\Controllers\ClienController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
 use App\Http\Controllers\clients\CommentController as ClientsCommentController;
+
 use App\Http\Controllers\clients\ContactController;
+
+use App\Http\Controllers\clients\FAQController as ClientsFAQController;
+
 use App\Http\Controllers\clients\HomeController;
 use App\Http\Controllers\LoginFacebookController;
 use App\Http\Controllers\LoginGoogleController;
@@ -35,8 +43,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 */
 
 Route::get('/', [HomeController::class, 'home'])->name('Home');
+
 Route::get('form-contact', [HomeController::class, 'contact'])->name('form-contact');
 Route::get('faq', [HomeController::class, 'faq'])->name('Faq');
+
 Route::get('feedback', [HomeController::class, 'feedback'])->name('Feedback');
 
 
@@ -78,8 +88,13 @@ Route::prefix('admin')->middleware('admin')->group(function () {
     // Route::get('/category-trash', [CategoryController::class, 'trash'])->name('category.trash');
     // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
+
     Route::resource('contact', AdminsContactController::class);
     
+
+
+    Route::resource('faqs', FAQController::class);
+
 
 });
 
@@ -130,10 +145,21 @@ Route::get("/search", [HomeController::class, "home"])->name("search");
 Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->name('filter.articles');
 
 
+
 // Route::post('comment/{article}', [ClientsCommentController::class, 'addcmt'])->name('comment');
 Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
 
 Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
     
 // Route::resource('contact', ContactController::class);
+
+
+Route::middleware(['checklogin'])->group(function () {
+    Route::post('comments/{id}', [ClientsCommentController::class, 'addcmt'])->name('comment');
+});
+
+
+Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
+Route::get('/faqs', [ClientsFAQController::class, 'index'])->name('clients.faq');
+
 
