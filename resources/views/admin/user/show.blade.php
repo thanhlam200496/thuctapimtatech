@@ -13,7 +13,7 @@
             <div class="card-body">
                 <p><strong>Tên Người Dùng:</strong> {{ $user->name }}</p>
                 <p><strong>Email:</strong> {{ $user->email }}</p>
-                <p><strong>Vai Trò:</strong> {{ $user->role == 1 ? 'Admin' : 'User' }}</p>
+                <p><strong>Vai Trò:</strong> {{ $user->role == 'admin' ? 'Admin' : 'Client' }}</p>
                 <p><strong>Trạng Thái:</strong> {{ $user->status == 1 ? 'Hoạt động' : 'Ngừng hoạt động' }}</p>
                 <p><strong>Ngày Tạo:</strong> {{ $user->created_at->format('d-m-Y H:i:s') }}</p>
                 <p><strong>Ngày Cập Nhật:</strong> {{ $user->updated_at->format('d-m-Y H:i:s') }}</p>

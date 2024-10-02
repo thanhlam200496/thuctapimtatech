@@ -15,10 +15,9 @@ class UpdateUserRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $this->route('user'),
-            'password' => 'nullable|min:8', 
-            'role' => 'required|in:0,1', 
-            'status' => 'required|in:0,1', 
+            'email' => 'required|email|unique:users,email,' . ($this->user ?? 'NULL'),
+            'role' => 'required|string|in:client,admin',  // Chỉ cho phép 'client' và 'admin'
+            'status' => 'required|in:0,1',
         ];
     }
 
@@ -28,7 +27,6 @@ class UpdateUserRequest extends FormRequest
             'name.required' => 'Tên là bắt buộc.',
             'email.required' => 'Email là bắt buộc.',
             'email.unique' => 'Email này đã tồn tại.',
-            'password.min' => 'Mật khẩu phải có ít nhất 8 ký tự.',
         ];
     }
 }

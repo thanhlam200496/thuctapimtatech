@@ -16,10 +16,12 @@ class AdminAuthenticate
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Auth::check() && Auth::user()->role == 1) {
+        // Kiểm tra xem người dùng có vai trò là admin
+        if (Auth::check() && Auth::user()->role == 'admin') {
             return $next($request); 
         }
 
+        // Chuyển hướng đến trang đăng nhập nếu không có quyền
         return redirect()->route('login')->withErrors(['error' => 'Bạn không có quyền truy cập trang này.']);
     }
 }

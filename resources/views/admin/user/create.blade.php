@@ -46,9 +46,9 @@
                     </div>
                     <div class="mb-3">
                         <label for="role" class="form-label">Chọn Vai Trò</label>
-                        <select name="role" id="role" class="form-select @error('role') is-invalid @enderror">
-                            <option value="0" {{ old('role') == 0 ? 'selected' : '' }}>User</option>
-                            <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>Admin</option>
+                        <select name="role" id="role" class="form-select">
+                            <option value="client" {{ old('role') == 'client' ? 'selected' : '' }}>Client</option>
+                            <option value="admin" {{ old('role') == 'admin' ? 'selected' : '' }}>Admin</option>
                         </select>
                         @error('role')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -58,14 +58,14 @@
                         <label for="status" class="form-label">Chọn Trạng Thái</label>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="status" id="status1" value="1"
-                                {{ old('status', $user->status) == '1' ? 'checked' : '' }}>
+                                {{ old('status') == '1' ? 'checked' : '' }}>
                             <label class="form-check-label" for="status1">
                                 Hoạt động
                             </label>
                         </div>
                         <div class="form-check">
                             <input class="form-check-input" type="radio" name="status" id="status0" value="0"
-                                {{ old('status', $user->status) == '0' ? 'checked' : '' }}>
+                                {{ old('status') == '0' ? 'checked' : '' }}>
                             <label class="form-check-label" for="status0">
                                 Ngừng hoạt động
                             </label>

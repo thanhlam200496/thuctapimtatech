@@ -118,9 +118,6 @@ Route::prefix('clients')->middleware('auth')->group(function () {
 
 //quản lý user
 Route::resource('user', UserController::class);
-    // Route::get('/user', [UserController::class, 'index'])->name('user.index'); // Danh sách người dùng
-    // Route::get('/user/create', [UserController::class, 'create'])->name('user.create'); // Thêm mới người dùng
-
 
     
     Route::controller(LoginGoogleController::class)->group(function(){
