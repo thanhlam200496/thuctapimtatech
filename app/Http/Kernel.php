@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http;
+use App\Http\Middleware\checkloginMiddleware;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -21,7 +22,7 @@ class Kernel extends HttpKernel
         \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-        
+       
     ];
 
     /**
@@ -68,5 +69,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'isAdmin' => \App\Http\Middleware\IsAdmin::class,
         'isClient' => \App\Http\Middleware\IsClient::class,
+        'checklogin' => \App\Http\Middleware\checkloginMiddleware::class,
     ];
 }
