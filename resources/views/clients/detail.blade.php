@@ -251,7 +251,7 @@
                                 <div class="title">
                                     <h4>Leave Your Comment:</h4>
                                 </div>
-                                <form action="{{ route('article.show', ['slug' => $article->slug]) }}" method="POST">
+                                <form action="{{ route('comment', $article->id) }}" method="POST">
 
                                     @csrf
                                     <div class="row">
