@@ -26,7 +26,13 @@
                         <div class="header-profile-actions">
                             <a href="#">Profile</a>
                             <a href="#">Settings</a>
-                            <a href="">Logout</a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                            
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
                             {{-- {{ route('admin.signout') }} --}}
                         </div>
                     </div>

@@ -56,8 +56,8 @@
                     </a>
                     <div class="sidebar-submenu">
                         <ul>
-                            {{-- <li><a href="{{ route('user.index') }}">Danh Sách Người Dùng</a></li>
-                            <li><a href="{{ route('user.create') }}">Thêm mới Người Dùng</a></li> --}}
+                            <li><a href=" {{ route('user.index')}}">Danh Sách Người Dùng</a></li>
+                            <li><a href="{{ route('user.create')}}">Thêm mới Người Dùng</a></li>
                         </ul>
                     </div>
                 </li>
