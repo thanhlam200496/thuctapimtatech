@@ -2,18 +2,18 @@
 
 @section('title', 'Thêm Mới')
 
-@section('title-page', 'Thêm Mới Loại Tin')
+{{-- @section('title-page', 'Thêm Mới quảng cáo') --}}
 
 @section('main-content')
     <!-- Main content -->
     <section class="container mt-4">
 
         <!-- Default box -->
-        <div class="col-md-5 mx-auto">
+        
             <!-- general form elements -->
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h3 class="card-title text-white">Thêm mới Loại Tin</h3>
+            <div class="card card-primary">
+                <div class="card-header bg-primary text-white" style="padding-bottom: 16px">
+                    <h3 class="card-title text-white">Thêm mới quảng cáo</h3>
                 </div>
                 <!-- /.card-header -->
                 <!-- form start -->
@@ -75,7 +75,7 @@
             </div>
             <!-- /.card -->
 
-        </div>
+       
         <!-- /.col -->
 
     </section>

@@ -40,12 +40,12 @@
                 <li class="sidebar-dropdown">
                     <a href="#">
                         <i class="bi bi-globe"></i>
-                        <span class="menu-text">Vai Trò</span>
+                        <span class="menu-text">Liên hệ</span>
                     </a>
                     <div class="sidebar-submenu">
                         <ul>
-                            {{-- <li><a href="{{ route('roleUs.index') }}">Danh sách Vai Trò</a></li>
-                            <li><a href="{{ route('roleUs.create') }}">Thêm mới Vai Trò</a></li> --}}
+                            <li><a href="{{ route('contact.index') }}">Danh sách Liên hệ</a></li>
+                            {{-- <li><a href="{{ route('roleUs.create') }}">Thêm mới Vai Trò</a></li> --}}
                         </ul>
                     </div>
                 </li>

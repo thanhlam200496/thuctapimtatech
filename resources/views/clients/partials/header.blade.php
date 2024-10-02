@@ -127,13 +127,13 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'nam
                                     </li>
                                 @endif
                             @endforeach
-                            <li><a href="{{ route('Contact') }}">Liên hệ</a></li>
+                            <li><a href="{{route('form-contact')}}">Liên hệ</a></li>
                             <li><a href="{{ route('Faq') }}">FAQ’s</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="nav-right d-flex justify-content-end align-items-center">
-                    <a href="{{ route('Contact') }}" class="header-btn hover-btn">
+                    {{-- <a href="{{ route('Contact') }}" class="header-btn hover-btn"> --}}
                         <!-- SVG hoặc icon subscribe -->
                     </a>
                 </div>

@@ -24,11 +24,11 @@
             @include('admin.layouts.header')
             @include('admin.layouts.menu')
             <div class="content-wrapper">
-                <section class="content-header">
+                {{-- <section class="content-header">
                     <div class="alert">
                         <h4>@yield('title-page')</h4>
                     </div>
-                </section>
+                </section> --}}
                 @yield('main-content')
             </div>
             @include('admin.layouts.footer')
