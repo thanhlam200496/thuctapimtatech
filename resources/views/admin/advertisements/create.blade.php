@@ -12,7 +12,7 @@
         
             <!-- general form elements -->
             <div class="card card-primary">
-                <div class="card-header bg-primary text-white" style="padding-bottom: 16px">
+                <div class="card-header bg-primary text-white" style="padding: 12px 20px 12px 20px; border-radius: 7px 7px 0 0">
                     <h3 class="card-title text-white">Thêm mới quảng cáo</h3>
                 </div>
                 <!-- /.card-header -->
