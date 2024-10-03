@@ -4,17 +4,11 @@
 @section('content')
     <div class="pet-news">
         <div class="container">
-            <div class="row pt-80">
+            <div class="row pt-40 justify-content-center"> <!-- Thêm justify-content-center -->
                 <div class="col-lg-8">
                     <div class="pet-news-area">
-                        <h1>Pet News.</h1>
                         <div class="driscription-and-search">
-                            <div class="vector-img">
-                                <img src="{{ asset('assets/image/Vector-112.html') }}" alt>
-                            </div>
-                            <div class="right-content">
-                                <p>Feel free to mix and match words or adjust the titles to fit your blog's specific
-                                    niche and tone.</p>
+                            <div class="right-content" style="width: 900px; text-align: center">
                                 <form method="GET" action="{{ route('search') }}">
                                     <div class="form-inner">
                                         <input type="text" placeholder="Search post , tag etc ..." name="name">
@@ -32,84 +26,22 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="pet-img">
-                        <img src="{{ asset('assets/image/pet-care/Pet-Mask.png') }}" alt>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
 
+
     <div class="blog-post3 mb-120">
         <div class="container">
-            <div class="row g-lg-4 gy-5 pt-80">
+            <div class="row g-lg-4 gy-5 pt-40">
                 <div class="col-lg-8">
-                    <div class="row g-lg-4 gy-5">
-                        <div class="col-lg-12 position-relative">
-                            <div class="slider-btn-groups2">
-                                <div class="slider-btn prev-1">
-                                    <!-- SVG for previous button -->
-                                </div>
-                                <div class="slider-btn next-1">
-                                    <!-- SVG for next button -->
-                                </div>
-                            </div>
-                            <div class="swiper blog-slider">
-                                <div class="swiper-wrapper">
-                                    @foreach ($randomArticle as $item)
-                                        <div class="swiper-slide">
-                                            <div class="blog-card2">
-                                                <div class="blog-card-img-wrap">
-                                                    <a href="{{ route('article.show', $item->slug) }}">
-                                                        <img src="{{ asset('storage/images/' . $item->image) }}"
-                                                            class="img-fluid" style="object-fit: cover; height: 400px;"
-                                                            alt="{{ $item->name }}">
-                                                    </a>
-                                                    <ul class="list-unstyled">
-                                                        <li><a class="category"
-                                                                href="pet-category.html">{{ $item->category->name }}</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="blog-content">
-                                                    <ul class="blog-meta list-unstyled d-flex justify-content-between">
-                                                        <li><a href="#">By {{ $item->author->name ?? 'Admin' }}</a>
-                                                        </li>
-                                                        <li><a
-                                                                class="publish-date">{{ $item->created_at->format('d M, Y') }}</a>
-                                                        </li>
-                                                    </ul>
-                                                    <h3><a
-                                                            href="{{ route('article.show', $item->slug) }}">{{ $item->name }}</a>
-                                                    </h3>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
 
-                    <div class="row mb-4">
-                        <div class="col-lg-12 d-flex justify-content-center">
-                            <div class="add-area-image">
-                                @if (isset($bannerAds))
-                                    <a href="{{ $bannerAds->link ?? '' }}">
-                                        <img src="{{ asset('storage/images/' . $bannerAds->image_url) }}" class="img-fluid"
-                                            alt>
-                                    </a>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="container mt-5">
-                        <h2 class="text-center mb-4">Lọc Tin Tức</h2>
-                        <form action="{{ route('filter.articles') }}" method="GET" class="row g-3">
-                            <div class="col-md-4">
+                    <div class="container mt-2">
+                        
+                        <form action="{{ route('filter.articles') }}" method="GET" class="row g-3 justify-content-center align-items-end">
+                            <div class="col-md-3">
                                 <label for="date" class="form-label">Ngày Đăng</label>
                                 <select name="date" id="date" class="form-select">
                                     <option value="">Chọn ngày đăng</option>
@@ -117,7 +49,7 @@
                                     <option value="oldest">Cũ Nhất</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="category" class="form-label">Danh Mục</label>
                                 <select name="category" id="category" class="form-select">
                                     <option value="">Chọn danh mục</option>
@@ -126,7 +58,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <label for="views" class="form-label">Lượt Xem</label>
                                 <select name="views" id="views" class="form-select">
                                     <option value="">Chọn lượt xem</option>
@@ -134,78 +66,108 @@
                                     <option value="least_viewed">Ít Nhất</option>
                                 </select>
                             </div>
-                            <div class="col-12 text-center mt-3">
+                            <div class="col-md-1 text-end">
                                 <button type="submit" class="btn btn-primary btn-lg">Lọc</button>
                             </div>
                         </form>
                     </div>
-
+                    
+                    
+                   
                     <!-- Hiển thị danh sách bài viết -->
                     <!-- Danh sách bài viết -->
-                    <div class="container mt-5">
-                        <h2 class="text-center mb-4">Danh Sách Bài Viết</h2>
+                    <div class="container mt-3">
+                        @if (isset($filteredArticles)&&!empty($filteredArticles))
+                            <h2 class="text-center mb-4">Danh Sách Bài Viết</h2>
+                        @endif
+                        
                         <div class="row">
                             @if (isset($filteredArticles) && $filteredArticles->isEmpty())
                                 <p class="text-center">Không có bài viết nào được tìm thấy.</p>
-                            @elseif(isset($filteredArticles))
+                            @elseif(isset($filteredArticles)&&!empty($filteredArticles))
                                 @foreach ($filteredArticles as $item)
-                                    <div class="col-md-6 col-lg-4 mb-4">
-                                        <div class="card shadow-sm border-light">
+                                <div class="col-md-6">
+                                    <div class="blog-card">
+                                        <div class="blog-card-img-wrap">
                                             <a href="{{ route('article.show', $item->slug) }}">
                                                 <img src="{{ asset('storage/images/' . $item->image) }}"
-                                                    class="card-img-top" alt="{{ $item->name }}"
-                                                    style="height: 200px; object-fit: cover;">
+                                                    style="width: 415px; height: 251px; object-fit: cover" alt>
                                             </a>
-                                            <div class="card-body">
-                                                <a href="{{ url('category', $item->category->slug) }}"
-                                                    class="badge bg-primary">{{ $item->category->name }}</a>
-                                                <h5 class="card-title mt-2"><a
-                                                        href="{{ route('article.show', $item->slug) }}">{{ $item->name }}</a>
-                                                </h5>
-                                                <p class="card-text text-muted">{{ Str::limit($item->description, 100) }}
-                                                </p>
-                                                <div class="d-flex justify-content-between">
-                                                    <small class="text-muted">By
-                                                        {{ $item->author->name ?? 'Admin' }}</small>
-                                                    <small
-                                                        class="text-muted">{{ $item->created_at->format('d M, Y') }}</small>
-                                                </div>
+                                            <a href="#">
+                                                <span>{{ $item->category->name }}</span>
+                                                
+                                            </a>
+                                        </div>
+                                        <div class="blog-content">
+                                            <div class="author-area">
+                                                <ul>
+                                                    <li><a href="editor-profile.html">Dr. Michael
+                                                            Patrick</a></li>
+                                                    <li><a class="publish-date" href="pet-category.html">
+                                                            <svg width="6" height="6" viewBox="0 0 6 6"
+                                                                fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <circle cx="3" cy="3" r="3"
+                                                                    fill="#C4C4C4" />
+                                                            </svg>
+                                                            {{ $item->created_at->format('d M, Y') }}</a></li>
+                                                </ul>
                                             </div>
+                                            <h5><a href="{{ route('article.show', $item->slug) }}">{{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a></h5>
                                         </div>
                                     </div>
+                                </div>
                                 @endforeach
                             @endif
                         </div>
                     </div>
-
+                    <div class="container mt-5">
+                        <div class="row mb-4">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <div class="add-area-image">
+                                    @if (isset($bannerAds))
+                                        <a href="{{ $bannerAds->link ?? '' }}">
+                                            <img src="{{ asset('storage/images/' . $bannerAds->image_url) }}"
+                                                style="width: 4855px; height: 155px; object-fit: cover; border-radius: 10px"
+                                                class="img-fluid" alt>
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Bài viết mới nhất -->
                     <div class="container mt-5">
                         <h2 class="text-center mb-4">Bài Viết Mới Nhất</h2>
                         <div class="row g-4">
                             @if (isset($newArticle) && $newArticle->isNotEmpty())
                                 @foreach ($newArticle as $item)
-                                    <div class="col-md-6 col-lg-4">
-                                        <div class="card shadow-sm border-light">
-                                            <div class="card-header bg-light">
-                                                <h5 class="mb-0"><a
-                                                        href="{{ route('article.show', $item->slug) }}">{{ $item->title }}</a>
-                                                </h5>
+                                    <div class="col-md-6">
+                                        <div class="blog-card">
+                                            <div class="blog-card-img-wrap">
+                                                <a href="{{ route('article.show', $item->slug) }}">
+                                                    <img src="{{ asset('storage/images/' . $item->image) }}"
+                                                        style="width: 415px; height: 251px; object-fit: cover" alt>
+                                                </a>
+                                                <a href="#">
+                                                    <span>{{ $item->category->name }}</span>
+                                                    
+                                                </a>
                                             </div>
-                                            <a href="{{ route('article.show', $item->slug) }}">
-                                                <img src="{{ asset('storage/images/' . $item->image) }}"
-                                                    class="card-img-top" alt="{{ $item->name }}"
-                                                    style="height: 200px; object-fit: cover;">
-                                            </a>
-                                            <div class="card-body">
-                                                <a href="{{ url('category', $item->category->slug) }}"
-                                                    class="badge bg-secondary">{{ $item->category->name }}</a>
-                                                <p class="card-text text-muted">{{ Str::limit($item->content, 100) }}</p>
-                                                <div class="d-flex justify-content-between">
-                                                    <small class="text-muted">By
-                                                        {{ $item->author->name ?? 'Admin' }}</small>
-                                                    <small
-                                                        class="text-muted">{{ $item->created_at->format('d M, Y') }}</small>
+                                            <div class="blog-content">
+                                                <div class="author-area">
+                                                    <ul>
+                                                        {{-- <li><a href="editor-profile.html">Dr. Michael
+                                                                Patrick</a></li> --}}
+                                                        <li><a class="publish-date" href="pet-category.html">
+                                                                <svg width="6" height="6" viewBox="0 0 6 6"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="3" cy="3" r="3"
+                                                                        fill="#C4C4C4" />
+                                                                </svg>
+                                                                {{ $item->created_at->format('d M, Y') }}</a></li>
+                                                    </ul>
                                                 </div>
+                                                <h5><a href="{{ route('article.show', $item->slug) }}">{{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -220,53 +182,91 @@
 
                 <div class="col-lg-4">
                     <div class="pet-sidebar-area">
-                        <div class="single-widget mb-60">
-                            <span class="top-btn"><a>Trending Post</a></span>
-                            <div class="recent-post pt-35">
-                                <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img
-                                            src="{{ asset('assets/image/pet-care/sidebar-img-1.png') }}" alt></a>
+                        <div class="row g-lg-4 gy-5">
+                            <div class="col-lg-12 position-relative">
+                                <div class="slider-btn-groups2">
+                                    
                                 </div>
-                                <div class="recent-post-content">
-                                    <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">The Cat's Cuisine: Crafting a Balanced
-                                            Diet.</a>
-                                    </h6>
+                                <div class="swiper blog-slider">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($randomArticle as $item)
+                                        <div class="swiper-slide">
+                                            <div class="blog-card2">
+                                                <div class="blog-card-img-wrap">
+                                                    <a href="{{ route('article.show', $item->slug) }}">
+                                                        <img src="{{ asset('storage/images/' . $item->image) }}"
+                                                            class="img-fluid"
+                                                            style="object-fit: cover; height: 200px; border-radius: 10px"
+                                                            alt="{{ $item->name }}">
+                                                    </a>
+                                                    <ul class="list-unstyled">
+                                                        <li><a class="category"
+                                                                href="pet-category.html">{{ $item->category->name }}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="blog-content">
+                                                    <ul class="blog-meta list-unstyled d-flex justify-content-between">
+                                                        <li><a href="#">By
+                                                                {{ $item->author->name ?? 'Admin' }}</a>
+                                                        </li>
+                                                        <li><a
+                                                                class="publish-date">{{ $item->created_at->format('d M, Y') }}</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 style="padding-top: 0px; line-height: 0px"><a href="{{ route('article.show', $item->slug) }}"
+                                                            style="font-size: 20px; ">{{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                            <div class="recent-post">
-                                <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img
-                                            src="{{ asset('assets/image/pet-care/sidebar-img-2.png') }}" alt></a>
+                        </div>
+                        <div class="single-widget mb-60 mt-40">
+                            <span class="top-btn pt-10"><a>Trending Post</a></span>
+                            
+                            <br>
+                            @foreach ($articlesTrending as $item)
+                                <div class="recent-post ">
+                                    <div class="recent-post-img">
+                                        <a href="{{ route('article.show', $item->slug) }}"><img
+                                                src="{{ asset('storage/images/' . $item->image) }}"
+                                                style="height:90px; width:  92px;object-fit: cover" alt></a>
+                                    </div>
+                                    <div class="recent-post-content">
+                                        <a href="pet-category.html">{{ $item->updated_at->format('d M, Y') }}</a>
+                                        <h6><a href="{{ route('article.show', $item->slug) }}">
+                                                {{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
+                                        </h6>
+                                    </div>
                                 </div>
-                                <div class="recent-post-content">
-                                    <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">Sit, Stay, Play Mastering Pet Training
-                                            Basics.</a></h6>
-                                </div>
-                            </div>
-                            <div class="recent-post">
+                            @endforeach
+
+                            {{-- <div class="recent-post">
                                 <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img
+                                    <a href="{{ route('article.show', $item->slug) }}"><img
                                             src="{{ asset('assets/image/pet-care/sidebar-img-3.png') }}" alt></a>
                                 </div>
                                 <div class="recent-post-content">
                                     <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">Pawsitively Healthy A Guide to Pet
+                                    <h6><a href="{{ route('article.show', $item->slug) }}">Pawsitively Healthy A Guide to Pet
                                             Wellness..</a></h6>
                                 </div>
                             </div>
                             <div class="recent-post mb-25">
                                 <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img
+                                    <a href="{{ route('article.show', $item->slug) }}"><img
                                             src="{{ asset('assets/image/pet-care/sidebar-img-4.png') }}" alt></a>
                                 </div>
                                 <div class="recent-post-content">
                                     <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">Training Troubles? Solutions for Common
+                                    <h6><a href="{{ route('article.show', $item->slug) }}">Training Troubles? Solutions for Common
                                             Issues.</a></h6>
                                 </div>
-                            </div>
+                            </div> --}}
 
                         </div>
 
@@ -286,7 +286,7 @@
 
                             </ul>
                         </div>
-                        <div class="single-widget mb-50 three">
+                        {{-- <div class="single-widget mb-50 three">
                             <div class="single-widget-content ">
                                 <h3>Subscribe Zorik To Get
                                     Free Update.</h3>
@@ -315,11 +315,13 @@
                                     No Credit Card Required
                                 </p>
                             </div>
-                        </div>
+                        </div> --}}
                         <div class="single-widget-add-area four">
                             @if (isset($sidebarAds))
                                 <a href="{{ $sidebarAds->link ?? '' }}"><img
-                                        src="{{ asset('storage/images/' . $sidebarAds->image_url) }}" alt></a>
+                                        src="{{ asset('storage/images/' . $sidebarAds->image_url) }}"
+                                        style="width: 415px; height: 483px; object-fit: cover; border-radius: 10px"
+                                        alt></a>
                             @endif
 
                         </div>

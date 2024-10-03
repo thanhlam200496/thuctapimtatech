@@ -70,81 +70,98 @@
             </div>
             <div class="col-lg-4">
                 <div class="pet-sidebar-area">
-                    <div class="single-widget mb-60">
-                        <span class="top-btn"><a>Featured Post</a></span>
-                        <div class="recent-post pt-35">
-                            <div class="recent-post-img">
-                                <a href="standard-formate.html"><img
-                                        src="../assets/image/pet-care/sidebar-img-1.png" alt></a>
+                    <div class="row g-lg-4 gy-5">
+                        <div class="col-lg-12 position-relative">
+                            <div class="slider-btn-groups2">
+                                
                             </div>
-                            <div class="recent-post-content">
-                                <a href="pet-category.html">05 January, 2024</a>
-                                <h6><a href="standard-formate.html">The Cat's Cuisine: Crafting a Balanced Diet.</a>
-                                </h6>
+                            <div class="swiper blog-slider">
+                                <div class="swiper-wrapper">
+                                    @foreach ($randomArticle as $item)
+                                        <div class="swiper-slide">
+                                            <div class="blog-card2">
+                                                <div class="blog-card-img-wrap">
+                                                    <a href="{{ route('article.show', $item->slug) }}">
+                                                        <img src="{{ asset('storage/images/' . $item->image) }}"
+                                                            class="img-fluid"
+                                                            style="object-fit: cover; height: 200px; border-radius: 10px"
+                                                            alt="{{ $item->name }}">
+                                                    </a>
+                                                    <ul class="list-unstyled">
+                                                        <li><a class="category"
+                                                                href="pet-category.html">{{ $item->category->name }}</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="blog-content">
+                                                    <ul class="blog-meta list-unstyled d-flex justify-content-between">
+                                                        <li><a href="#">By
+                                                                {{ $item->author->name ?? 'Admin' }}</a>
+                                                        </li>
+                                                        <li><a
+                                                                class="publish-date">{{ $item->created_at->format('d M, Y') }}</a>
+                                                        </li>
+                                                    </ul>
+                                                    <h3 style="padding-top: 0px; line-height: 0px"><a href="{{ route('article.show', $item->slug) }}"
+                                                            style="font-size: 20px; ">{{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
                             </div>
-                        </div>
-                        <div class="recent-post">
-                            <div class="recent-post-img">
-                                <a href="standard-formate.html"><img
-                                        src="../assets/image/pet-care/sidebar-img-2.png" alt></a>
-                            </div>
-                            <div class="recent-post-content">
-                                <a href="pet-category.html">05 January, 2024</a>
-                                <h6><a href="standard-formate.html">Sit, Stay, Play Mastering Pet Training
-                                        Basics.</a></h6>
-                            </div>
-                        </div>
-                        <div class="recent-post">
-                            <div class="recent-post-img">
-                                <a href="standard-formate.html"><img
-                                        src="../assets/image/pet-care/sidebar-img-3.png" alt></a>
-                            </div>
-                            <div class="recent-post-content">
-                                <a href="pet-category.html">05 January, 2024</a>
-                                <h6><a href="standard-formate.html">Pawsitively Healthy A Guide to Pet
-                                        Wellness..</a></h6>
-                            </div>
-                        </div>
-                        <div class="recent-post mb-25">
-                            <div class="recent-post-img">
-                                <a href="standard-formate.html"><img
-                                        src="../assets/image/pet-care/sidebar-img-4.png" alt></a>
-                            </div>
-                            <div class="recent-post-content">
-                                <a href="pet-category.html">05 January, 2024</a>
-                                <h6><a href="standard-formate.html">Training Troubles? Solutions for Common
-                                        Issues.</a></h6>
-                            </div>
-                        </div>
-                        <div class="view-all-btn2">
-                            <a href="pet-category.html" class="view-btn">
-                                View All
-                                <svg class="arrow" width="10" height="10" viewBox="0 0 10 10" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                        stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
-                                </svg>
-                            </a>
                         </div>
                     </div>
-                </div>
-                <div class="featured-post-sideber">
-                    <div class="sidebar-widget about-section">
+                    <div class="single-widget mb-60 mt-40">
+                        <span class="top-btn pt-10"><a>Trending Post</a></span>
+                        
+                        <br>
+                        @foreach ($articlesTrending as $item)
+                            <div class="recent-post ">
+                                <div class="recent-post-img">
+                                    <a href="{{ route('article.show', $item->slug) }}"><img
+                                            src="{{ asset('storage/images/' . $item->image) }}"
+                                            style="height:90px; width:  92px;object-fit: cover" alt></a>
+                                </div>
+                                <div class="recent-post-content">
+                                    <a href="pet-category.html">{{ $item->updated_at->format('d M, Y') }}</a>
+                                    <h6><a href="{{ route('article.show', $item->slug) }}">
+                                            {{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
+                                    </h6>
+                                </div>
+                            </div>
+                        @endforeach
+
+                        
+
+                    </div>
+
+                    <div class="single-widget mb-50">
+                        <div class="category-btn">
+                            <a href="#">
+                                Category
+                            </a>
+                        </div>
                         <ul class="category">
-                            <li>
-                                <a href="about-us.html">About Us</a>
-                            </li>
-                            <li>
-                                <a href="terms%26condition.html">Terms &amp; Conditions</a>
-                            </li>
-                            <li>
-                                <a href="#">Support</a>
-                            </li>
-                            <li>
-                                <a href="privacy-policy.html">Privacy Policy</a>
-                            </li>
+                            @foreach ($categories as $item)
+                                <li>
+                                    <a href="pet-category.html">{{ $item->name }} ({{ $item->article_count }})</a>
+                                </li>
+                            @endforeach
+
+
                         </ul>
+                    </div>
+                    
+                    <div class="single-widget-add-area four">
+                        @if (isset($sidebarAds))
+                            <a href="{{ $sidebarAds->link ?? '' }}"><img
+                                    src="{{ asset('storage/images/' . $sidebarAds->image_url) }}"
+                                    style="width: 415px; height: 483px; object-fit: cover; border-radius: 10px"
+                                    alt></a>
+                        @endif
+
                     </div>
                 </div>
             </div>

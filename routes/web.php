@@ -150,7 +150,7 @@ Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("r
 Route::get("/search", [HomeController::class, "home"])->name("search");
 
 
-Route::get('/filter-articles', [ClientsArticleController::class, 'filter'])->name('filter.articles');
+Route::get('/filter-articles', [HomeController::class, 'home'])->name('filter.articles');
 
 
 
@@ -168,4 +168,4 @@ Route::middleware(['checklogin'])->group(function () {
 
 
 Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
-Route::get('/faqs', [ClientsFAQController::class, 'index'])->name('clients.faq');
+Route::get('faq', [ClientsFAQController::class, 'index'])->name('clients.faq');

@@ -9,12 +9,12 @@
                     <div class="inner-page-breadcrumb-wrapper mb-20">
                         <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>                        <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="gaming.html">Gaming</a></li>
-                            <li>Gameplay Gazette: News from the Gaming Front.</li>
+                            <li><a href="gaming.html">{{ $article->category->name }}</a></li>
+                            <li>{{ strlen($article->name) > 75 ? substr($article->name, 0, 75) . '...' : $article->name }}</li>
                         </ul>
                     </div>
                     <div class="post-thump">
-                        <img src="{{ asset('storage/images/' . $article->image) }}" alt>
+                        <img src="{{ asset('storage/images/' . $article->image) }}" style="width: 855px; height: 441px; object-fit: cover; border-radius: 10px" alt>
                     </div>
                     <ul class="post-meta">
                         <li>
@@ -34,8 +34,20 @@
                         </div>
                     </div>
 
-                    <div class="add-image">
-                        <img src="../assets/image/standard/Ads-Banner.png" alt>
+                    <div class="container mt-5">
+                        <div class="row mb-4">
+                            <div class="col-lg-12 d-flex justify-content-center">
+                                <div class="add-area-image">
+                                    @if (isset($bannerAds))
+                                        <a href="{{ $bannerAds->link ?? '' }}">
+                                            <img src="{{ asset('storage/images/' . $bannerAds->image_url) }}"
+                                                style="width: 4855px; height: 155px; object-fit: cover; border-radius: 10px"
+                                                class="img-fluid" alt>
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="blog-tag">
                         <div class="author-name">
@@ -75,135 +87,45 @@
                         <span class="line-break3"></span>
                         <span class="line-break"></span>
                         <div class="row gy-5">
-                            <div class="col-md-6">
-                                <div class="blog-card">
-                                    <div class="blog-card-img-wrap">
-                                        <a href="standard-formate.html">
-                                            <img src="../assets/image/pet-care/pet-food.png" alt>
-                                        </a>
-                                        <a href="pet-category.html">
-                                            <span>Pet Food</span>
-                                        </a>
-                                        <div class="icon">
-                                            <svg width="12" height="14" viewBox="0 0 12 14" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path
-                                                    d="M9.9375 5.14062H8.95211V2.89215C8.95211 1.29741 7.62734 0 5.99899 0C4.37064 0 3.04586 1.29741 3.04586 2.89215V5.14062H2.0625C1.15786 5.14062 0.421875 5.87661 0.421875 6.78125V12.3594C0.421875 13.264 1.15786 14 2.0625 14H9.9375C10.8421 14 11.5781 13.264 11.5781 12.3594V6.78125C11.5781 5.87661 10.8421 5.14062 9.9375 5.14062ZM4.13961 2.89215C4.13961 1.9005 4.97373 1.09375 5.99899 1.09375C7.02424 1.09375 7.85836 1.9005 7.85836 2.89215V5.14062H4.13961V2.89215ZM10.4844 12.3594C10.4844 12.6609 10.239 12.9062 9.9375 12.9062H2.0625C1.76095 12.9062 1.51562 12.6609 1.51562 12.3594V6.78125C1.51562 6.4797 1.76095 6.23438 2.0625 6.23438H9.9375C10.239 6.23438 10.4844 6.4797 10.4844 6.78125V12.3594Z"
-                                                    fill="#191919" />
-                                                <path
-                                                    d="M6 7.82031C5.44123 7.82031 4.98828 8.27326 4.98828 8.83203C4.98828 9.18881 5.17312 9.50223 5.45211 9.68237V10.8828C5.45211 11.1848 5.69695 11.4297 5.99899 11.4297C6.301 11.4297 6.54586 11.1848 6.54586 10.8828V9.68365C6.82597 9.50373 7.01172 9.18969 7.01172 8.83203C7.01172 8.27326 6.55877 7.82031 6 7.82031Z"
-                                                    fill="#191919" />
-                                            </svg>
+                            @foreach ($randomArticle as $item)
+                                    <div class="col-md-6">
+                                        <div class="blog-card">
+                                            <div class="blog-card-img-wrap">
+                                                <a href="{{ route('article.show', $item->slug) }}">
+                                                    <img src="{{ asset('storage/images/' . $item->image) }}"
+                                                        style="width: 415px; height: 251px; object-fit: cover" alt>
+                                                </a>
+                                                <a href="#">
+                                                    <span>{{ $item->category->name }}</span>
+                                                    
+                                                </a>
+                                            </div>
+                                            <div class="blog-content">
+                                                <div class="author-area">
+                                                    <ul>
+                                                        <li><a href="editor-profile.html">Dr. Michael
+                                                                Patrick</a></li>
+                                                        <li><a class="publish-date" href="pet-category.html">
+                                                                <svg width="6" height="6" viewBox="0 0 6 6"
+                                                                    fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <circle cx="3" cy="3" r="3"
+                                                                        fill="#C4C4C4" />
+                                                                </svg>
+                                                                20 Jan,2024</a></li>
+                                                    </ul>
+                                                </div>
+                                                <h5><a href="{{ route('article.show', $item->slug) }}">{{ $item->name }}</a></h5>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="blog-content">
-                                        <div class="author-area">
-                                            <ul>
-                                                <li><a href="editor-profile.html">Dr. Michael
-                                                        Patrick</a></li>
-                                                <li><a class="publish-date" href="pet-category.html">
-                                                        <svg width="6" height="6" viewBox="0 0 6 6"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="3" cy="3" r="3" fill="#C4C4C4" />
-                                                        </svg>
-                                                        20 Jan,2024</a></li>
-                                            </ul>
-                                        </div>
-                                        <h5><a href="standard-formate.html">Superfood Spotlight: Boosting Your
-                                                Pet'sNutrition.</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="blog-card">
-                                    <div class="blog-card-img-wrap">
-                                        <a href="#">
-                                            <img src="../assets/image/pet-care/pet-food2.png" alt>
-                                        </a>
-                                        <a href="pet-category.html"><span class="blue-green">Food Tips</span>
-                                        </a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <div class="author-area">
-                                            <ul>
-                                                <li><a href="editor-profile.html">Dr. Michael
-                                                        Patrick</a></li>
-                                                <li><a class="publish-date" href="pet-category.html">
-                                                        <svg width="6" height="6" viewBox="0 0 6 6"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="3" cy="3" r="3" fill="#C4C4C4" />
-                                                        </svg>
-                                                        20 Jan,2024</a></li>
-                                            </ul>
-                                        </div>
-                                        <h5><a href="standard-formate.html">Kibble or Cooked?
-                                                Choosing the Right Pet
-                                                Food.</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="blog-card">
-                                    <div class="blog-card-img-wrap">
-                                        <a href="#">
-                                            <img src="../assets/image/pet-care/pet-food3.png" alt>
-                                        </a>
-                                        <a href="pet-category.html"><span class="magenta">Omega-3</span>
-                                        </a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <div class="author-area">
-                                            <ul>
-                                                <li><a href="editor-profile.html">Dr. Michael
-                                                        Patrick</a></li>
-                                                <li><a class="publish-date" href="pet-category.html">
-                                                        <svg width="6" height="6" viewBox="0 0 6 6"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="3" cy="3" r="3" fill="#C4C4C4" />
-                                                        </svg>
-                                                        14 Jan, 2024</a></li>
-                                            </ul>
-                                        </div>
-                                        <h5><a href="standard-formate.html">DIY Delights: Homemade
-                                                Treats for Happy
-                                                Pets.</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="blog-card">
-                                    <div class="blog-card-img-wrap">
-                                        <a href="#">
-                                            <img src="../assets/image/pet-care/pet-food4.png" alt>
-                                        </a>
-                                        <a href="pet-category.html"><span class="Green-Blue">Nutrition</span>
-                                        </a>
-                                    </div>
-                                    <div class="blog-content">
-                                        <div class="author-area">
-                                            <ul>
-                                                <li><a href="editor-profile.html">Dr. James
-                                                        Nathan</a></li>
-                                                <li><a class="publish-date" href="pet-category.html">
-                                                        <svg width="6" height="6" viewBox="0 0 6 6"
-                                                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <circle cx="3" cy="3" r="3" fill="#C4C4C4" />
-                                                        </svg>
-                                                        04 Jan, 2024</a></li>
-                                            </ul>
-                                        </div>
-                                        <h5><a href="standard-formate.html">Kibble or Cooked?
-                                                Choosing the Right Pet
-                                                Food.</a></h5>
-                                    </div>
-                                </div>
-                            </div>
+                                @endforeach
+                            
                         </div>
                     </div>
 
 
 
-
+<br>
                     <div class="comment-area mb-60">
                         <div class="comment-title">
                             <h4>Comments</h4>
@@ -306,95 +228,129 @@
 
 
 
-                <div class="col-lg-4 ">
+                <div class="col-lg-4">
                     <div class="pet-sidebar-area">
-                        <div class="single-widget mb-60">
-                            <span class="top-btn"><a>Trending Post</a></span>
-                            <div class="recent-post pt-35">
-                                <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img src="../assets/image/pet-care/sidebar-img-1.png"
-                                            alt></a>
+                        <div class="row g-lg-4 gy-5">
+                            <div class="col-lg-12 position-relative">
+                                <div class="slider-btn-groups2">
+                                    
                                 </div>
-                                <div class="recent-post-content">
-                                    <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">The Cat's Cuisine: Crafting a Balanced Diet.</a>
-                                    </h6>
-                                </div>
-                            </div>
-                            <div class="recent-post">
-                                <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img src="../assets/image/pet-care/sidebar-img-2.png"
-                                            alt></a>
-                                </div>
-                                <div class="recent-post-content">
-                                    <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">Sit, Stay, Play Mastering Pet Training
-                                            Basics.</a></h6>
-                                </div>
-                            </div>
-                            <div class="recent-post ">
-                                <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img src="../assets/image/pet-care/sidebar-img-3.png"
-                                            alt></a>
-                                </div>
-                                <div class="recent-post-content">
-                                    <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">Pawsitively Healthy A Guide to Pet
-                                            Wellness..</a></h6>
-                                </div>
-                            </div>
-                            <div class="recent-post mb-25">
-                                <div class="recent-post-img">
-                                    <a href="standard-formate.html"><img src="../assets/image/pet-care/sidebar-img-4.png"
-                                            alt></a>
-                                </div>
-                                <div class="recent-post-content">
-                                    <a href="pet-category.html">05 January, 2024</a>
-                                    <h6><a href="standard-formate.html">Training Troubles? Solutions for Common
-                                            Issues.</a></h6>
+                                <div class="swiper blog-slider">
+                                    <div class="swiper-wrapper">
+                                        @foreach ($randomArticle as $item)
+                                            <div class="swiper-slide">
+                                                <div class="blog-card2">
+                                                    <div class="blog-card-img-wrap">
+                                                        <a href="{{ route('article.show', $item->slug) }}">
+                                                            <img src="{{ asset('storage/images/' . $item->image) }}"
+                                                                class="img-fluid"
+                                                                style="object-fit: cover; height: 200px; border-radius: 10px"
+                                                                alt="{{ $item->name }}">
+                                                        </a>
+                                                        <ul class="list-unstyled">
+                                                            <li><a class="category"
+                                                                    href="pet-category.html">{{ $item->category->name }}</a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="blog-content">
+                                                        <ul class="blog-meta list-unstyled d-flex justify-content-between">
+                                                            <li><a href="#">By
+                                                                    {{ $item->author->name ?? 'Admin' }}</a>
+                                                            </li>
+                                                            <li><a
+                                                                    class="publish-date">{{ $item->created_at->format('d M, Y') }}</a>
+                                                            </li>
+                                                        </ul>
+                                                        <h3 style="padding-top: 0px; line-height: 0px"><a href="{{ route('article.show', $item->slug) }}"
+                                                                style="font-size: 20px; ">{{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                            <div class="view-all-btn2">
-                                <a href="pet-category.html" class="view-btn">
-                                    View All
-                                    <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
-                                        fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                            stroke="white" stroke-width="1.5" stroke-linecap="round"></path>
-                                    </svg>
-                                </a>
-                            </div>
+                        </div>
+                        <div class="single-widget mb-60 mt-40">
+                            <span class="top-btn pt-10"><a>Trending Post</a></span>
+                            
+                            <br>
+                            @foreach ($articlesTrending as $item)
+                                <div class="recent-post ">
+                                    <div class="recent-post-img">
+                                        <a href="{{ route('article.show', $item->slug) }}"><img
+                                                src="{{ asset('storage/images/' . $item->image) }}"
+                                                style="height:90px; width:  92px;object-fit: cover" alt></a>
+                                    </div>
+                                    <div class="recent-post-content">
+                                        <a href="pet-category.html">{{ $item->updated_at->format('d M, Y') }}</a>
+                                        <h6><a href="{{ route('article.show', $item->slug) }}">
+                                                {{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
+                                        </h6>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                            
+
                         </div>
 
                         <div class="single-widget mb-50">
                             <div class="category-btn">
-                                <a>Category</a>
+                                <a href="#">
+                                    Category
+                                </a>
                             </div>
                             <ul class="category">
-                                <li>
-                                    <a href="pet-category.html">Pet Behavior (03)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Breeds (02)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Pet Health (06)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Pet Food (04)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Nurtitions (12)</a>
-                                </li>
-                                <li>
-                                    <a href="pet-category.html">Pet Gear (05)</a>
-                                </li>
+                                @foreach ($categories as $item)
+                                    <li>
+                                        <a href="pet-category.html">{{ $item->name }} ({{ $item->article_count }})</a>
+                                    </li>
+                                @endforeach
+
+
                             </ul>
                         </div>
-
+                        {{-- <div class="single-widget mb-50 three">
+                            <div class="single-widget-content ">
+                                <h3>Subscribe Zorik To Get
+                                    Free Update.</h3>
+                                <h6>By subscribing, you'll unlock a treasure trove of the latest trends delivered
+                                    directly to inbox.</h6>
+                                <div class="input-area">
+                                    <input type="email" placeholder="Enter Email" class>
+                                    <button type="submit">
+                                        <svg width="16" height="16" viewBox="0 0 16 16"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M15.9647 0.685806C16.0011 0.594942 16.01 0.495402 15.9904 0.399526C15.9707 0.303649 15.9233 0.215653 15.8541 0.146447C15.7849 0.0772403 15.6969 0.0298668 15.601 0.0101994C15.5052 -0.0094681 15.4056 -0.000564594 15.3147 0.0358061L0.76775 5.85481H0.76675L0.31475 6.03481C0.22914 6.06895 0.154635 6.1261 0.0994654 6.19994C0.0442956 6.27377 0.0106078 6.36142 0.00212322 6.4532C-0.00636132 6.54497 0.0106876 6.63731 0.0513867 6.72001C0.0920859 6.8027 0.154851 6.87254 0.23275 6.92181L0.64275 7.18181L0.64375 7.18381L5.63875 10.3618L8.81675 15.3568L8.81875 15.3588L9.07875 15.7688C9.12817 15.8464 9.19805 15.9089 9.28068 15.9493C9.36332 15.9897 9.45551 16.0066 9.54711 15.998C9.63871 15.9894 9.72617 15.9558 9.79985 15.9007C9.87354 15.8456 9.9306 15.7712 9.96475 15.6858L15.9647 0.685806ZM14.1317 2.57581L6.63775 10.0698L6.42275 9.73181C6.38336 9.66978 6.33078 9.6172 6.26875 9.57781L5.93075 9.36281L13.4247 1.86881L14.6027 1.39781L14.1327 2.57581H14.1317Z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p>
+                                    <svg width="12" height="12" viewBox="0 0 12 12"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <g>
+                                            <path
+                                                d="M12 6C12 7.5913 11.3679 9.11742 10.2426 10.2426C9.11742 11.3679 7.5913 12 6 12C4.4087 12 2.88258 11.3679 1.75736 10.2426C0.632141 9.11742 0 7.5913 0 6C0 4.4087 0.632141 2.88258 1.75736 1.75736C2.88258 0.632141 4.4087 0 6 0C7.5913 0 9.11742 0.632141 10.2426 1.75736C11.3679 2.88258 12 4.4087 12 6ZM9.0225 3.7275C8.96893 3.67411 8.90514 3.63208 8.83495 3.60391C8.76476 3.57574 8.68961 3.56202 8.61399 3.56356C8.53838 3.5651 8.46385 3.58187 8.39486 3.61288C8.32588 3.64388 8.26385 3.68848 8.2125 3.744L5.60775 7.06275L4.038 5.49225C3.93137 5.39289 3.79033 5.3388 3.64461 5.34137C3.49888 5.34394 3.35984 5.40297 3.25678 5.50603C3.15372 5.60909 3.09469 5.74813 3.09212 5.89386C3.08955 6.03958 3.14364 6.18062 3.243 6.28725L5.2275 8.2725C5.28096 8.32586 5.34462 8.36791 5.41469 8.39614C5.48475 8.42437 5.55979 8.43819 5.63531 8.43679C5.71083 8.43539 5.7853 8.4188 5.85427 8.38799C5.92324 8.35719 5.9853 8.31281 6.03675 8.2575L9.03075 4.515C9.13282 4.40887 9.18921 4.26696 9.18781 4.11972C9.1864 3.97248 9.12732 3.83166 9.02325 3.7275H9.0225Z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                    No Credit Card Required
+                                </p>
+                            </div>
+                        </div> --}}
                         <div class="single-widget-add-area four">
-                            <a href="#"><img src="../assets/image/pet-care/Ads-Banner2.png" alt></a>
+                            @if (isset($sidebarAds))
+                                <a href="{{ $sidebarAds->link ?? '' }}"><img
+                                        src="{{ asset('storage/images/' . $sidebarAds->image_url) }}"
+                                        style="width: 415px; height: 483px; object-fit: cover; border-radius: 10px"
+                                        alt></a>
+                            @endif
+
                         </div>
                     </div>
                 </div>
@@ -414,5 +370,5 @@
             return confirm('Bạn có chắc chắn muốn xóa bình luận này không?');
         }
     </script>
-
+<br>
 @endsection
