@@ -33,7 +33,7 @@
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="mb-3">
+                    {{-- <div class="mb-3">
                         <label for="password" class="form-label">Mật Khẩu <span class="text-danger">*</span></label>
                         <input type="password" class="form-control @error('password') is-invalid @enderror" id="password"
                             name='password'>
@@ -49,13 +49,12 @@
                         @error('password_confirmation')
                             <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     <div class="mb-3">
                         <label for="role" class="form-label">Chọn Vai Trò <span class="text-danger">*</span></label>
-                        <select name="role" id="role" class="form-select @error('role') is-invalid @enderror"
-                            required>
-                            <option value="0" {{ old('role', $user->role) == 0 ? 'selected' : '' }}>User</option>
-                            <option value="1" {{ old('role', $user->role) == 1 ? 'selected' : '' }}>Admin</option>
+                        <select name="role" id="role" class="form-select">
+                            <option value="client" {{ old('role', $user->role ?? 'client') == 'client' ? 'selected' : '' }}>Client</option>
+                            <option value="admin" {{ old('role', $user->role ?? 'client') == 'admin' ? 'selected' : '' }}>Admin</option>
                         </select>
                         @error('role')
                             <div class="invalid-feedback">{{ $message }}</div>

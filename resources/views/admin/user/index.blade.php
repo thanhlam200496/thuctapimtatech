@@ -53,7 +53,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td>{{ $user->role == 0 ? 'User' : 'Admin' }}</td>
+                                    <td>{{ $user->role == 'client' ? 'Client' : 'Admin' }}</td>
                                     <td>{!! $user->status == 1 ? '<span class="label label-success">Hoạt động</span>' : '<span class="label label-danger">Ngừng hoạt động</span>' !!}</td>
                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
                                     <td>

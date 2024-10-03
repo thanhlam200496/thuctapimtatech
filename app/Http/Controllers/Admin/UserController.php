@@ -13,13 +13,13 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all(); // Lấy tất cả người dùng
-        return view('admin.user.index', compact('users')); // Trả về view hiển thị danh sách
+        return view('admin.user.index', compact('users')); 
     }
 
     // Hiển thị form thêm mới người dùng
     public function create()
     {
-        return view('admin.user.create'); // Trả về view thêm người dùng
+        return view('admin.user.create'); 
     }
 
     // Lưu thông tin người dùng mới
@@ -59,21 +59,21 @@ class UserController extends Controller
         $user->role = $request->role; 
         $user->status = $request->status;
  
-         // Nếu có mật khẩu mới, mã hóa và cập nhật
+        
          if ($request->password) {
              $user->password = bcrypt($request->password);
          }
  
-         $user->save(); // Lưu thông tin người dùng
+         $user->save(); 
  
          return redirect()->route('user.index')->with('success', 'Thông tin người dùng đã được cập nhật thành công!');
      }
  
-     // Xóa người dùng
+     
      public function destroy($id)
      {
-         $user = User::findOrFail($id); // Tìm người dùng theo id
-         $user->delete(); // Xóa người dùng
+         $user = User::findOrFail($id); 
+         $user->delete(); 
  
          return redirect()->route('user.index')->with('success', 'Người dùng đã được xóa thành công!');
      }
