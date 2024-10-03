@@ -64,17 +64,6 @@
                 <li class="sidebar-dropdown">
                     <a href="#">
                         <i class="bi bi-book"></i>
-                        <span class="menu-text">Quản Lý Liên Hệ</span>
-                    </a>
-                    <div class="sidebar-submenu">
-                        <ul>
-                            {{-- <li><a href="{{ route('contact.index') }}">Danh Sách Liên Hệ</a></li> --}}
-                        </ul>
-                    </div>
-                </li>
-                <li class="sidebar-dropdown">
-                    <a href="#">
-                        <i class="bi bi-book"></i>
                         <span class="menu-text">Quản Lý Bình Luận</span>
                     </a>
                     <div class="sidebar-submenu">

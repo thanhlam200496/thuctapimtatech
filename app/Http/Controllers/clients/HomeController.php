@@ -16,15 +16,11 @@ class HomeController extends Controller
         $bannerAds = Advertisement::where('position', 'banner')->inRandomOrder()->first();
         $sidebarAds = Advertisement::where('position', 'sidebar')->inRandomOrder()->first();
 
-        // Bài viết mới nhất
-        $newArticle = Article::query();
-        if ($request->name != '' && $request->name != null) {
-            $newArticle->where('name', 'like', '%' . $request->name . '%');
-        }
-        $newArticle = $newArticle->orderBy('created_at', 'desc')->take(5)->get();
+        // 4 bài viết nhiều lượt xem nhất
+        $articlesTrending = Article::orderBy('views', 'DESC')->limit(4)->get();
 
         // Bài viết ngẫu nhiên
-        $randomArticle = Article::inRandomOrder()->take(5)->get();
+        $randomArticle = Article::inRandomOrder()->take(4)->get();
 
         // Danh mục
         $categories = Category::select('categories.*')
@@ -33,8 +29,15 @@ class HomeController extends Controller
             ->selectRaw('COUNT(articles.category_id) as article_count')
             ->get();
 
+        // Bài viết mới nhất
+        $newArticle = Article::query();
+        if ($request->name != '' && $request->name != null) {
+            $newArticle->where('name', 'like', '%' . $request->name . '%');
+        }
+        $newArticle = $newArticle->orderBy('created_at', 'desc')->get();
+
         // Khởi tạo biến cho bài viết đã lọc
-        $filteredArticles = Article::all(); // Lấy tất cả bài viết nếu không có lọc
+        $filteredArticles = null; // Lấy tất cả bài viết nếu không có lọc
 
         // Nếu có tham số lọc, áp dụng lọc
         if ($request->has('date') || $request->has('category') || $request->has('views')) {
@@ -63,12 +66,28 @@ class HomeController extends Controller
             $filteredArticles = $query->get();
         }
 
-        return view('clients.home', compact('sidebarAds', 'bannerAds', 'newArticle', 'randomArticle', 'categories', 'filteredArticles'));
+        return view('clients.home', compact('articlesTrending', 'sidebarAds', 'bannerAds', 'newArticle', 'randomArticle', 'categories', 'filteredArticles'));
     }
 
     function contact()
     {
-        return view('clients.contact');
+       // Quảng cáo
+        $bannerAds = Advertisement::where('position', 'banner')->inRandomOrder()->first();
+        $sidebarAds = Advertisement::where('position', 'sidebar')->inRandomOrder()->first();
+
+        // 4 bài viết nhiều lượt xem nhất
+        $articlesTrending = Article::orderBy('views', 'DESC')->limit(4)->get();
+
+        // Bài viết ngẫu nhiên
+        $randomArticle = Article::inRandomOrder()->take(4)->get();
+
+        // Danh mục
+        $categories = Category::select('categories.*')
+            ->join('articles', 'articles.category_id', '=', 'categories.id')
+            ->groupBy('categories.id')
+            ->selectRaw('COUNT(articles.category_id) as article_count')
+            ->get();
+        return view('clients.contact',compact('bannerAds','sidebarAds','articlesTrending','categories','randomArticle'));
     }
 
     function faq()
