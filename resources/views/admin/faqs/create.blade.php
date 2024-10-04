@@ -18,6 +18,9 @@
     <div class="col-xs-12">
 
         <!-- /.box-header -->
+        <div class="card-header bg-primary text-white" style="padding: 12px 20px 12px 20px; border-radius: 7px 7px 0 0">
+            <p class="card-title text-white" style="font-weight: 600; font-size: 1.2rem"> Thêm Mới FAQ's</p>
+        </div>
         <div class="box-body table-responsive no-padding">
             <form role="form" method="POST" action="{{ route('faqs.store') }}" enctype="multipart/form-data">
                 @csrf
@@ -52,7 +55,7 @@
 
                 <!-- /.card-body -->
 
-                <div class="card-footer text-center">
+                <div class="card-footer text-end">
                     <button type="submit" class="btn btn-primary">Thêm mới</button>
                 </div>
             </form>
