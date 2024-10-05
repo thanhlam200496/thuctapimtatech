@@ -67,13 +67,12 @@
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <label for="views">Lượt xem:</label>
-                            <input type="number" name="views" id="views" value="{{ old('views', $articles->views) }}" class="form-control">
-                        </div>
-                        
-
                         <div class="col-md-6">
+                            <div class="form-group mb-3">
+                                <label for="views" class="form-label">Lượt xem</label>
+                                <input type="number" name="views" id="views" value="{{ old('views', $articles->views) }}" class="form-control">
+                            </div>
+
                             <div class="mb-3">
                                 <label for="editor" class="form-label">Content</label>
                                 <textarea name="description" id="editor" class="form-control">{{ old('description', $articles->description) }}</textarea>
