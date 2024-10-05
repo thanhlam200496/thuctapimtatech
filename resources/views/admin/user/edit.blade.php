@@ -9,7 +9,7 @@
     <section class="container mt-4">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                <h3 class="card-title">Chỉnh Sửa Người Dùng: {{ $user->name }}</h3>
+                <h3 class="card-title mb-3 text-white">Thông Tin Người Dùng: {{ $user->name }}</h3>
             </div>
             <!-- form start -->
             <form role="form" action="{{ route('user.update', $user) }}" method="POST">
@@ -82,6 +82,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer text-center">
+                    <a href="{{ route('user.index') }}" class="btn btn-secondary">Trở Lại</a>
                     <button type="submit" class="btn btn-primary">Cập Nhật</button>
                 </div>
             </form>

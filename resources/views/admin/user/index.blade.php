@@ -20,7 +20,7 @@
                 <div class="box-header d-flex justify-content-between align-items-center">
                     <div>
                         <a href="{{ route('user.create') }}" class="btn btn-success">+ Thêm Mới Người Dùng</a>
-                        <a href="" class="btn btn-primary"><i class="fa fa-trash"></i> Thùng Rác</a>
+                        <a href="" class="btn btn-secondary"><i class="fa fa-trash"></i> Thùng Rác</a>
                     </div>
                     <div class="box-tools">
                         <form action="{{ route('user.index') }}" method="GET">
@@ -31,6 +31,11 @@
                                 </div>
                             </div>
                         </form>
+                    </div>
+                </div>
+                <div>
+                    <div class="card-header bg-primary text-white" style="padding: 12px 20px 12px 20px; border-radius: 7px 7px 0 0">
+                        <p class="card-title text-white" style="font-weight: 600; font-size: 1.2rem">Danh sách người dùng</p>
                     </div>
                 </div>
                 <!-- /.box-header -->
