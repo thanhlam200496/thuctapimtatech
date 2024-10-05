@@ -8,7 +8,7 @@
     <section class="container mt-4">
         <div class="card">
             <div class="card-header bg-primary text-white">
-                <h3 class="card-title">Thông Tin Người Dùng: {{ $user->name }}</h3>
+                <h3 class="card-title mb-3 text-white">Thông Tin Người Dùng: {{ $user->name }}</h3>
             </div>
             <div class="card-body">
                 <p><strong>Tên Người Dùng:</strong> {{ $user->name }}</p>

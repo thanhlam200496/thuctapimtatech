@@ -1,4 +1,6 @@
 <header>
+
+</style>
     <div class="page-header">
         <div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
         <ol class="breadcrumb d-md-flex d-none">
@@ -16,11 +18,14 @@
                 <span class="user-name d-none d-md-block"></span>
                 {{-- {{ auth()->user()->name }} --}}
                 <li class="dropdown">
-                    <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+                    {{-- <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
                         <span class="avatar">
                             <img src="/assets/images/author.jpg" alt="User Image">
                             <span class="status online"></span>
                         </span>
+                    </a> --}}
+                    <a href="#" id="userSettings" class="user-settings" data-toggle="dropdown" aria-haspopup="true">
+                        <span class="user-name">{{ auth()->user()->name }}</span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="userSettings">
                         <div class="header-profile-actions">

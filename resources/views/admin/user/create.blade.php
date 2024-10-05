@@ -9,8 +9,8 @@
     <section class="container mt-4">
 
         <div class="card">
-            <div class="card-header bg-primary text-white">
-                <h3 class="card-title">Thêm mới Người Dùng</h3>
+            <div class="card-header bg-primary text-white ">
+                <h3 class="card-title mb-3 text-white">Thêm mới Người Dùng</h3>
             </div>
             <!-- form start -->
             <form role="form" method="POST" action="{{ route('user.store') }}">
