@@ -36,63 +36,68 @@
                 </div>
             </div>
             <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
-                <div class="card-header bg-primary text-white" style="padding: 12px 20px 12px 20px; border-radius: 7px 7px 0 0">
-                    <p class="card-title text-white" style="font-weight: 600; font-size: 1.2rem">Danh sách FAQ's</p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="">
+                        <div class="card-header bg-primary text-white" style="padding: 12px 20px 12px 20px; border-radius: 7px 7px 0 0">
+                            <p class="card-title text-white" style="font-weight: 600; font-size: 1.2rem">Danh sách faq's</p>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body table-responsive p-0" style="height: 430px;">
+                            <table class="table table-hover table-head-fixed text-nowrap">
+                                <thead>
+                                    <tr>
+                                        <th>Stt</th>
+                                        <th>Tên Loại Tin</th>
+                                        <th>Câu Hỏi</th>
+                                        <th>Trả Lời</th>
+                                        <th>Ngày Tạo</th>
+                                        <th>Tùy Chọn</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @forelse ($categories as $category)
+                                    @forelse ($category->faqs as $faq)
+                                    <tr>
+                                        <td>{{ $loop->parent->iteration }}.{{ $loop->iteration }}</td> <!-- Số thứ tự -->
+                                        <td>{{ strlen($category->name) > 50 ? substr($category->name, 0, 50) . '...' : $category->name }}</td> <!-- Tên loại tin -->
+                                        <td>{{ strlen($faq->question) > 50 ? substr($faq->question, 0, 50) . '...' : $faq->question }}</td> <!-- Câu hỏi -->
+                                        <td>{{ strlen($faq->answer) > 50 ? substr($faq->answer, 0, 50) . '...' : $faq->answer }}</td> <!-- Trả lời -->
+                                        <td>{{ $faq->created_at->format('d/m/Y') }}</td> <!-- Ngày tạo -->
+                                        <td>
+                                            <!-- Nút chỉnh sửa -->
+                                            <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-success">
+                                                <i class="fa fa-pencil"></i> Chỉnh Sửa
+                                            </a>
+                                            <!-- Form xóa -->
+                                            <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" style="display:inline;">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn Chắc Muốn Xóa?')">
+                                                    <i class="fa fa-trash"></i> Xóa
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">Không có câu hỏi nào trong danh mục {{$category->name}}</td>
+                                    </tr>
+                                    @endforelse
+                                    @empty
+                                    <tr>
+                                        <td colspan="6" class="text-center">Chưa có danh mục nào.</td>
+                                    </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.card-body -->
+                        
+                    </div>
+                    <!-- /.card -->
                 </div>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Stt</th>
-                            <th>Tên Loại Tin</th>
-                            <th>Câu Hỏi</th>
-                            <th>Trả Lời</th>
-                            <th>Ngày Tạo</th>
-                            <th>Tùy Chọn</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse ($categories as $category)
-                        @forelse ($category->faqs as $faq)
-                        <tr>
-                            <td>{{ $loop->parent->iteration }}.{{ $loop->iteration }}</td> <!-- Số thứ tự -->
-                            <td>{{ $category->name }}</td> <!-- Tên loại tin -->
-                            <td>{{ $faq->question }}</td> <!-- Câu hỏi -->
-                            <td>{{ $faq->answer }}</td> <!-- Trả lời -->
-                            <td>{{ $faq->created_at->format('d/m/Y') }}</td> <!-- Ngày tạo -->
-                            <td>
-                                <!-- Nút chỉnh sửa -->
-                                <a href="{{ route('faqs.edit', $faq->id) }}" class="btn btn-success">
-                                    <i class="fa fa-pencil"></i> Chỉnh Sửa
-                                </a>
-                                <!-- Form xóa -->
-                                <form action="{{ route('faqs.destroy', $faq->id) }}" method="POST" style="display:inline;">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn Chắc Muốn Xóa?')">
-                                        <i class="fa fa-trash"></i> Xóa
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                        @empty
-                        <tr>
-                            <td colspan="6" class="text-center">Không có câu hỏi nào trong danh mục {{$category->name}}</td>
-                        </tr>
-                        @endforelse
-                        @empty
-                        <tr>
-                            <td colspan="6" class="text-center">Chưa có danh mục nào.</td>
-                        </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-
             </div>
-            <!-- /.box-body -->
-        </div>
-        <!-- /.box -->
-    </div>
-    <!-- /.box -->
+            <!-- /.box -->
 </section>
 @endsection
