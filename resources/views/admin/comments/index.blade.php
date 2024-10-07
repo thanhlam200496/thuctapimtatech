@@ -60,9 +60,11 @@
                                 <tbody>
                                     @forelse ($comments as $item)
                                     <tr>
+
+                                    
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ ($item->user)->name }}</td>
-                                        <td>{{ ($item->article)->name }}</td>
+                                        <td>{{ strlen(($item->user)->name) > 20 ? substr(($item->user)->name, 0, length: 20) . '...' : ($item->user)->name }}</td>
+                                        <td>{{ strlen(($item->article)->name) > 20 ? substr(($item->article)->name, 0, 20) . '...' : ($item->article)->name }}</td>
                                         <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                         <td>{{ $item->updated_at->format('d/m/Y') }}</td>
                                         <td>
@@ -100,6 +102,9 @@
                             </table>
                         </div>
                         <!-- /.card-body -->
+                        <div class="pagination-container">
+                        {{ $comments->links() }}
+                    </div>
                     </div>
                     <!-- /.card -->
                 </div>
