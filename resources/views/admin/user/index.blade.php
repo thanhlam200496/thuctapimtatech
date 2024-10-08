@@ -56,8 +56,8 @@
                             @forelse ($users as $user)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
+                                    <td>{{ Str::limit($user->name, 20) }}</td> 
+                                    <td>{{ Str::limit($user->email, 30) }}</td>
                                     <td>{{ $user->role == 'client' ? 'Client' : 'Admin' }}</td>
                                     <td>{!! $user->status == 1 ? '<span class="label label-success">Hoạt động</span>' : '<span class="label label-danger">Ngừng hoạt động</span>' !!}</td>
                                     <td>{{ $user->created_at->format('d/m/Y') }}</td>
