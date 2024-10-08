@@ -145,7 +145,7 @@ Route::get('category/{id}', [CategoryController::class, 'show'])->name('category
 
 Route::get('article/{slug}', [ClientsArticleController::class, 'show'])->name('article.show');
 
-Route::get("/result/{id}", [ClientsArticleController::class, "result"])->name("result");
+Route::get("/result/{id}", [ClientsArticleController::class, "filter"])->name("result");
 
 Route::get("/search", [HomeController::class, "home"])->name("search");
 

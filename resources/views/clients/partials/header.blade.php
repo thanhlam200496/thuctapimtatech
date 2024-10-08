@@ -1,5 +1,5 @@
 <?php
-$loaitin = DB::table('categories')->where('deleted_at', null)->select('id', 'name', 'parent_id')->get();
+$loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)->select('id', 'name', 'parent_id')->get();
 ?>
 <div class="topbar">
     <div class="container-md">
