@@ -20,13 +20,17 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call([
             CategorySeeder::class,
-            ArticleSeeder::class
+            ArticleSeeder::class,
+            CommentSeeder::class,
+            FaqSeeder::class,
+            AdvertisementSeeder::class,
+            ContactSeeder::class,
         ]);
-        $this->call([
-            CommentSeeder::class
-        ]);
-        $this->call([
-            FaqSeeder::class
-        ]);
+        // $this->call([
+        //     CommentSeeder::class
+        // ]);
+        // $this->call([
+        //     FaqSeeder::class
+        // ]);
     }
 }

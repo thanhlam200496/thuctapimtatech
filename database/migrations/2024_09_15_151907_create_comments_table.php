@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('comments', function (Blueprint $table) {
             $table->id();
             $table->text('comments_content')->nullable();
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('article_id');
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
+            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreign('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            // $table->foreignId('article_id')->constrained('articles')->onDelete('cascade');
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->softDeletes();
             $table->timestamps();

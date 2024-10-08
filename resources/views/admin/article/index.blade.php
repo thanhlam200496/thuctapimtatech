@@ -25,7 +25,8 @@
                     <div class="box-tools">
                         <form action="{{ route('article.index') }}" method="GET">
                             <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="search" class="form-control pull-right" placeholder="Search" value="{{ request()->search }}">
+                                <input type="text" name="search" class="form-control pull-right" placeholder="Search"
+                                    value="{{ request()->search }}">
                                 <div class="input-group-btn">
                                     <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                 </div>
@@ -62,17 +63,24 @@
                                 @forelse ($articles as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->name }}</td>
-                                        <td>{{ $item->news_summary }}</td>
-                                        <td><img src="{{ asset('storage/images') }}/{{ $item->image }}" width="150px"></td>
+                                        <td>{{ strlen($item->name) > 45 ? substr($item->name, 0, 45) . '...' : $item->name }}
+                                        </td>
+                                        <td>{{ strlen($item->news_summary) > 45 ? substr($item->news_summary, 0, 45) . '...' : $item->news_summary }}
+                                        </td>
+                                        <td><img src="{{ asset('storage/images') }}/{{ $item->image }}" width="100px">
+                                        </td>
                                         <td>{{ optional($item->category)->name }}</td>
                                         <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                         <td>
-                                            <a href="{{ route('article.edit', $item) }}" class="btn btn-success"><i class="fa fa-pencil"></i> Update</a>
-                                            <form action="{{ route('article.destroy', $item) }}" method="POST" style="display:inline;">
+                                            <a href="{{ route('article.edit', $item) }}" class="btn btn-success"><i
+                                                    class="fa fa-pencil"></i> Update</a>
+                                            <form action="{{ route('article.destroy', $item) }}" method="POST"
+                                                style="display:inline;">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button type="submit" class="btn btn-danger" onclick="return confirm('Bạn Chắc Muốn Xóa?')"><i class="fa fa-trash"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Bạn Chắc Muốn Xóa?')"><i
+                                                        class="fa fa-trash"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>

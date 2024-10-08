@@ -176,6 +176,9 @@
                                 <p class="text-center">Không có bài viết mới nào.</p>
                             @endif
                         </div>
+                        <div class="pagination-container">
+                            {{ $newArticle->links() }}
+                        </div>
                     </div>
 
                 </div>

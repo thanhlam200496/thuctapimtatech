@@ -22,8 +22,8 @@ class CommentFactory extends Factory
     {
         return [
             'comments_content' => $this->faker->text(500),
-            'user_id' => User::factory(),  
-            'article_id' => Article::factory(), 
+            'user_id' => User::all()->random()->id,  
+            'article_id' => Article::all()->random()->id, 
             'status' => $this->faker->randomElement(['pending', 'approved', 'rejected']),
         ];
     }

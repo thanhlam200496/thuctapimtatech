@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('news_summary')->nullable();
             $table->string('image', 255)->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('category_id')->references('id')->on('categories')->cascadeOnDelete();
             $table->string('slug', 100)->unique();
             $table->text('description')->nullable();
             $table->timestamps();
