@@ -14,29 +14,22 @@
                 {{ $message }}
             </div>
         @endif
-        <!-- Default box -->
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
                     <div class="box-tools">
-                        {{-- <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
 
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                            </div>
-                        </div> --}}
                     </div>
                 </div>
 
                 <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
+                    {{-- <table class="table table-hover">
                         <tbody>
                             <tr>
                                 <th>Stt</th>
                                 <th>Tên Loại Tin</th>
-                                {{-- <th>LT-Cha</th> --}}
+
                                 <th>Trạng thái</th>
                                 <th>Ngày tạo</th>
                                 <th>Tùy chọn</th>
@@ -45,7 +38,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $item->name }}</td>
-                                    {{-- <td>{{ $item->parent_id }}</td> --}}
+
                                     <td>{!! $item->status
                                         ? '<span class="label label-success">Hiển Thị</span>'
                                         : '<span class="label label-danger">Ẩn</span>' !!}</td>
@@ -56,8 +49,8 @@
                                             class="btn btn-success">
                                             <i class="fa fa-undo"></i> Khôi Phục</a>
                                         <a href="{{ route('category.forceDelete', $item->id) }}"
-                                            onclick="return confirm('Bạn có trắc chắn muốn xoá chứ ?')" class="btn btn-danger"><i
-                                                class="fa fa-trash"></i> Xóa Bỏ</a>
+                                            onclick="return confirm('Bạn có trắc chắn muốn xoá chứ ?')"
+                                            class="btn btn-danger"><i class="fa fa-trash"></i> Xóa Bỏ</a>
                                     </td>
                                 </tr>
                             @empty
@@ -68,7 +61,7 @@
 
 
                         </tbody>
-                    </table>
+                    </table> --}}
                 </div>
                 <!-- /.box-body -->
             </div>

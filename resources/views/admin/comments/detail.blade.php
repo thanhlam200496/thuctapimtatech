@@ -24,7 +24,9 @@
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
 
-
+            <div class="card-header bg-primary text-white" style="padding: 12px 20px 12px 20px; border-radius: 7px 7px 0 0">
+                            <p class="card-title text-white" style="font-weight: 600; font-size: 1.2rem">Chi Tiết Bình Luận</p>
+                        </div>
                 <form class="ml-5" action="{{route('comments.updatestt',$comments->id)}}" method="POST" enctype="multipart/form-data">
                     @csrf
 
@@ -68,7 +70,7 @@
                         </div>
                     </div>
 
-                    <div class="card-footer mt-4" >
+                    <div class="card-footer mt-4 text-end" >
                         <input type="submit" class="btn btn-success" name="themmoi" onclick="return confirm('Xác nhận cập nhật')" value="Submit">
                         <input class="btn btn-secondary" type="reset" value="Nhập lại">
                         <a href="{{route('comments.index')}}" class="btn btn-primary">Danh sách</a>
