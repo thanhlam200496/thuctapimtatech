@@ -14,7 +14,7 @@
                     <div class=" title">
                         <h1>Contact Us!</h1>
                     </div>
-                    <form action="{{route('contact.store')}}" method="POST">
+                    <form action="{{route('contactpost.store')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
@@ -146,7 +146,7 @@
                         <ul class="category">
                             @foreach ($categories as $item)
                                 <li>
-                                    <a href="pet-category.html">{{ $item->name }} ({{ $item->article_count }})</a>
+                                    <a href="{{ route('result', [$item->id]) }}">{{ $item->name }} ({{ $item->article_count }})</a>
                                 </li>
                             @endforeach
 

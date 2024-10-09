@@ -47,6 +47,7 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 Route::get('/', [HomeController::class, 'home'])->name('Home');
 
 Route::get('form-contact', [HomeController::class, 'contact'])->name('form-contact');
+
 Route::get('faq', [HomeController::class, 'faq'])->name('Faq');
 
 Route::get('feedback', [HomeController::class, 'feedback'])->name('Feedback');
@@ -159,7 +160,7 @@ Route::post('comment/{id}', [ClientsCommentController::class, 'addcmt'])->name('
 
 Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
     
-// Route::resource('contact', ContactController::class);
+Route::resource('contactpost', ContactController::class);
 
 
 Route::middleware(['checklogin'])->group(function () {

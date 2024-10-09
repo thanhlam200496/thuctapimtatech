@@ -23,10 +23,10 @@
                         <a href="
                         {{-- {{ route('advertisement.trash') }} --}}
                          "
-                            class="btn btn-primary"><i class="fa fa-trash"></i> Lịch sử</a>
+                            class="btn btn-submit"><i class="fa fa-trash"></i> Lịch sử</a>
                     </div>
                     <div class="box-tools">
-                        <form action="{{ route('advertisement.index') }}" method="GET">
+                        <form action="{{ route('contact.index') }}" method="GET">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="search" class="form-control pull-right" placeholder="Search"
                                     value="{{ request()->search }}">
@@ -38,21 +38,34 @@
                     </div>
                 </div>
                 <!-- /.box-header -->
-                <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Stt</th>
+                
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="">
+                    <div class="card-header bg-primary text-white"
+                        style=" border-radius: 7px 7px 0 0">
+                        <p class="card-title text-white" style="padding: 12px 20px 12px 20px;font-weight: 600; font-size: 1.2rem">Danh sách người liên hệ</p>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0" style="height: 430px;">
+                        <table class="table table-hover table-head-fixed text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>Stt</th>
                                 <th>Tên</th>
                                 {{-- <th>LT-Cha</th> --}}
                                 <th>Email</th>
                                 <th>Message</th>
                                 <th>Trạng thái</th>
                                 <th>Tùy chọn</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse ($contacts as $item)
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($contacts as $item)
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
 
@@ -90,17 +103,21 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @empty
-                                <tr>
-                                    <td colspan="5" class="text-center">Chưa Có Dữ Liệu</td>
-                                </tr>
-                            @endforelse
-                        </tbody>
-                    </table>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center">Chưa Có Dữ Liệu</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="pagination-container">
+                        {{ $contacts->links() }}
+                    </div>
                 </div>
-                <!-- /.box-body -->
+                <!-- /.card -->
             </div>
-            <!-- /.box -->
         </div>
         <!-- /.box -->
     </section>

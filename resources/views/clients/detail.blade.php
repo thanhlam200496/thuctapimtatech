@@ -306,7 +306,7 @@
                             <ul class="category">
                                 @foreach ($categories as $item)
                                     <li>
-                                        <a href="pet-category.html">{{ $item->name }} ({{ $item->article_count }})</a>
+                                        <a href="{{ route('result', [$item->id]) }}">{{ $item->name }} ({{ $item->article_count }})</a>
                                     </li>
                                 @endforeach
 

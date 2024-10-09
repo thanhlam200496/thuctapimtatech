@@ -1,7 +1,7 @@
 <nav class="sidebar-wrapper">
     <div class="sidebar-brand">
         <a href="{{ url('/') }}" class="logo">
-            <img src="/assets/images/logo.svg" alt="Admin Dashboards" />
+            <img src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/dark-logo.svg" alt="Admin Dashboards" />
         </a>
     </div>
     <div class="sidebar-menu">
@@ -9,13 +9,13 @@
             <ul>
                 <li class="sidebar-dropdown active">
                     <a href="{{ route('admin.index') }}">
-                        <i class="bi bi-house"></i>
+                        <i class="fa-solid fa-house-chimney"></i>
                         <span class="menu-text">Dashboards</span>
                     </a>
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-handbag"></i>
+                        <i class="fa-solid fa-layer-group"></i>
                         <span class="menu-text">Quản lý Loại Tin</span>
                     </a>
                     <div class="sidebar-submenu">
@@ -27,7 +27,7 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-folder"></i>
+                        <i class="fa-solid fa-newspaper"></i>
                         <span class="menu-text">Quản Lý Bài Viết</span>
                     </a>
                     <div class="sidebar-submenu">
@@ -39,8 +39,8 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-globe"></i>
-                        <span class="menu-text">Liên hệ</span>
+                        <i class="fa-solid fa-person-circle-question"></i>
+                        <span class="menu-text">Quản lý Liên hệ</span>
                     </a>
                     <div class="sidebar-submenu">
                         <ul>
@@ -51,7 +51,7 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-globe"></i>
+                        <i class="fa-solid fa-user"></i>
                         <span class="menu-text">Quản Lý Người Dùng</span>
                     </a>
                     <div class="sidebar-submenu">
@@ -63,7 +63,7 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-book"></i>
+                        <i class="fa-solid fa-comment"></i>
                         <span class="menu-text">Quản Lý Bình Luận</span>
                     </a>
                     <div class="sidebar-submenu">
@@ -77,7 +77,7 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-book"></i>
+                        <i class="fa-solid fa-rectangle-ad"></i>
                         <span class="menu-text">Quản Lý Quảng Cáo</span>
                     </a>
                     <div class="sidebar-submenu">
@@ -91,7 +91,7 @@
                 </li>
                 <li class="sidebar-dropdown">
                     <a href="#">
-                        <i class="bi bi-book"></i>
+                        <i class="fa-solid fa-file-circle-question"></i>
                         <span class="menu-text">Quản Lý FAQ's</span>
                     </a>
                     <div class="sidebar-submenu">

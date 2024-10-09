@@ -6,30 +6,36 @@
 <div class="row">
     <div class="col-xxl-3 col-sm-6 col-12">
         <div class="stats-tile">
-            <div class="sale-icon shade-red"><i class="bi bi-pie-chart"></i></div>
+            <div class="sale-icon shade-red"><i class="fa-solid fa-user"></i></div>
             <div class="sale-details">
                 <h3 class="text-red">{{ $userCount }}</h3>
-                <p><a href="" class="small-box-footer">Tài khoản<i class="fa fa-arrow-circle-right"></i></a></p>
+                <p><a href="" class="small-box-footer">Tài khoản
+                    {{-- <i class="fa fa-arrow-circle-right"></i> --}}
+                </a></p>
             </div>
         </div>
     </div>
 
     <div class="col-xxl-3 col-sm-6 col-12">
         <div class="stats-tile">
-            <div class="sale-icon shade-blue"><i class="bi bi-box-seam"></i></div>
+            <div class="sale-icon shade-blue"><i class="fa-solid fa-layer-group"></i></div>
             <div class="sale-details">
                 <h3 class="text-blue">{{ $categoryCount }}</h3>
-                <p><a href="{{ route('category.index') }}" class="small-box-footer">Loại tin<i class="fa fa-arrow-circle-right"></i></a></p>
+                <p><a href="{{ route('category.index') }}" class="small-box-footer">Loại tin
+                    {{-- <i class="fa fa-arrow-circle-right"></i> --}}
+                </a></p>
             </div>
         </div>
     </div>
 
     <div class="col-xxl-3 col-sm-6 col-12">
         <div class="stats-tile">
-            <div class="sale-icon shade-yellow"><i class="bi bi-handbag"></i></div>
+            <div class="sale-icon shade-yellow"><i class="fa-solid fa-newspaper"></i></div>
             <div class="sale-details">
                 <h3 class="text-yellow">{{ $articleCount }}</h3>
-                <p><a href="{{ route('article.index') }}" class="small-box-footer">Bài viết<i class="fa fa-arrow-circle-right"></i></a></p>
+                <p><a href="{{ route('article.index') }}" class="small-box-footer">Bài viết
+                    {{-- <i class="fa fa-arrow-circle-right"></i> --}}
+                </a></p>
             </div>
         </div>
     </div>
@@ -39,7 +45,9 @@
             <div class="sale-icon shade-green"><i class="bi bi-eye"></i></div>
             <div class="sale-details">
                 <h3 class="text-green">{{ $totalViews }}</h3>
-                <p><a href="{{ route('article.index') }}" class="small-box-footer">Lượt xem tin tức<i class="fa fa-arrow-circle-right"></i></a></p>
+                <p><a href="{{ route('article.index') }}" class="small-box-footer">Lượt xem tin tức
+                    {{-- <i class="fa fa-arrow-circle-right"></i> --}}
+                </a></p>
             </div>
         </div>
     </div>
