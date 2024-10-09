@@ -167,7 +167,10 @@
                                                                 {{ $item->created_at->format('d M, Y') }}</a></li>
                                                     </ul>
                                                 </div>
-                                                <h5><a href="{{ route('article.show', $item->slug) }}">{{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a></h5>
+                                                <h5><a href="{{ route('article.show', $item->slug) }}">
+                                                    {{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}
+                                                    
+                                                </a></h5>
                                             </div>
                                         </div>
                                     </div>
@@ -282,7 +285,7 @@
                             <ul class="category">
                                 @foreach ($categories as $item)
                                     <li>
-                                        <a href="pet-category.html">{{ $item->name }} ({{ $item->article_count }})</a>
+                                        <a href="{{ route('result', [$item->id]) }}">{{ $item->name }} ({{ $item->article_count }})</a>
                                     </li>
                                 @endforeach
 

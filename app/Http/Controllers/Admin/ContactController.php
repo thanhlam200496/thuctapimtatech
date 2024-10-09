@@ -9,9 +9,16 @@ use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $contacts = Contact::all();
+        $query = Contact::query();
+
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%')->orwhere('email', 'like', '%' . $request->search . '%');
+        }
+
+        // Thay thế get() bằng paginate(10) để phân trang 10 sản phẩm mỗi trang
+        $contacts = $query->paginate(10);
 
         return view('admin.contacts.index', compact('contacts'));
     }

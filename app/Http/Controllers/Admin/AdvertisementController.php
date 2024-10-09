@@ -12,9 +12,16 @@ use Illuminate\Support\Facades\Storage;
 
 class AdvertisementController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $advertisements = Advertisement::all();
+        $query = Advertisement::query();
+
+        if ($request->has('search')) {
+            $query->where('link', 'like', '%' . $request->search . '%');
+        }
+
+        // Thay thế get() bằng paginate(10) để phân trang 10 sản phẩm mỗi trang
+        $advertisements = $query->paginate(10);
         return view('admin/advertisements/index', compact('advertisements'));
     }
     public function create()

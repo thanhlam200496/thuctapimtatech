@@ -30,7 +30,7 @@ class HomeController extends Controller
             ->get();
 
         // Bài viết mới nhất
-        $newArticle = Article::query()
+        $newArticle = Article::select('articles.*')
     ->join('categories', 'categories.id', '=', 'articles.category_id') // Thêm join với bảng categories
     ->where('categories.status', 1) // Chỉ lấy các articles có categories với status = 1
     ->orderBy('articles.created_at', 'desc') // Sắp xếp các articles theo thời gian tạo giảm dần
@@ -97,7 +97,7 @@ class HomeController extends Controller
         $categories = Category::select('categories.*')
             ->join('articles', 'articles.category_id', '=', 'categories.id')
             ->groupBy('categories.id')
-            ->selectRaw('COUNT(articles.category_id) as article_count')
+            ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
             ->get();
         return view('clients.contact', compact('bannerAds', 'sidebarAds', 'articlesTrending', 'categories', 'randomArticle'));
     }

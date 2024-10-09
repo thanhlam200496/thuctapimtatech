@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{ asset('adminn/assets/css/main.min.css') }}">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('adminn/assets/vendor/overlay-scroll/OverlayScrollbars.min.css') }}">
+    <script src="https://kit.fontawesome.com/2b285c875f.js" crossorigin="anonymous"></script>
 </head>
 
 <body class="hold-transition skin-blue sidebar-mini">

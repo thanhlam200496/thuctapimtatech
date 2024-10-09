@@ -26,9 +26,10 @@ class ContactController extends Controller
         $categories = Category::select('categories.*')
             ->join('articles', 'articles.category_id', '=', 'categories.id')
             ->groupBy('categories.id')
-            ->selectRaw('COUNT(articles.category_id) as article_count')
+            ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
             ->get();
-        return view('clients.contact',compact('bannerAds','sidebarAds','articlesTrending','categories','randomArticle'));
+        return view('clients.contact', compact('bannerAds', 'sidebarAds', 'articlesTrending', 'categories', 'randomArticle'));
+        
     }
     public function store(Request $request)  {
         $request->validate(
@@ -41,7 +42,7 @@ class ContactController extends Controller
         // dd($request->all('name','email','message'));
         try {
             Contact::create($request->all('name','email','message'));
-            return redirect()->route('contact.index')->with('success', 'advertisements created successfully.');
+            return redirect()->route('form-contact')->with('success', 'advertisements created successfully.');
         } catch (\Throwable $th) {
             // dd($th->getMessage());
             return redirect()->back()->withErrors(['error' => 'An error occurred while creating the articles.']);

@@ -36,7 +36,7 @@ class ArticleController extends Controller
         $categories = Category::select('categories.*')
             ->join('articles', 'articles.category_id', '=', 'categories.id')
             ->groupBy('categories.id')
-            ->selectRaw('COUNT(articles.category_id) as article_count')
+            ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
             ->get();
 
         return view('clients.detail', compact('article', 'slug', 'comments','bannerAds','sidebarAds','articlesTrending','categories','randomArticle'));
