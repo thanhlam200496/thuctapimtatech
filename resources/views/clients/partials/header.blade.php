@@ -1,5 +1,5 @@
 <?php
-$loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)->select('id', 'name', 'parent_id')->get();
+$loaitin = DB::table('categories')->where('deleted_at', null)->where('status', 1)->select('id', 'name', 'parent_id')->get();
 ?>
 <div class="topbar">
     <div class="container-md">
@@ -7,9 +7,9 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)
             <div class="col-lg-12">
                 <div class="topbar-wrapper">
                     <div class="header-logo">
-                        <a class="dark" href="{{route('Home')}}"><img alt="image" class="img-fluid"
+                        <a class="dark" href="{{ route('Home') }}"><img alt="image" class="img-fluid"
                                 src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/dark-logo.svg"></a>
-                        <a class="light" href="{{route('Home')}}"><img alt="image" class="img-fluid"
+                        <a class="light" href="{{ route('Home') }}"><img alt="image" class="img-fluid"
                                 src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/poitic-white.svg"></a>
                     </div>
                     <div class="topber-right">
@@ -32,19 +32,25 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)
                             </li> --}}
                         </ul>
                         @if (auth()->check())
-                        <a class="sign-in" href="#">{{ auth()->user()->name }}</a>
-                        <a class="sign-out" href="{{ route('logout') }}" 
-                        style="color: black;" 
-                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            Logout
-                        </a>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    @else
-                        <a class="sign-in" href="{{ route('login') }}">SIGN IN</a>
-                    @endif
-                    
+                            <a class="sign-in" href="#">{{ auth()->user()->name }}</a>
+
+                            @if (auth()->user()->role === 'admin')
+                                <a class="admin-link" href="{{ route('admin.dashboard') }}" style="color: red;">
+                                    Admin Dashboard
+                                </a>
+                            @endif
+
+                            <a class="sign-out" href="{{ route('logout') }}" style="color: black;"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        @else
+                            <a class="sign-in" href="{{ route('login') }}">SIGN IN</a>
+                        @endif
+
                     </div>
                 </div>
             </div>
@@ -130,7 +136,7 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)
                                     </li>
                                 @endif
                             @endforeach
-                            <li><a href="{{route('form-contact')}}">Liên hệ</a></li>
+                            <li><a href="{{ route('form-contact') }}">Liên hệ</a></li>
                             <li><a href="{{ route('clients.faq') }}">FAQ’s</a></li>
 
                         </ul>
@@ -138,7 +144,7 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)
                 </div>
                 <div class="nav-right d-flex justify-content-end align-items-center">
                     {{-- <a href="{{ route('Contact') }}" class="header-btn hover-btn"> --}}
-                        <!-- SVG hoặc icon subscribe -->
+                    <!-- SVG hoặc icon subscribe -->
                     </a>
                 </div>
             </div>
