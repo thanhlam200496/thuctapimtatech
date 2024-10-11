@@ -1,6 +1,6 @@
 @extends('admin.master')
 
-@section('title', 'Danh Sách liên hệ')
+@section('title', 'Lịch sử phản hồi')
 
 @section('title-page', 'Danh Sách Loại Tin')
 
@@ -21,12 +21,12 @@
                     <div>
                         {{-- <a href="{{ route('advertisement.create') }}" class="btn btn-success">+ Thêm mới Quảng cáo</a> --}}
                         <a href="
-                        {{ route('contact-history') }}
+                        {{ route('contact.index') }}
                          "
-                            class="btn btn-submit"> <i class="fa-solid fa-clock-rotate-left"></i>Lịch sử </a>
+                            class="btn btn-submit"><i class="fa-solid fa-arrow-left"></i> Trở lại</a>
                     </div>
                     <div class="box-tools">
-                        <form action="{{ route('contact.index') }}" method="GET">
+                        <form action="{{ route('contact-history') }}" method="GET">
                             <div class="search-container">
                                 <div class="input-group">
                                     <input type="text" class="form-control"  name="search" placeholder="Tìm người liên hệ"  value="{{ request()->search }}">
@@ -47,7 +47,7 @@
                 <div class="">
                     <div class="card-header bg-primary text-white"
                         style=" border-radius: 7px 7px 0 0">
-                        <p class="card-title text-white" style="padding: 12px 20px 12px 20px;font-weight: 600; font-size: 1.2rem">Danh sách người liên hệ</p> 
+                        <p class="card-title text-white" style="padding: 12px 20px 12px 20px;font-weight: 600; font-size: 1.2rem">Danh sách người liên hệ</p>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0" style="height: 430px;">
@@ -90,7 +90,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('contact.edit', $item->id) }}" class="btn btn-success"></i> Chi tiết</a>
+                                        <a href="{{ route('contact-detail', $item->id) }}" class="btn btn-success"><i
+                                                class="fa fa-pencil"></i> Trả lời</a>
                                         <form action="{{ route('advertisement.destroy', $item->id) }}" method="POST"
                                             style="display:inline;">
                                             @method('DELETE')

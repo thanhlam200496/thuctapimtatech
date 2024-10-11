@@ -90,11 +90,11 @@ Route::prefix('admin')->middleware('isAdmin')->group(function () {
     // Route::get('/category/{id}/restore', [CategoryController::class, 'restore'])->name('category.restore');
     // Route::get('/category/{id}/forceDelete', [CategoryController::class, 'forceDelete'])->name('category.forceDelete');
 
-
+    Route::resource('user', UserController::class);
 
     Route::resource('contact', AdminsContactController::class);
-    
-
+    Route::get('contact-history',[AdminsContactController::class,'history'])->name('contact-history');
+    Route::get('contact-detail/{id}',[AdminsContactController::class,'detail'])->name('contact-detail');
 
     Route::resource('faqs', FAQController::class);
 
@@ -118,7 +118,7 @@ Route::prefix('clients')->middleware('auth')->group(function () {
 });
 
 //quản lý user
-Route::resource('user', UserController::class);
+
 
     
     Route::controller(LoginGoogleController::class)->group(function(){

@@ -25,11 +25,10 @@
                 </div>
                 <div class="box-tools">
                     <form action="{{ route('faqs.index') }}" method="GET">
-                        <div class="input-group input-group-sm" style="width: 150px;">
-                            <input type="text" name="search" class="form-control pull-right" placeholder="Search"
-                                value="{{ request()->search }}">
-                            <div class="input-group-btn">
-                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        <div class="search-container">
+                            <div class="input-group">
+                                <input type="text" class="form-control"  name="search" placeholder="Tìm câu hỏi"  value="{{ request()->search }}">
+                                <button class="btn" type="submit"><i class="bi bi-search"></i></button>
                             </div>
                         </div>
                     </form>
