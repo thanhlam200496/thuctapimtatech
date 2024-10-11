@@ -5,14 +5,16 @@
         <div class="toggle-sidebar" id="toggle-sidebar"><i class="bi bi-list"></i></div>
         <ol class="breadcrumb d-md-flex d-none">
             <li class="breadcrumb-item"><i class="bi bi-house"></i><a href="{{ route('admin.index') }}">Home</a></li>
-            <li class="breadcrumb-item breadcrumb-active" aria-current="page">{{ ucfirst(Request::segment(2)) }}</li>
+            <li class="breadcrumb-item breadcrumb-active" aria-current="page">
+                {{ ucfirst(Request::segment(2)) }}
+            </li>
         </ol>
         <div class="header-actions-container">
             <div class="search-container">
-                <div class="input-group">
+                {{-- <div class="input-group">
                     <input type="text" class="form-control" placeholder="Search anything">
                     <button class="btn" type="button"><i class="bi bi-search"></i></button>
-                </div>
+                </div> --}}
             </div>
             <ul class="header-actions">
                 <span class="user-name d-none d-md-block"></span>

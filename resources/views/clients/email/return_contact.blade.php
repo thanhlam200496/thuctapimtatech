@@ -34,6 +34,7 @@
         .email-section p {
             font-size: 16px;
             line-height: 1.5;
+            color: #fff
         }
         .response {
             background-color: #333;

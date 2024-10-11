@@ -7,9 +7,9 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)
             <div class="col-lg-12">
                 <div class="topbar-wrapper">
                     <div class="header-logo">
-                        <a class="dark" href="index.html"><img alt="image" class="img-fluid"
+                        <a class="dark" href="{{route('Home')}}"><img alt="image" class="img-fluid"
                                 src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/dark-logo.svg"></a>
-                        <a class="light" href="index.html"><img alt="image" class="img-fluid"
+                        <a class="light" href="{{route('Home')}}"><img alt="image" class="img-fluid"
                                 src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/poitic-white.svg"></a>
                     </div>
                     <div class="topber-right">
@@ -56,9 +56,12 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status',1)
         <div class="col-lg-12">
             <div class="header-wrapper">
                 <div class="logo-sidebar">
-                    {{-- <div class="sidebar menu-icon">
-                        <!-- SVG hoặc icon menu -->
-                    </div> --}}
+                    <div class="sidebar menu-icon">
+                        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M1.66663 9.16669H18.3333V10.8334H1.66663V9.16669ZM1.66663 4.16669H18.3333V5.83335H1.66663V4.16669ZM1.66663 14.1667H18.3333V15.8334H1.66663V14.1667Z" />
+                        </svg>
+                    </div>
                     <div class="main-menu d-xl-flex d-none">
                         <ul class="menu-list">
                             <li><a href="{{ route('Home') }}">Trang chủ</a></li>

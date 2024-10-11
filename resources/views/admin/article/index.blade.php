@@ -24,11 +24,10 @@
 
                     <div class="box-tools">
                         <form action="{{ route('article.index') }}" method="GET">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="search" class="form-control pull-right" placeholder="Search"
-                                    value="{{ request()->search }}">
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                            <div class="search-container">
+                                <div class="input-group">
+                                    <input type="text" class="form-control"  name="search" placeholder="Tìm bài viết"  value="{{ request()->search }}">
+                                    <button class="btn" type="submit"><i class="bi bi-search"></i></button>
                                 </div>
                             </div>
                         </form>
@@ -63,9 +62,9 @@
                                 @forelse ($articles as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ strlen($item->name) > 45 ? substr($item->name, 0, 45) . '...' : $item->name }}
+                                        <td>{{ strlen($item->name) > 35 ? substr($item->name, 0, 35) . '...' : $item->name }}
                                         </td>
-                                        <td>{{ strlen($item->news_summary) > 45 ? substr($item->news_summary, 0, 45) . '...' : $item->news_summary }}
+                                        <td>{{ strlen($item->news_summary) > 35 ? substr($item->news_summary, 0, 35) . '...' : $item->news_summary }}
                                         </td>
                                         <td><img src="{{ asset('storage/images') }}/{{ $item->image }}" width="100px">
                                         </td>

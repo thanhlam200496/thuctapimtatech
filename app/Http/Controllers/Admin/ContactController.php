@@ -12,7 +12,7 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         $query = Contact::query();
-
+        $query->where('status',0);
         if ($request->has('search')) {
             $query->where('name', 'like', '%' . $request->search . '%')->orwhere('email', 'like', '%' . $request->search . '%');
         }
@@ -51,11 +51,27 @@ class ContactController extends Controller
         ];
         Mail::send('clients/email/return_contact', compact('data_return_email'), function ($email) use ($data_return_email) {
             $email->to($data_return_email['email']);
-            $email->subject('Xác nhận đăng ký tài khoản!');
+            $email->subject('Bạn có một Email từ Web giáo dục!');
         });
         // dd($request->all('mess_return'));
         $contact=Contact::find($id);
         $contact->update($data);
         return redirect()->route('contact.index');
+    }
+    public function history(Request $request) {
+        $query = Contact::query();
+        $query->where('status',1);
+        if ($request->has('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%')->orwhere('email', 'like', '%' . $request->search . '%');
+        }
+
+        
+        $contacts = $query->paginate(10);
+
+        return view('admin.contacts.history', compact('contacts'));
+    }
+    public function detail($id)  {
+        $contact=Contact::find($id);
+        return view('admin.contacts.detail', compact('contact'));
     }
 }
