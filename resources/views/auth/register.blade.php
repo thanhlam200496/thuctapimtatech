@@ -265,7 +265,7 @@
                 @enderror
 
                 <button type="submit" id="register">Đăng Ký</button>
-                <button type="button" id="login">
+                <button type="supmit" id="login">
                     <a style="color: #fff" href="{{ route('login')}}">Bạn đã có tài khoản? Sign-in</a> <!-- Thay đổi href để kích hoạt JS -->
                 </button>
 
