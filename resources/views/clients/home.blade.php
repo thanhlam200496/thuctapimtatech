@@ -78,7 +78,7 @@
                     <!-- Danh sách bài viết -->
                     <div class="container mt-3">
                         @if (isset($filteredArticles)&&!empty($filteredArticles))
-                            <h2 class="text-center mb-4">Danh Sách Bài Viết</h2>
+                            <h2 class="text-center mb-4"  style="font-family: 'Times New Roman', Times, serif; font-weight: 700">Danh Sách Bài Viết</h2>
                         @endif
                         
                         <div class="row">
@@ -137,7 +137,7 @@
                     </div>
                     <!-- Bài viết mới nhất -->
                     <div class="container mt-5">
-                        <h2 class="text-center mb-4">Bài Viết Mới Nhất</h2>
+                        <h2 class="text-center mb-4" style="font-family: 'Times New Roman', Times, serif; font-weight: 700">Bài Viết Mới Nhất</h2>
                         <div class="row g-4">
                             @if (isset($newArticle) && $newArticle->isNotEmpty())
                                 @foreach ($newArticle as $item)
