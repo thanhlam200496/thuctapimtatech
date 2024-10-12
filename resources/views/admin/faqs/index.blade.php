@@ -59,9 +59,9 @@
                                     @forelse ($category->faqs as $faq)
                                     <tr>
                                         <td>{{ $loop->parent->iteration }}.{{ $loop->iteration }}</td> <!-- Số thứ tự -->
-                                        <td>{{ strlen($category->name) > 50 ? substr($category->name, 0, 50) . '...' : $category->name }}</td> <!-- Tên loại tin -->
-                                        <td>{{ strlen($faq->question) > 50 ? substr($faq->question, 0, 50) . '...' : $faq->question }}</td> <!-- Câu hỏi -->
-                                        <td>{{ strlen($faq->answer) > 50 ? substr($faq->answer, 0, 50) . '...' : $faq->answer }}</td> <!-- Trả lời -->
+                                        <td>{{ strlen($category->name) > 30 ? substr($category->name, 0, 30) . '...' : $category->name }}</td> <!-- Tên loại tin -->
+                                        <td>{{ strlen($faq->question) > 30 ? substr($faq->question, 0, 30) . '...' : $faq->question }}</td> <!-- Câu hỏi -->
+                                        <td>{{ strlen($faq->answer) > 30 ? substr($faq->answer, 0, 30) . '...' : $faq->answer }}</td> <!-- Trả lời -->
                                         <td>{{ $faq->created_at->format('d/m/Y') }}</td> <!-- Ngày tạo -->
                                         <td>
                                             <!-- Nút chỉnh sửa -->
