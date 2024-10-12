@@ -34,11 +34,11 @@
                     <div class="card-body">
                         <div class="mb-3">
                             <label for="user_name" class="form-label">tên người dùng</label>
-                            <input class="form-control" type="text" name="user_name" id="user_name" value="{{ old('user_name') ? old('user_name') : $comments->user_name }}">
+                            <input class="form-control" type="text" name="user_name" disabled id="user_name" value="{{ old('user_name') ? old('user_name') : $comments->user_name }}">
                         </div>
                         <div class="mb-3">
                             <label for="article_name" class="form-label">tên bài viết</label>
-                            <input class="form-control" type="text" name="article_name" id="article_name" value="{{ old('article_name') ? old('article_name') : $comments->article_name }}">
+                            <input class="form-control" type="text" name="article_name" disabled id="article_name" value="{{ old('article_name') ? old('article_name') : $comments->article_name }}">
                         </div>
                         <div class="mb-3">
                             <label for="comments_content" class="form-label">nội dung bình luận</label>

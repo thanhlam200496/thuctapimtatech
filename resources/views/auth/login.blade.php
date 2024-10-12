@@ -238,13 +238,13 @@
                         <strong>Danger!</strong> {{ $message }}
                     </div>
                 @endif
-                <div class="social-icons">
+                {{-- <div class="social-icons">
                     <a href="#"><i class="fab fa-google"><strong>A</strong></i></a>
                     <a href="#"><i class="fab fa-facebook-f"><strong>D</strong></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"><strong>M</strong></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"><strong>I</strong></i></a>
                     <a href="#"><i class="fab fa-linkedin-in"><strong>N</strong></i></a>
-                </div>
+                </div> --}}
                 <span>Mời nhập thông tin</span>
                 <input type="email" placeholder="Email" name="email"  value="{{ old('email') }}" />
                 @error('email')
