@@ -9,6 +9,13 @@
                     <li>Contact</li>
                 </ul>
             </div>
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success alert-dismissible">
+               
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                {{ $message }}
+            </div>
+        @endif
             <div class="col-lg-8">
                 <div class="inquiry-form contact-inquiry">
                     <div class=" title">

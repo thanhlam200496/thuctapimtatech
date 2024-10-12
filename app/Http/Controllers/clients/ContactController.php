@@ -42,10 +42,10 @@ class ContactController extends Controller
         // dd($request->all('name','email','message'));
         try {
             Contact::create($request->all('name','email','message'));
-            return redirect()->route('form-contact')->with('success', 'advertisements created successfully.');
-        } catch (\Throwable $th) {
+            return redirect()->route('form-contact')->with('success', 'Contact created successfully.');
+        } catch (\Throwable $th) {  
             // dd($th->getMessage());
-            return redirect()->back()->withErrors(['error' => 'An error occurred while creating the articles.']);
+            return redirect()->back()->withErrors(['error' => 'An error occurred while creating the Contacts.']);
         }
     }
 }

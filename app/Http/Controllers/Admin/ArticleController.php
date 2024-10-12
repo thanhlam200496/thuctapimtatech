@@ -42,7 +42,7 @@ class ArticleController extends Controller
         $request->photo->storeAs("public/images", $fileName);
         $request->merge(['image' => $fileName]);
         try {
-            $article = Article::create($request->all());
+             Article::create($request->all());
             return redirect()->route('article.index')->with('success', 'articles created successfully.');
         } catch (\Throwable $th) {
             // dd($th->getMessage());
