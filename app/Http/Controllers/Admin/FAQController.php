@@ -29,10 +29,19 @@ class FAQController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'question' => 'required',
-            'answer' => 'required',
             'category_id' => 'required|exists:categories,id',
+            'question'    => 'required|string',
+            'answer'      => 'required|string',
+        ], [
+            'required' => ':attribute không được để trống.',
+            'exists'   => ':attribute không tồn tại trong hệ thống.',
+            'string'   => ':attribute phải là một chuỗi ký tự.',
+        ], [
+            'category_id' => 'Danh mục',
+            'question'    => 'Câu hỏi thường gặp',
+            'answer'      => 'Câu trả lời',
         ]);
+        
         try {
             Faq::create($request->all());
             return redirect()->route('faqs.index')->with('success', 'faqs create successfully.');
@@ -57,8 +66,16 @@ class FAQController extends Controller
         // Validate dữ liệu
         $request->validate([
             'category_id' => 'required|exists:categories,id',
-            'question' => 'required|string|max:255',
-            'answer' => 'required|string',
+            'question'    => 'required|string',
+            'answer'      => 'required|string',
+        ], [
+            'required' => ':attribute không được để trống.',
+            'exists'   => ':attribute không tồn tại trong hệ thống.',
+            'string'   => ':attribute phải là một chuỗi ký tự.',
+        ], [
+            'category_id' => 'Danh mục',
+            'question'    => 'Câu hỏi thường gặp',
+            'answer'      => 'Câu trả lời',
         ]);
 
         // Cập nhật dữ liệu FAQ
