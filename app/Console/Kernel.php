@@ -10,11 +10,11 @@ class Kernel extends ConsoleKernel
     /**
      * Define the application's command schedule.
      */
-    protected function schedule(Schedule $schedule):void
-{
+    protected function schedule(Schedule $schedule)
+    {
+        $schedule->command('backup:run')->dailyAt('10:40');
+    }
     
-    $schedule->command('backup:run')->dailyAt('14:01');
-}
 
     /**
      * Register the commands for the application.
