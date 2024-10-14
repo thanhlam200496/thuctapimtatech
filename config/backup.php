@@ -15,8 +15,9 @@ return [
                  * The list of directories and files that will be included in the backup.
                  */
                 'include' => [
-                    base_path('storage/app'),
-                    base_path('public'),
+                    // base_path('storage/app'),
+                    // base_path('public'),
+                    base_path('storage/app/public/images'),
                 ],
 
                 /*
@@ -131,18 +132,8 @@ return [
              *
              * For more check https://www.php.net/manual/zip.constants.php and confirm it's supported by your system.
              */
-            'compression_method' => ZipArchive::CM_DEFAULT,
-
-            /*
-             * The compression level corresponding to the used algorithm; an integer between 0 and 9.
-             *
-             * Check supported levels for the chosen algorithm, usually 1 means the fastest and weakest compression,
-             * while 9 the slowest and strongest one.
-             *
-             * Setting of 0 for some algorithms may switch to the strongest compression.
-             */
-            'compression_level' => 9,
-
+            'compression_method' => ZipArchive::CM_STORE, // Nén không nén để thử nghiệm
+    'compression_level' => 0, // Mức nén thấp nhất
             /*
              * The filename prefix used for the backup zip file.
              */

@@ -2,81 +2,153 @@
 
 
 @section('content')
-    <div class="pet-news">
-        <div class="container">
-            <div class="row pt-40 justify-content-center"> <!-- Thêm justify-content-center -->
-                <div class="col-lg-8">
-                    <div class="pet-news-area">
-                        <div class="driscription-and-search">
-                            <div class="right-content" style="width: 900px; text-align: center">
-                                <form method="GET" action="{{ route('search') }}">
-                                    <div class="form-inner">
-                                        <input type="text" placeholder="Search post , tag etc ..." name="name">
-                                        <button type="submit">
-                                            <svg width="14" height="14" viewBox="0 0 14 14"
-                                                xmlns="http://www.w3.org/2000/svg">
-                                                <path fill-rule="evenodd" clip-rule="evenodd"
-                                                    d="M6.71566 2.58941C4.43599 2.58941 2.58974 4.43507 2.58974 6.71007C2.58974 8.98507 4.43599 10.8302 6.71566 10.8302C7.85316 10.8302 8.88157 10.3717 9.62824 9.62849C10.0134 9.24642 10.319 8.79176 10.5272 8.29081C10.7355 7.78987 10.8423 7.25259 10.8416 6.71007C10.8416 4.43507 8.99533 2.58941 6.71566 2.58941ZM1.16699 6.71007C1.16699 3.64757 3.65199 1.16666 6.71566 1.16666C9.77933 1.16666 12.2643 3.64757 12.2643 6.71007C12.2659 7.93785 11.8581 9.1311 11.1052 10.101L12.6248 11.6188C12.6952 11.6838 12.7518 11.7624 12.7911 11.8497C12.8304 11.9371 12.8517 12.0315 12.8536 12.1273C12.8556 12.2231 12.8382 12.3183 12.8024 12.4072C12.7667 12.4961 12.7134 12.5769 12.6456 12.6447C12.5779 12.7125 12.4972 12.7659 12.4084 12.8018C12.3195 12.8376 12.2243 12.8551 12.1285 12.8533C12.0327 12.8515 11.9383 12.8303 11.8508 12.7911C11.7634 12.7519 11.6848 12.6954 11.6197 12.6251L10.0972 11.1049C9.128 11.851 7.93879 12.2547 6.71566 12.2529C3.65199 12.2529 1.16699 9.77199 1.16699 6.71007Z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
     <div class="blog-post3 mb-120">
         <div class="container">
-            <div class="row g-lg-4 gy-5 pt-40">
-                <div class="col-lg-8">
-                    
-
-                    <div class="container mt-2">
+            <div class="row g-lg-4 gy-5 pt-20">
+                <div class="col-lg-8">            
+                    <div class="container mt-2">                   
+                        <form action="{{ route('filter.articles') }}" method="GET" class="filter-form" style="font-size: 15px; font-family: 'Times New Roman', Times, serif;">
+                            <!-- Search Input (Full Width on Top) -->
+                            <div class="form-group full-width">
+                                <input type="text" value="{{ request()->name }}" placeholder="Tìm kiếm bài viết, thẻ ..." name="name" class="input-text">
+                            </div>
+                            
+                            <!-- Filters and Submit Button (Aligned in one row) -->
+                            <div class="form-row">
+                                <div class="form-group flex-item">
+                                    <label for="date" class="visually-hidden">Ngày Đăng</label>
+                                    <select name="date" id="date" class="input-select">
+                                        <option value="">Chọn ngày đăng</option>
+                                        <option value="newest" {{ request()->date == 'newest' ? 'selected' : '' }}>Mới Nhất</option>
+                                        <option value="oldest" {{ request()->date == 'oldest' ? 'selected' : '' }}>Cũ Nhất</option>
+                                    </select>
+                                </div>
                         
-                        <form action="{{ route('filter.articles') }}" method="GET" class="row g-3 justify-content-center align-items-end">
-                            <div class="col-md-3">
-                                <label for="date" class="form-label">Ngày Đăng</label>
-                                <select name="date" id="date" class="form-select">
-                                    <option value="">Chọn ngày đăng</option>
-                                    <option value="newest">Mới Nhất</option>
-                                    <option value="oldest">Cũ Nhất</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="category" class="form-label">Danh Mục</label>
-                                <select name="category" id="category" class="form-select">
-                                    <option value="">Chọn danh mục</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="views" class="form-label">Lượt Xem</label>
-                                <select name="views" id="views" class="form-select">
-                                    <option value="">Chọn lượt xem</option>
-                                    <option value="most_viewed">Nhiều Nhất</option>
-                                    <option value="least_viewed">Ít Nhất</option>
-                                </select>
-                            </div>
-                            <div class="col-md-1 text-end">
-                                <button type="submit" class="btn btn-primary btn-lg">Lọc</button>
+                                <div class="form-group flex-item">
+                                    <label for="category" class="visually-hidden">Danh Mục</label>
+                                    <select name="category" id="category" class="input-select">
+                                        <option value="">Chọn danh mục</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}" {{ request()->category == $category->id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                        
+                                <div class="form-group flex-item">
+                                    <label for="views" class="visually-hidden">Lượt Xem</label>
+                                    <select name="views" id="views" class="input-select">
+                                        <option value="">Chọn lượt xem</option>
+                                        <option value="most_viewed" {{ request()->views == 'most_viewed' ? 'selected' : '' }}>Nhiều Nhất</option>
+                                        <option value="least_viewed" {{ request()->views == 'least_viewed' ? 'selected' : '' }}>Ít Nhất</option>
+                                    </select>
+                                </div>
+                        
+                                <!-- Submit Button -->
+                                <div class="form-group flex-item">
+                                    <button type="submit" class="submit-btn">Lọc</button>
+                                </div>
                             </div>
                         </form>
+                        
+                        <!-- Custom CSS -->
+                        <style>
+                            .filter-form {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 20px;
+                                padding: 40px;
+                                background-color: #f9f9f9;
+                                border-radius: 15px;
+                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                                border: none; /* Loại bỏ viền của form */
+                            }
+                        
+                            .form-row {
+                                display: flex;
+                                flex-wrap: wrap;
+                                gap: 20px;
+                                justify-content: space-between;
+                            }
+                        
+                            .form-group {
+                                flex: 1;
+                                min-width: 150px; /* Đảm bảo các phần tử sẽ co dãn theo chiều rộng */
+                            }
+                        
+                            .full-width {
+                                flex-basis: 100%;
+                            }
+                        
+                            .input-text, .input-select {
+                                width: 100%;
+                                padding: 12px 20px;
+                                border: none;
+                                border-bottom: 2px solid #000;
+                                background-color: transparent;
+                                font-size: 18px;
+                                transition: border-bottom-color 0.3s ease;
+                            }
+                        
+                            .input-text:focus, .input-select:focus {
+                                outline: none;
+                                border-bottom-color: #78eb54;
+                            }
+                        
+                            .submit-btn {
+                                width: 100%;
+                                padding: 14px 0;
+                                background-color: #000;
+                                color: #fff;
+                                border: 2px solid #000;
+                                border-radius: 50px;
+                                font-size: 16px;
+                                text-transform: uppercase;
+                                cursor: pointer;
+                                transition: background-color 0.3s ease, border-color 0.3s ease;
+                            }
+                        
+                            .submit-btn:hover {
+                                background-color: #78eb54;
+                                border-color: #78eb54;
+                                color: #000000;
+                            }
+                        
+                            .visually-hidden {
+                                position: absolute;
+                                width: 1px;
+                                height: 1px;
+                                padding: 0;
+                                margin: -1px;
+                                overflow: hidden;
+                                clip: rect(0, 0, 0, 0);
+                                border: 0;
+                            }
+                        
+                            /* Responsive design */
+                            @media (max-width: 768px) {
+                                .form-row {
+                                    flex-direction: column;
+                                }
+                                .flex-item {
+                                    flex-basis: 100%;
+                                }
+                            }
+                        </style>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     </div>
                     
                     
                    
                     <!-- Hiển thị danh sách bài viết -->
                     <!-- Danh sách bài viết -->
-                    <div class="container mt-3">
+                    <div class="container mt-2">
                         @if (isset($filteredArticles)&&!empty($filteredArticles))
                             <h2 class="text-center mb-4"  style="font-family: 'Times New Roman', Times, serif; font-weight: 700">Danh Sách Bài Viết</h2>
                         @endif
@@ -120,7 +192,7 @@
                             @endif
                         </div>
                     </div>
-                    <div class="container mt-5">
+                    <div class="container mt-2">
                         <div class="row mb-4">
                             <div class="col-lg-12 d-flex justify-content-center">
                                 <div class="add-area-image">

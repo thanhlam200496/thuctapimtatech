@@ -29,7 +29,7 @@ use App\Http\Controllers\clients\HomeController;
 
 use App\Http\Controllers\LoginFacebookController;
 use App\Http\Controllers\LoginGoogleController;
-
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -170,3 +170,10 @@ Route::middleware(['checklogin'])->group(function () {
 
 Route::get('/comments', [ClientsCommentController::class, 'detail'])->name('detail');
 Route::get('faq', [ClientsFAQController::class, 'index'])->name('clients.faq');
+
+// Route::get('/test-backup', function () {
+//     $files = File::allFiles(storage_path('app/public/images'));
+//     foreach ($files as $file) {
+//         echo $file->getFilename() . "<br>";
+//     }
+// });
