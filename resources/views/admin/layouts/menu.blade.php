@@ -32,8 +32,8 @@
                     </a>
                     <div class="sidebar-submenu">
                         <ul>
-                            <li><a href="{{ route('article.index') }}">Danh Sách Tin</a></li>
-                            <li><a href="{{ route('article.create') }}">Thêm Mới Tin</a></li>
+                            <li><a href="{{ route('article.index') }}">Danh Sách Bài Viết</a></li>
+                            <li><a href="{{ route('article.create') }}">Thêm Mới Bài Viết</a></li>
                         </ul>
                     </div>
                 </li>

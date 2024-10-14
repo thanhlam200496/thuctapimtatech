@@ -72,14 +72,14 @@
                                         <td>{{ $item->created_at->format('d/m/Y') }}</td>
                                         <td>
                                             <a href="{{ route('article.edit', $item) }}" class="btn btn-success"><i
-                                                    class="fa fa-pencil"></i> Update</a>
+                                                    class="fa fa-pencil"></i> Chỉnh Sửa</a>
                                             <form action="{{ route('article.destroy', $item) }}" method="POST"
                                                 style="display:inline;">
                                                 @method('DELETE')
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Bạn Chắc Muốn Xóa?')"><i
-                                                        class="fa fa-trash"></i> Delete</button>
+                                                        class="fa fa-trash"></i>Xóa</button>
                                             </form>
                                         </td>
                                     </tr>
