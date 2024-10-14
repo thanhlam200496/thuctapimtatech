@@ -63,11 +63,11 @@ class ArticleController extends Controller
             ->get();
 
         // Bài viết mới nhất
-        $newArticle = Article::query()
-    ->join('categories', 'categories.id', '=', 'articles.category_id') // Thêm join với bảng categories
-    ->where('categories.status', 1) // Chỉ lấy các articles có categories với status = 1
-    ->orderBy('articles.created_at', 'desc') // Sắp xếp các articles theo thời gian tạo giảm dần
-    ->paginate(10); // Phân trang kết quả, mỗi trang có 10 bài viết
+        $newArticle = Article::select('articles.*')
+            ->join('categories', 'categories.id', '=', 'articles.category_id') // Thêm join với bảng categories
+            ->where('categories.status', 1) // Chỉ lấy các articles có categories với status = 1
+            ->orderBy('articles.created_at', 'desc') // Sắp xếp các articles theo thời gian tạo giảm dần
+            ->paginate(10); // Phân trang kết quả, mỗi trang có 10 bài viết
 
         // Khởi tạo biến cho bài viết đã lọc
         $filteredArticles = null; // Lấy tất cả bài viết nếu không có lọc

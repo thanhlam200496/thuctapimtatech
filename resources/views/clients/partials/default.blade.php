@@ -28,6 +28,41 @@
     <title>Zorik - Modern & Lightweight Blog Template</title>
     <link rel="icon" href="https://demo-egenslab.b-cdn.net/html/zorik/assets/image/sm-logo.svg" type="image/gif"
         sizes="20x20">
+        <style>
+            #hovercategory{
+                color: black;
+                background-color: #78eb54;
+            }
+            .fb-share-btn {
+  display: inline-flex;
+  align-items: center;
+  background-color: #1877F2; /* Facebook blue */
+  color: white;
+  font-size: 13px; /* Smaller font size */
+  font-family: 'Times New Roman', sans-serif;
+  padding: 8px 15px; /* Smaller padding */
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px; /* Softer corners */
+  border: none; /* No border */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.1); /* Light shadow */
+}
+
+.fb-share-btn:hover {
+  background-color: #145DBF; /* Darker blue on hover */
+  transform: scale(1.05); /* Slight increase in size on hover */
+  box-shadow: 0 4px 7px rgba(0, 0, 0, 0.15); /* Stronger shadow */
+}
+
+.fb-logo {
+  width: 16px; /* Small Facebook logo */
+  height: 16px;
+  margin-right: 8px; /* Space between logo and text */
+}
+
+
+        </style>
 </head>
 
 <body id="body">
