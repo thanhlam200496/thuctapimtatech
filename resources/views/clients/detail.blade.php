@@ -7,10 +7,10 @@
         <div class="row g-lg-4 gy-5">
             <div class="col-lg-8">
                 <div class="inner-page-breadcrumb-wrapper mb-20">
-                    <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div>
+                    {{-- <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div> --}}
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="gaming.html">{{ $article->category->name }}</a></li>
+                        <li><a href="{{route('Home')}}">Home</a></li>
+                        <li><a href="{{ route('result', [$article->category->id]) }}">{{ $article->category->name }}</a></li>
                         <li>{{ strlen($article->name) > 75 ? substr($article->name, 0, 75) . '...' : $article->name }}</li>
                     </ul>
                 </div>
@@ -28,11 +28,11 @@
                 </div>
                 <ul class="post-meta">
                     <li>
-                        <a href="editor-profile.html">Caleb Benjamin</a>
+                        <a href="#">Admin</a>
                     </li>
                     <li>
                         <a class="publish-date"
-                            href="pet-category.html">{{ $article->created_at->format('d M, Y') }}</a>
+                            href="#">{{ $article->created_at->format('d M, Y') }}</a>
                     </li>
                 </ul>
                 <h1>{{ $article->name }}</h1>
@@ -61,15 +61,20 @@
                 </div>
                 <div class="blog-tag">
                     <div class="author-name">
-                        <h6>Posted by <a href="editor-profile.html">Robert Kcarery</a></h6>
+                        <h6>Posted by <a href="#">Admin</a></h6>
                     </div>
                     <div class="tag-items">
                         <h6>Categorized:</h6>
                         <ul>
-                            <li><a href="pet-category.html">Gaming Tips,</a></li>
-                            <li><a href="pet-category.html">Competition,</a></li>
-                            <li><a href="pet-category.html">Chanllenge</a></li>
+                            <li><a href="{{ route('result', [$article->category->id]) }}">{{$article->category->name}}</a></li>
+                            
                         </ul>
+                        <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="" data-size="">
+                            <a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore fb-share-btn">
+                              <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook" class="fb-logo"> Chia sẻ
+                            </a>
+                          </div>
+                          
                     </div>
                 </div>
                 <div class="post-btn">
@@ -113,15 +118,15 @@
                                 <div class="blog-content">
                                     <div class="author-area">
                                         <ul>
-                                            <li><a href="editor-profile.html">Dr. Michael
+                                            <li><a href="#">Admin
                                                     Patrick</a></li>
-                                            <li><a class="publish-date" href="pet-category.html">
+                                            <li><a class="publish-date" href="#">
                                                     <svg width="6" height="6" viewBox="0 0 6 6"
                                                         fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <circle cx="3" cy="3" r="3"
                                                             fill="#C4C4C4" />
                                                     </svg>
-                                                    20 Jan,2024</a></li>
+                                                    {{ $article->created_at->format('d M, Y') }}</a></li>
                                         </ul>
                                     </div>
                                     <h5><a href="{{ route('article.show', $item->slug) }}">{{ $item->name }}</a></h5>
@@ -251,7 +256,7 @@
                                                 </a>
                                                 <ul class="list-unstyled">
                                                     <li><a class="category"
-                                                            href="pet-category.html">{{ $item->category->name }}</a>
+                                                            href="{{ route('result', [$item->category->id]) }}">{{ $item->category->name }}</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -287,7 +292,7 @@
                                         style="height:90px; width:  92px;object-fit: cover" alt></a>
                             </div>
                             <div class="recent-post-content">
-                                <a href="pet-category.html">{{ $item->updated_at->format('d M, Y') }}</a>
+                                <a href="#">{{ $item->updated_at->format('d M, Y') }}</a>
                                 <h6><a href="{{ route('article.show', $item->slug) }}">
                                         {{ strlen($item->name) > 75 ? substr($item->name, 0, 75) . '...' : $item->name }}</a>
                                 </h6>

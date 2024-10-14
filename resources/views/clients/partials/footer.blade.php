@@ -1,4 +1,7 @@
 <footer class="footer-section3">
+    @php
+        $loaitin = DB::table('categories')->where('deleted_at', null)->where('status', 1)->where('parent_id', null)->select('id', 'name', 'parent_id')->take(4)->get();
+    @endphp
     <div class="footer-top">
         <div class="container">
             <div class="row g-lg-4 gy-5 g-6 ">
@@ -99,9 +102,10 @@
                             <h5>Category</h5>
                         </div>
                         <ul class="widget-list">
-                            <li>
-                                <a href="pet-category.html">
-                                    Pet Behavior
+                            @foreach ($loaitin as $item)
+                                <li>
+                                <a href="{{ route('result', [$item->id]) }}">
+                                   {{$item->name}}
                                     <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
                                         xmlns="http://www.w3.org/2000/svg">
                                         <path
@@ -110,61 +114,9 @@
                                     </svg>
                                 </a>
                             </li>
-                            <li>
-                                <a href="pet-category.html">
-                                    Health
-                                    <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                            stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pet-category.html">
-                                    Pet Food
-                                    <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                            stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pet-category.html">
-                                    Nutrition
-                                    <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                            stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pet-category.html">
-                                    Pet Gear
-                                    <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                            stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
-                                    </svg>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="pet-category.html">
-                                    Breeds
-                                    <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
-                                            stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
-                                    </svg>
-                                </a>
-                            </li>
+                            @endforeach
+                            
+                           
                         </ul>
                     </div>
                 </div>

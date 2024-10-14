@@ -57,10 +57,10 @@
                                 flex-direction: column;
                                 gap: 20px;
                                 padding: 40px;
-                                background-color: #f9f9f9;
+                                background-color: #00000000;
                                 border-radius: 15px;
-                                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-                                border: none; /* Loại bỏ viền của form */
+                                /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+                                border: 0.5px solid #eee; /* Loại bỏ viền của form */
                             }
                         
                             .form-row {
@@ -165,8 +165,8 @@
                                                 <img src="{{ asset('storage/images/' . $item->image) }}"
                                                     style="width: 415px; height: 251px; object-fit: cover" alt>
                                             </a>
-                                            <a href="#">
-                                                <span>{{ $item->category->name }}</span>
+                                            <a href="{{ route('result', [$item->category->id]) }}">
+                                                <span class="hovercategory">{{ $item->category->name }}</span>
                                                 
                                             </a>
                                         </div>
@@ -220,8 +220,8 @@
                                                     <img src="{{ asset('storage/images/' . $item->image) }}"
                                                         style="width: 415px; height: 251px; object-fit: cover" alt>
                                                 </a>
-                                                <a href="#">
-                                                    <span>{{ $item->category->name }}</span>
+                                                <a href="{{ route('result', [$item->category->id]) }}">
+                                                    <span class="hovercategory">{{ $item->category->name }}</span>
                                                     
                                                 </a>
                                             </div>
@@ -279,7 +279,7 @@
                                                     </a>
                                                     <ul class="list-unstyled">
                                                         <li><a class="category"
-                                                                href="pet-category.html">{{ $item->category->name }}</a>
+                                                                href="{{ route('result', [$item->id]) }}">{{ $item->category->name }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>
