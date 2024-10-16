@@ -61,20 +61,16 @@
                                 </select>
                             </div>
 
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="stock" name="stock" value="1" {{ old('stock', $articles->stock) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="stock">Feature</label>
-                            </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="form-group mb-3">
-                                <label for="views" class="form-label">Lượt xem</label>
+                                <label for="views" class="form-label">Lượt Xem</label>
                                 <input type="number" name="views" id="views" value="{{ old('views', $articles->views) }}" class="form-control">
                             </div>
 
                             <div class="mb-3">
-                                <label for="editor" class="form-label">Content</label>
+                                <label for="editor" class="form-label">Nội Dung</label>
                                 <textarea name="description" id="editor" class="form-control">{{ old('description', $articles->description) }}</textarea>
                             </div>
                         </div>

@@ -19,7 +19,7 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="articleName" class="form-label">Tên Loại Tin</label>
+                                <label for="articleName" class="form-label">Tên Bài viết</label>
                                 <input type="text" class="form-control @error('name') is-invalid @enderror" id="articleName" name="name" onkeyup="ChangeToSlug()">
                                 @error('name')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -27,7 +27,7 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="news_summary" class="form-label">Tóm tắt</label>
+                                <label for="news_summary" class="form-label">Tóm Tắt</label>
                                 <input type="text" class="form-control @error('news_summary') is-invalid @enderror" id="news_summary" name="news_summary">
                                 @error('news_summary')
                                     <div class="invalid-feedback">{{ $message }}</div>
@@ -58,16 +58,11 @@
                                     @endforeach
                                 </select>
                             </div>
-
-                            <div class="form-check mb-3">
-                                <input type="checkbox" class="form-check-input" id="stock" name="stock" value="1">
-                                <label class="form-check-label" for="stock">Feature</label>
-                            </div>
                         </div>
 
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="editor" class="form-label">Content</label>
+                                <label for="editor" class="form-label">Nội Dung</label>
                                 <textarea name="description" id="editor" class="form-control"></textarea>
                             </div>
                         </div>
