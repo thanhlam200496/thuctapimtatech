@@ -25,31 +25,43 @@
             <form role="form" method="POST" action="{{ route('faqs.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
+                    <!-- Danh mục -->
                     <div class="mb-3">
                         <label for="category_id" class="form-label">Chọn Loại Tin</label>
-                        <select name="category_id" class="form-select">
+                        <select name="category_id" class="form-select @error('category_id') is-invalid @enderror">
+                            <option value="">Chọn danh mục</option>
                             @foreach ($categories as $category)
-                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
                             @endforeach
                         </select>
                         @error('category_id')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <!-- Câu hỏi -->
                     <div class="form-question mb-3">
-                        <label class="form-label">Câu hỏi thường gặp</label>
-                        <input type="text" name="question" id="" class="form-control">
+                        <label for="question" class="form-label">Câu hỏi thường gặp</label>
+                        <input type="text" name="question" id="question" class="form-control @error('question') is-invalid @enderror"
+                            value="{{ old('question') }}">
                         @error('question')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
-                    <div class="form-question mb-3">
-                        <label class="form-label">Câu trả lời</label>
-                        <input type="text" name="answer" id="" class="form-control">
+
+                    <!-- Câu trả lời -->
+                    <div class="form-answer mb-3">
+                        <label for="answer" class="form-label">Câu trả lời</label>
+                        <input type="text" name="answer" id="answer" class="form-control @error('answer') is-invalid @enderror"
+                            value="{{ old('answer') }}">
                         @error('answer')
                         <div class="invalid-feedback">{{ $message }}</div>
                         @enderror
                     </div>
+
+
                 </div>
 
 

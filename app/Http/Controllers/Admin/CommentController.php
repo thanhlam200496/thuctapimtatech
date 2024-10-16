@@ -38,7 +38,11 @@ class CommentController extends Controller
         // Xác thực dữ liệu yêu cầu
         $request->validate([
             'comments_content' => 'required|string',
-            
+        ], [
+            'required' => ':attribute không được để trống.',
+            'string'   => ':attribute phải là chuỗi.',
+        ], [
+            'comments_content' => 'Nội dung bình luận',
         ]);
         $comments = Comment::findOrFail($id);
         try {
