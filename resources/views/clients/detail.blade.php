@@ -94,7 +94,7 @@
                                 <path d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
                                     stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
                             </svg>
-                            NEXT POST</a>
+                            Tiếp theo</a>
                     </div>
                 </div>
                 <div class="blog-post-area pt-90">

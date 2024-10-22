@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -20,66 +22,100 @@ class ArticleController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        $perPage = $request->input('per_page', 10); // Cho phép thay đổi số lượng bài viết trên mỗi trang
-        $articles = $query->paginate($perPage);
+        $perPage = $request->input('per_page', 10);
+        $articles = $query->latest()->paginate($perPage);
 
         return view("admin.article.index", compact("articles"));
     }
 
-    /**
-     * Hiển thị form tạo bài viết mới
-     */
     public function create()
     {
-        $categories = Category::all();
+        $categories = Category::orderBy('name')->get();
         return view("admin.article.create", compact("categories"));
     }
 
-    /**
-     * Lưu bài viết mới
-     */
     public function store(Request $request)
     {
-        // Validate dữ liệu đầu vào
-        $request->validate([
+        $validatedData = $request->validate([
             'name' => 'required|string|max:100',
             'news_summary' => 'nullable|string',
             'photo' => 'required|image|mimes:jpg,png,jpeg|max:2048',
             'category_id' => 'required|exists:categories,id',
-            'slug' => 'required|string|max:100|unique:articles,slug',
+            'slug' => 'required|string|max:100|unique:articles',
             'description' => 'nullable|string',
-            'views' => 'nullable|integer|min:0',
         ], [
             'name.required' => 'Tên bài viết là bắt buộc.',
-            'name.string' => 'Tên bài viết phải là chuỗi ký tự.',
             'name.max' => 'Tên bài viết không được vượt quá 100 ký tự.',
-
             'photo.required' => 'Ảnh là bắt buộc.',
-            'photo.image' => 'Ảnh không hợp lệ, định dạng phải là jpg, png hoặc jpeg.',
-            'photo.mimes' => 'Ảnh phải có định dạng jpg, png hoặc jpeg.',
-            'photo.max' => 'Dung lượng ảnh tối đa là 2MB.',
-
-            'category_id.required' => 'Danh mục là bắt buộc.',
-            'category_id.exists' => 'Danh mục không hợp lệ.',
-
+            'photo.image' => 'File phải là ảnh.',
+            'photo.mimes' => 'Ảnh phải có định dạng: jpg, png, jpeg.',
+            'photo.max' => 'Kích thước ảnh tối đa là 2MB.',
+            'category_id.required' => 'Vui lòng chọn danh mục.',
+            'category_id.exists' => 'Danh mục không tồn tại.',
             'slug.required' => 'Slug là bắt buộc.',
-            'slug.unique' => 'Slug đã tồn tại, vui lòng chọn slug khác.',
+            'slug.unique' => 'Slug đã tồn tại.',
             'slug.max' => 'Slug không được vượt quá 100 ký tự.',
-
-            'views.integer' => 'Lượt xem phải là số nguyên.',
-            'views.min' => 'Lượt xem phải là số không âm.',
         ]);
 
-        // Xử lý file ảnh
-        $fileName = time() . '_' . $request->photo->getClientOriginalName();
-        $request->photo->storeAs("public/images", $fileName);
-        $request->merge(['image' => $fileName]);
-
         try {
-            Article::create($request->all());
-            return redirect()->route('article.index')->with('success', 'Tạo bài viết thành công.');
-        } catch (\Throwable $th) {
-            return redirect()->back()->withErrors(['error' => 'Lỗi: ' . $th->getMessage()]);
+            if ($request->hasFile('photo')) {
+                $file = $request->file('photo');
+                $fileName = time() . '_' . $file->getClientOriginalName();
+                
+                // Kiểm tra và tạo thư mục nếu chưa tồn tại
+                if (!Storage::exists('public/images')) {
+                    Storage::makeDirectory('public/images');
+                }
+                
+                // Upload file với try-catch riêng để bắt lỗi upload
+                try {
+                    $path = $file->storeAs('public/images', $fileName);
+                    if (!$path) {
+                        throw new \Exception('Không thể lưu file.');
+                    }
+                } catch (\Exception $e) {
+                    Log::error('Error uploading file: ' . $e->getMessage());
+                    return redirect()
+                        ->back()
+                        ->withInput()
+                        ->withErrors(['photo' => 'Không thể upload ảnh. Vui lòng thử lại.']);
+                }
+
+                // Tạo bài viết với try-catch riêng
+                try {
+                    $article = Article::create([
+                        'name' => $validatedData['name'],
+                        'news_summary' => $validatedData['news_summary'],
+                        'category_id' => $validatedData['category_id'],
+                        'slug' => $validatedData['slug'],
+                        'description' => $validatedData['description'],
+                        'image' => $fileName,
+                        'views' => 0
+                    ]);
+
+                    return redirect()
+                        ->route('article.index')
+                        ->with('success', 'Thêm bài viết thành công.');
+                } catch (\Exception $e) {
+                    // Nếu tạo bài viết thất bại, xóa file đã upload
+                    Storage::delete('public/images/' . $fileName);
+                    Log::error('Error creating article record: ' . $e->getMessage());
+                    throw $e;
+                }
+            }
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['photo' => 'Vui lòng chọn ảnh cho bài viết.']);
+
+        } catch (\Exception $e) {
+            Log::error('Error in store method: ' . $e->getMessage());
+            Log::error('Stack trace: ' . $e->getTraceAsString());
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['error' => 'Có lỗi xảy ra khi tạo bài viết: ' . $e->getMessage()]);
         }
     }
 
