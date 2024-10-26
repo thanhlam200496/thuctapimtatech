@@ -39,43 +39,50 @@ class HomeController extends Controller
         // Khởi tạo biến cho bài viết đã lọc
         $filteredArticles = null; // Lấy tất cả bài viết nếu không có lọc
 
-// Nếu có tham số lọc, áp dụng lọc
-if ($request->filled('date') || $request->filled('category') || $request->filled('views') || $request->filled('name')) {
-    $query = Article::query()
-        ->join('categories', 'categories.id', '=', 'articles.category_id')
-        ->where('categories.status', 1);  // Điều kiện lọc category với status = 1
+        // Nếu có tham số lọc, áp dụng lọc
+        if ($request->filled('date') || $request->filled('category') || $request->filled('views') || $request->filled('name')) {
+            $query = Article::query()
+                ->join('categories', 'categories.id', '=', 'articles.category_id')
+                ->where('categories.status', 1);  // Điều kiện lọc category với status = 1
 
-    // Lọc theo tên bài viết, nếu có
-    if ($request->filled('name')) {
-        $query->where('articles.name', 'like', '%' . trim($request->name) . '%')->orwhere('categories.name', 'like', '%' . trim($request->name) . '%');
-    }
+            // Lọc theo tên bài viết, nếu có
+            if ($request->filled('name')) {
+                $query->where('articles.name', 'like', '%' . trim($request->name) . '%')->orwhere('categories.name', 'like', '%' . trim($request->name) . '%');
+            }
 
-    // Sắp xếp theo ngày
-    if ($request->filled('date')) {
-        if ($request->date == 'newest') {
-            $query->orderBy('articles.created_at', 'desc');
-        } elseif ($request->date == 'oldest') {
-            $query->orderBy('articles.created_at', 'asc');
+            // Sắp xếp theo ngày
+            if ($request->filled('date')) {
+                if ($request->date == 'newest') {
+                    $query->orderBy('articles.created_at', 'desc');
+                } elseif ($request->date == 'oldest') {
+                    $query->orderBy('articles.created_at', 'asc');
+                }
+            }
+
+            // Lọc theo danh mục, bao gồm danh mục cha và các danh mục con
+            if ($request->filled('category')) {
+                // Lấy danh sách các ID của danh mục cha và các danh mục con
+                $categoryIds = Category::where('id', $request->category)
+                    ->orWhere('parent_id', $request->category)
+                    ->pluck('id')
+                    ->toArray();
+
+                // Lọc các bài viết thuộc các danh mục trong danh sách ID
+                $query->whereIn('articles.category_id', $categoryIds);
+            }
+
+            // Lọc theo lượt xem
+            if ($request->filled('views')) {
+                if ($request->views == 'most_viewed') {
+                    $query->orderBy('articles.views', 'desc');
+                } elseif ($request->views == 'least_viewed') {
+                    $query->orderBy('articles.views', 'asc');
+                }
+            }
+
+            // Lấy các bài viết đã lọc
+            $filteredArticles = $query->get(['articles.*']);  // Chỉ lấy các trường của bảng articles
         }
-    }
-
-    // Lọc theo danh mục, nếu có
-    if ($request->filled('category')) {
-        $query->where('articles.category_id', $request->category);
-    }
-
-    // Lọc theo lượt xem
-    if ($request->filled('views')) {
-        if ($request->views == 'most_viewed') {
-            $query->orderBy('articles.views', 'desc');
-        } elseif ($request->views == 'least_viewed') {
-            $query->orderBy('articles.views', 'asc');
-        }
-    }
-
-    // Lấy các bài viết đã lọc
-    $filteredArticles = $query->get(['articles.*']);  // Chỉ lấy các trường của bảng articles
-}
 
 
         return view('clients.home', compact('articlesTrending', 'sidebarAds', 'bannerAds', 'newArticle', 'randomArticle', 'categories', 'filteredArticles'));

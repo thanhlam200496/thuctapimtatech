@@ -29,10 +29,10 @@ class AuthenController extends Controller
              */
             $user = Auth::user();
             if ($user->isAdmin()) {
-                return redirect()->route('admin.dashboard');
+                return redirect()->route('admin.index');
             }
 
-            return redirect()->route('clients.dashboard');
+            return redirect()->route('Home');
         }
         return back()
             ->withErrors(['email' => 'Email hoặc mật khẩu không đúng.'])
