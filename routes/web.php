@@ -32,6 +32,7 @@ use App\Http\Controllers\LoginGoogleController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\ForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,17 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+
+
+Route::get('/forgot-password', [ForgotPasswordController::class, 'showForgotPasswordForm'])->name('password.request');
+Route::post('forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('forgot-password.send');
+Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset-password.form');
+Route::post('reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('reset-password.update');
+
+
+
+
 
 Route::get('/', [HomeController::class, 'home'])->name('Home');
 
