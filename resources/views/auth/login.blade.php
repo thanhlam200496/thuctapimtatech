@@ -237,6 +237,7 @@
                     <div class="alert alert-danger">
                         <strong>Danger!</strong> {{ $message }}
                     </div>
+                    
                 @endif
                 {{-- <div class="social-icons">
                     <a href="#"><i class="fab fa-google"><strong>A</strong></i></a>
@@ -256,11 +257,13 @@
                 @enderror
 
                 <button>Đăng nhập</button>
-                <p>Hoặc<br><a href="{{ route('login-by-google') }}"><img
+                <p class="text-center">Hoặc<br><a href="{{ route('login-by-google') }}"><img
                             src="{{ asset('assets/image/icons8-google-48.png') }}" alt=""></a>
                     <a href="{{ route('login-by-faceebook') }}"><img
                             src="{{ asset('assets/image/icons8-google-48.png') }}" alt=""></a>
                 </p>
+                <a href="{{ route('password.request') }}" style="color: #000000; margin-top: 10px; display: block;">Quên mật khẩu?</a>
+
 
                 <a style="color: #000000" href="{{ route('register') }}">Bạn chưa có tài khoản? Sign-up</a>
 
