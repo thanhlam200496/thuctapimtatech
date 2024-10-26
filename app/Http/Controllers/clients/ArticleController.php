@@ -39,11 +39,11 @@ class ArticleController extends Controller
             ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
             ->get();
 
-        return view('clients.detail', compact('article', 'slug', 'comments','bannerAds','sidebarAds','articlesTrending','categories','randomArticle'));
+        return view('clients.detail', compact('article', 'slug', 'comments', 'bannerAds', 'sidebarAds', 'articlesTrending', 'categories', 'randomArticle'));
     }
 
 
-    public function filter(Request $request,$id)
+    public function filter(Request $request, $id)
     {
         // Quảng cáo
         $bannerAds = Advertisement::where('position', 'banner')->inRandomOrder()->first();
@@ -71,20 +71,26 @@ class ArticleController extends Controller
 
         // Khởi tạo biến cho bài viết đã lọc
         $filteredArticles = null; // Lấy tất cả bài viết nếu không có lọc
-if (isset($id)&&!empty($id)) {
-    # code...
-}
+        if (isset($id) && !empty($id)) {
+            # code...
+        }
         // Nếu có tham số lọc, áp dụng lọc
-        if ($request->has('date') || $request->has('category') || $request->has('views')||$request->name!=null||$request->name!=''||isset($id)||!empty($id)) {
+        if ($request->has('date') || $request->has('category') || $request->has('views') || $request->name != null || $request->name != '' || isset($id) || !empty($id)) {
             $query = Article::query()
                 ->join('categories', 'categories.id', '=', 'articles.category_id')
                 ->where('categories.status', 1);  // Điều kiện lọc category với status = 1
 
-                if (isset($id)&&!empty($id)) {
-                    $query->where('articles.category_id', $id);
-                }
+            if (isset($id) && !empty($id)) {
+                $categoryIds = Category::where('id', $id)
+                    ->orWhere('parent_id', $id)
+                    ->pluck('id')
+                    ->toArray();
+
+                // Lọc các bài viết thuộc các danh mục trong danh sách ID
+                $query->whereIn('articles.category_id', $categoryIds);
+            }
             // Lọc theo tên bài viết, nếu có
-            
+
             if ($request->name != '' && $request->name != null) {
                 $query->where('articles.name', 'like', '%' . $request->name . '%');
             }
@@ -97,10 +103,27 @@ if (isset($id)&&!empty($id)) {
                     $query->orderBy('articles.created_at', 'asc');
                 }
             }
+            // // Lọc theo danh mục, bao gồm danh mục cha và các danh mục con
+            // if ($request->filled('category')) {
+            //     // Lấy danh sách các ID của danh mục cha và các danh mục con
+            //     $categoryIds = Category::where('id', $request->category)
+            //         ->orWhere('parent_id', $request->category)
+            //         ->pluck('id')
+            //         ->toArray();
 
+            //     // Lọc các bài viết thuộc các danh mục trong danh sách ID
+            //     $query->whereIn('articles.category_id', $categoryIds);
+            // }
             // Lọc theo danh mục, nếu có
             if ($request->has('category')) {
-                $query->where('articles.category_id', $request->category);
+                // Lấy danh sách các ID của danh mục cha và các danh mục con
+                $categoryIds = Category::where('id', $id)
+                    ->orWhere('parent_id', $id)
+                    ->pluck('id')
+                    ->toArray();
+
+                // Lọc các bài viết thuộc các danh mục trong danh sách ID
+                $query->whereIn('articles.category_id', $categoryIds);
             }
 
             // Lọc theo lượt xem
@@ -114,7 +137,7 @@ if (isset($id)&&!empty($id)) {
 
             // Lấy các bài viết đã lọc
             $filteredArticles = $query->get(['articles.*']);  // Chỉ lấy các trường của bảng articles
-// dd($filteredArticles);
+            // dd($filteredArticles);
         }
 
         return view('clients.home', compact('articlesTrending', 'sidebarAds', 'bannerAds', 'newArticle', 'randomArticle', 'categories', 'filteredArticles'));
