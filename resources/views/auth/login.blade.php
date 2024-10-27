@@ -232,6 +232,7 @@
         <div class="form-container sign-in">
             <form action="{{ route('login') }}" method="POST">
                 <h1>Sign In</h1>
+                
                 @csrf
                 @if ($message = Session::get('error'))
                     <div class="alert alert-danger">
@@ -272,7 +273,9 @@
 
                 <div class="toggle-panel toggle-right">
                     <h1>Xin chào!</h1>
-                    <p>Để duy trì kết nối với vai trò quản lý, vui lòng đăng nhập bằng thông tin ADmin</p>
+                    @if(session('message'))
+                    <div class="alert alert-primary">{{session('message')}}</div>
+                @endif
 
                 </div>
             </div>

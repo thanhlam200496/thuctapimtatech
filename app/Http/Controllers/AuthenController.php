@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Mail;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthenController extends Controller
 {
@@ -52,16 +54,30 @@ class AuthenController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
+        Mail::send('clients/email/checkEmail', compact('data'), function ($email) use ($data) {
+            $email->to($data['email']);
+            $email->subject('Xác nhận đăng ký tài khoản!');
+        });
+        $message = "Vui lòng kiểm tra email để kích hoạt tài khoản";
+        return redirect()->back()->with(['message' => $message]);
 
-        $user = User::query()->create($data);
-        // dd($data);
-
-        Auth::login($user);
-
-        request()->session()->regenerate();
-
-         return view('auth.login');
+       
     }
+
+    public function checkEmail(Request $req)
+    {
+        $data = [
+            'name' => $req->name,
+            'email' => $req->email,
+            'password' => Hash::make($req->password),
+            'email_verified_at' => Carbon::now(),
+        ];
+        User::insert($data);
+        $message = "Đăng ký thành công, vui lòng đăng nhập!";
+        return view('auth.login')->with(['message' => $message]);
+        
+    }
+
 
     public function logout()
     {
