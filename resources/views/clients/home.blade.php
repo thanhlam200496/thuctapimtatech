@@ -304,7 +304,7 @@
                             </div>
                         </div>
                         <div class="single-widget mb-60 mt-40">
-                            <span class="top-btn pt-10"><a>Trending Post</a></span>
+                            <span class="top-btn pt-10"><a>Tin tức nổi bật</a></span>
                             
                             <br>
                             @foreach ($articlesTrending as $item)
@@ -351,7 +351,7 @@
                         <div class="single-widget mb-50">
                             <div class="category-btn">
                                 <a href="#">
-                                    Category
+                                    Chuyên mục
                                 </a>
                             </div>
                             <ul class="category">

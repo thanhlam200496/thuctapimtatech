@@ -91,7 +91,7 @@
         </div>
         <ul class="menu-list">
             <li class="menu-item-has-children active">
-                <li><a href="{{ route('Home') }}">Home</a></li>
+                <li><a href="{{ route('Home') }}">Trang chủ</a></li>
                 
             </li>
             @foreach ($loaitinfull as $lt)
@@ -118,7 +118,8 @@
     @endif
 @endforeach
             </li>
-            <li><a href="{{route('contact.index')}}">CONTACT</a></li>
+            <li><a href="{{ route('form-contact') }}">Liên hệ</a></li>
+            <li><a href="{{ route('clients.faq') }}">FAQ’s</a></li>
         </ul>
         
     </div>

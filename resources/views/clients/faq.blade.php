@@ -6,7 +6,7 @@
             <div class="col-lg-12">
                 <div class="inner-page-breadcrumb-wrapper">
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{route('Home')}}">Trang chủ</a></li>
                         <li>FAQ’s</li>
                     </ul>
                 </div>
@@ -19,8 +19,7 @@
                     </svg>
                     <div class="page-content">
                         <h1>FAQ’s</h1>
-                        <p>Feel free to choose or modify any of these titles to match the specific focus and tone of
-                            your food blog. Whether you're sharing recipes.</p>
+                        <p>Nơi giải đáp thắc mắc của bạn 1 cách nhanh chóng!</p>
                     </div>
                 </div>
             </div>

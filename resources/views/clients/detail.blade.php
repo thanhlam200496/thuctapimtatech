@@ -9,7 +9,7 @@
                 <div class="inner-page-breadcrumb-wrapper mb-20">
                     {{-- <div class="fb-share-button" data-href="{{url()->current()}}" data-layout="" data-size=""><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u={{url()->current()}}&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Chia sẻ</a></div> --}}
                     <ul>
-                        <li><a href="{{route('Home')}}">Home</a></li>
+                        <li><a href="{{route('Home')}}">Trang chủ</a></li>
                         <li><a href="{{ route('result', [$article->category->id]) }}">{{ $article->category->name }}</a></li>
                         <li>{{ strlen($article->name) > 75 ? substr($article->name, 0, 75) . '...' : $article->name }}</li>
                     </ul>
@@ -18,7 +18,7 @@
                 @if ($message = Session::get('success'))
                 <div class="alert alert-success alert-dismissible">
                     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h8><i class="icon fa fa-check"></i> Success!</h8>
+                    <h8><i class="icon fa fa-check"></i> Xong!</h8>
                     {{ $message }}
                 </div>
                 @endif
@@ -61,10 +61,10 @@
                 </div>
                 <div class="blog-tag">
                     <div class="author-name">
-                        <h6>Posted by <a href="#">Admin</a></h6>
+                        <h6>Đăng bởi <a href="#">Admin</a></h6>
                     </div>
                     <div class="tag-items">
-                        <h6>Categorized:</h6>
+                        <h6>Chuyên mục:</h6>
                         <ul>
                             <li><a href="{{ route('result', [$article->category->id]) }}">{{$article->category->name}}</a></li>
                             
@@ -85,7 +85,7 @@
                                 <path d="M10 10L1 1M1 1C3 1.375 7.375 2.125 10 1M1 1C1.375 2.875 2.125 7 1 10"
                                     stroke="white" stroke-width="1.5" stroke-linecap="round" />
                             </svg>
-                            PREVIOUS POST</a>
+                            Bài viết trước</a>
                     </div>
                     <div class="next-post-btn">
                         <a href="#">
@@ -98,7 +98,7 @@
                     </div>
                 </div>
                 <div class="blog-post-area pt-90">
-                    <h6>You May Also Like</h6>
+                    <h6>Có thể bạn cũng thích</h6>
                     <span class="line-break3"></span>
                     <span class="line-break"></span>
                     <div class="row gy-5">
@@ -179,7 +179,7 @@
                     <div class="col-lg-12">
                         <div class="inquiry-form ">
                             <div class="title">
-                                <h4>Leave Your Comment:</h4>
+                                <h4>Để Lại Comment:</h4>
                             </div>
                             <form action="{{ route('comment', $article->id) }}" method="POST">
 
@@ -187,23 +187,23 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="form-inner mb-20">
-                                            <label>Your Name* :</label>
-                                            <input id="name" placeholder="name..." name="name" disabled
+                                            <label>Tên* :</label>
+                                            <input id="name" placeholder="Tên..." name="name" disabled
                                                 value="{{ Auth::user()->name ?? '' }}" type="text">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-inner mb-20">
-                                            <label>Your Email* :</label>
-                                            <input placeholder="Email" name="email" disabled
+                                            <label>Email* :</label>
+                                            <input placeholder="Email..." name="email" disabled
                                                 value="{{ Auth::user()->email ?? '' }}" type="text">
 
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-inner mb-15">
-                                            <label>Your Comments*</label>
-                                            <textarea placeholder="Write Something..." id="comments_content" name="comments_content"></textarea>
+                                            <label>Comments*</label>
+                                            <textarea placeholder="Viết gì đó..." id="comments_content" name="comments_content"></textarea>
                                         </div>
                                     </div>
                                     
@@ -217,7 +217,7 @@
                                                     stroke="#191919" stroke-width="1.5" stroke-linecap="round">
                                                 </path>
                                             </svg>
-                                            SUBMIT COMMENT</span>
+                                            GỬI COMMENT</span>
                                     </button>
                                 </div>
                             </form>
@@ -281,7 +281,7 @@
                         </div>
                     </div>
                     <div class="single-widget mb-60 mt-40">
-                        <span class="top-btn pt-10"><a>Trending Post</a></span>
+                        <span class="top-btn pt-10"><a>Tin tức nổi bật</a></span>
 
                         <br>
                         @foreach ($articlesTrending as $item)
@@ -307,7 +307,7 @@
                     <div class="single-widget mb-50">
                         <div class="category-btn">
                             <a href="#">
-                                Category
+                                Chuyên mục
                             </a>
                         </div>
                         <ul class="category">
