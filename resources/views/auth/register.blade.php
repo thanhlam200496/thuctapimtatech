@@ -230,14 +230,11 @@
 <body>
     <div class="container" id="container">
         <div class="form-container sign-in">
+       
             <form action="{{ route('register') }}" method="POST">
                 <h1>Sign up</h1>
                 @csrf
-                @if ($message = Session::get('error'))
-                    <div class="alert alert-danger">
-                        <strong>Danger!</strong> {{ $message }}
-                    </div>
-                @endif
+               
                 {{-- <div class="social-icons">
                     <a href="#"><i class="fab fa-google"><strong>A</strong></i></a>
                     <a href="#"><i class="fab fa-facebook-f"><strong>D</strong></i></a>
@@ -248,20 +245,20 @@
                 <span>Mời nhập thông tin</span>
                 <input type="text" placeholder="Name" name="name" value="{{ old('name') }}" />
                 @error('name')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <input type="email" placeholder="Email" name="email" value="{{ old('email') }}" />
                 @error('email')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <input type="password" placeholder="Password" name="password" id="password"
                     value="{{ old('password') }}" />
                 @error('password')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
                 <input type="password" placeholder="Confirm Password" name="password_confirmation" />
                 @error('password_confirmation')
-                    <span class="text-danger">{{ $message }}</span>
+                <span class="text-danger">{{ $message }}</span>
                 @enderror
 
                 <button type="submit" id="register">Đăng Ký</button>
@@ -276,7 +273,16 @@
 
                 <div class="toggle-panel toggle-right">
                     <h1>Xin chào!</h1>
-                    <p>Để duy trì kết nối với vai trò quản lý, vui lòng đăng nhập bằng thông tin ADmin</p>
+                    @if(session('message'))
+                    <div class="alert alert-primary">{{session('message')}}</div>
+                @endif
+                    @if ($message = Session::get('success'))
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Success!</h4>
+                        {{ $message }}
+                    </div>
+                    @endif
 
                 </div>
             </div>
@@ -297,6 +303,7 @@
         loginBtn.addEventListener('click', () => {
             container.classList.remove("active");
         });
+        
     </script>
 </body>
 

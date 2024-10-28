@@ -121,6 +121,8 @@ Route::controller(AuthenController::class)
         Route::post('logout', 'logout')->name('logout');
         Route::get('register', 'showRegisterForm')->name('register');
         Route::post('register', 'register');
+        Route::get('checkEmail', [AuthenController::class, 'checkEmail'])->name('checkEmail');
+
     });
 
 Route::prefix('clients')->middleware('auth')->group(function () {

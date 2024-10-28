@@ -39,8 +39,8 @@ return [
             'host' => 'smtp.gmail.com',
             'port' =>  587,
             'encryption' =>  'tls',
-            'username' => 'thanhlam200496@gmail.com',
-            'password' => 'fneuobaxccjmcfpj',
+            'username' => 'emxin9lit@gmail.com',
+            'password' => 'bwddywrmfbjbyjac',
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -98,7 +98,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'thanhlam200496@gmail.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'emxin9lit@gmail.com'),
         'name' => 'Web giáo dục',
     ],
 
