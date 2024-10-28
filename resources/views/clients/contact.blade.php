@@ -5,35 +5,35 @@
         <div class="row g-lg-4 gy-5">
             <div class="inner-page-breadcrumb-wrapper">
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li>Contact</li>
+                    <li><a href="{{route('Home')}}">Trang chủ</a></li>
+                    <li>Liên hệ</li>
                 </ul>
             </div>
             @if ($message = Session::get('success'))
             <div class="alert alert-success alert-dismissible">
                
-                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                <h4><i class="icon fa fa-check"></i> Xong!</h4>
                 {{ $message }}
             </div>
         @endif
             <div class="col-lg-8">
                 <div class="inquiry-form contact-inquiry">
                     <div class=" title">
-                        <h1>Contact Us!</h1>
+                        <h1>Liên Hệ Chúng Tôi!</h1>
                     </div>
                     <form action="{{route('contactpost.store')}}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-inner mb-20">
-                                    <label>Your Name* :</label>
+                                    <label>Tên* :</label>
                                     <input type="text" name="name" value="{{old('name')}}" placeholder="Jackson Mile">
                                     <p style="color: red">{{$errors->first('name')}}</p>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-inner mb-20">
-                                    <label>Your Email* :</label>
+                                    <label>Email* :</label>
                                     <input type="email" name="email" value="{{old('email')}}" placeholder="example@gamil.com">
                                     <p style="color: red">{{$errors->first('email')}}</p>
                                 </div>
@@ -46,8 +46,8 @@
                             </div> --}}
                             <div class="col-md-12">
                                 <div class="form-inner mb-15">
-                                    <label>Message <span> (Optional)</span></label>
-                                    <textarea class="contact-massage" value="{{old('message')}}" name="message" placeholder="Write Something..."></textarea>
+                                    <label>Nội dung <span> (không bắt buộc)</span></label>
+                                    <textarea class="contact-massage" value="{{old('message')}}" name="message" placeholder="Viết gì đó..."></textarea>
                                     <p style="color: red">{{$errors->first('message')}}</p>
                                 </div>
                             </div>
@@ -69,7 +69,7 @@
                                             d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
                                             stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
                                     </svg>
-                                    SUBMIT</span>
+                                    Gửi</span>
                             </button>
                         </div>
                     </form>
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                     <div class="single-widget mb-60 mt-40">
-                        <span class="top-btn pt-10"><a>Trending Post</a></span>
+                        <span class="top-btn pt-10"><a>Tin tức nổi bật</a></span>
                         
                         <br>
                         @foreach ($articlesTrending as $item)
@@ -147,7 +147,7 @@
                     <div class="single-widget mb-50">
                         <div class="category-btn">
                             <a href="#">
-                                Category
+                                Chuyên mục
                             </a>
                         </div>
                         <ul class="category">
