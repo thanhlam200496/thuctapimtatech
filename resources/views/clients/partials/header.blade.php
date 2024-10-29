@@ -44,6 +44,13 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status', 1
                                             </a>
                                         </li>
                                     @endif
+
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('profile.edit', auth()->user()->id) }}" style="color: black;">
+                                            Profile
+                                        </a>
+                                    </li>
+
                                     <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}" style="color: black;"
                                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
