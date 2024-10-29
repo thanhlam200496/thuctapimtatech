@@ -1,8 +1,6 @@
 <nav class="sidebar-wrapper">
-    <div class="sidebar-brand">
-        <a href="{{ url('/') }}" class="logo">
-            <img src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/dark-logo.svg" alt="Admin Dashboards" />
-        </a>
+    <div class="sidebar-brand"><br>
+        <a href="{{route('Home')}}"  style="padding-left: 40px;margin-top: 20px;font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: bolder; font-size: 20px; color: rgb(0, 0, 0)">WorldSchools</a>
     </div>
     <div class="sidebar-menu">
         <div class="sidebarMenuScroll">

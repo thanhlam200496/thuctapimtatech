@@ -7,12 +7,9 @@
             <div class="row g-lg-4 gy-5 g-6 ">
                 <div class="col-lg-4 ">
                     <div class="footer-logo-area">
-                        <a href="index.html"><img
-                                src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/poitic-white.svg"
-                                alt="logo"></a>
-                        <p>Welcome! Feel free to mix and match these subcategories based on your interests and the
-                            preferences of your target audience. these subcategories based</p>
-                        <div class="our-activetis">
+                        <a href="{{route('Home')}}" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: bolder; font-size: 40px; color: aliceblue">WorldSchools</a>
+                        <p>Chào mừng đến với WorldSchools - Nơi tụ họp tri thức!</p>
+                        {{-- <div class="our-activetis">
                             <div class="row justify-content-center d-flex g-lg-4 gy-4">
                                 <div class="col-xl-3 col-lg-6 col-sm-3 col-6">
                                     <a href="https://www.facebook.com/" class="social-area">
@@ -93,13 +90,13 @@
                                     </a>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6 d-flex justify-content-lg-center ">
                     <div class="footer-widget">
                         <div class="widget-title">
-                            <h5>Category</h5>
+                            <h5>Chuyên mục</h5>
                         </div>
                         <ul class="widget-list">
                             @foreach ($loaitin as $item)
@@ -122,10 +119,8 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="footer-content">
-                        <h5>Subscribe Zorik To Get
-                            Free Update & Notify Your Device by Email.</h5>
-                        <p>By subscribing, you'll unlock a treasure trove of the latest trends delivered
-                            directly to inbox.</p>
+                        <h5>Đăng ký <strong>WorldSchools</strong> để nhận cập nhật miễn phí và thông báo cho thiết bị của bạn qua email.</h5>
+                        
                         <div class="subsceibe-btn">
                             <a href="#">
                                 <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
@@ -134,7 +129,7 @@
                                         d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
                                         stroke="#191919" stroke-width="1.5" stroke-linecap="round"></path>
                                 </svg>
-                                SUBSCRIBE
+                                Liên hệ chúng tôi
                             </a>
                         </div>
                     </div>
@@ -142,16 +137,15 @@
             </div>
             <div class="footer-list">
                 <div class="copyright-area">
-                    <p> © Copyright 2024 <a href="#"> Zorik </a> | Design By <a
+                    {{-- <p> © Copyright 2024 <a href="#"> Zorik </a> | Design By <a
                             href="https://www.egenstheme.com/">
-                            EGENS THEME</a></p>
+                            EGENS THEME</a></p> --}}
                 </div>
                 <ul>
-                    <li><a href="about-us.html">About Us</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="contact-us.html">Contact us</a></li>
-                    <li><a href="faq.html">FAQ’s</a></li>
-                    <li><a href="terms%26condition.html">Terms & Conditons</a></li>
+                    {{-- <li><a href="about-us.html">About Us</a></li> --}}
+                    {{-- <li><a href="#">Career</a></li> --}}
+                    <li><a href="{{ route('form-contact') }}">Liên hệ</a></li>
+                            <li><a href="{{ route('clients.faq') }}">FAQ’s</a></li>
                 </ul>
             </div>
         </div>

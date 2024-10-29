@@ -7,10 +7,8 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status', 1
             <div class="col-lg-12">
                 <div class="topbar-wrapper">
                     <div class="header-logo">
-                        <a class="dark" href="{{ route('Home') }}"><img alt="image" class="img-fluid"
-                                src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/dark-logo.svg"></a>
-                        <a class="light" href="{{ route('Home') }}"><img alt="image" class="img-fluid"
-                                src="https://demo-egenslab.b-cdn.net/html/zorik/preview/assets/image/index-img/icon/poitic-white.svg"></a>
+                        <a href="{{route('Home')}}" class="dark" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: bolder; font-size: 20px; color: rgb(0, 0, 0)">WorldSchools</a>
+                        <a href="{{route('Home')}}" class="light" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: bolder; font-size: 20px; color: aliceblue">WorldSchools</a>
                     </div>
                     <div class="topber-right">
                         {{-- <ul class="social-area">
@@ -109,7 +107,7 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status', 1
                     </div>
                     <div class="main-menu d-xl-flex d-none">
                         <ul class="menu-list">
-                            <li><a href="{{ route('Home') }}">Home</a></li>
+                            <li><a href="{{ route('Home') }}">Trang chủ</a></li>
 
                             @foreach ($loaitin as $lt)
                                 @if ($lt->parent_id == null)
@@ -139,7 +137,7 @@ $loaitin = DB::table('categories')->where('deleted_at', null)->where('status', 1
                             <li>
 
                             </li>
-                            <li><a href="{{ route('form-contact') }}">Contact</a></li>
+                            <li><a href="{{ route('form-contact') }}">Liên hệ</a></li>
                             <li><a href="{{ route('clients.faq') }}">FAQ’s</a></li>
 
                         </ul>
