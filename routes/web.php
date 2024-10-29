@@ -17,7 +17,7 @@ use App\Http\Controllers\Admin\ContactController as AdminsContactController;
 use App\Http\Controllers\admin\FAQController;
 
 use App\Http\Controllers\AuthenController;
-use App\Http\Controllers\ClienController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\clients\ArticleController as ClientsArticleController;
 use App\Http\Controllers\clients\CommentController as ClientsCommentController;
 
@@ -33,6 +33,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,7 +127,7 @@ Route::controller(AuthenController::class)
     });
 
 Route::prefix('clients')->middleware('auth')->group(function () {
-    Route::get('dashboard', [ClienController::class, 'dashboard'])
+    Route::get('dashboard', [ClientController::class, 'dashboard'])
         ->name('clients.dashboard')
         ->middleware('isClient');
 });
@@ -191,3 +192,7 @@ Route::get('faq', [ClientsFAQController::class, 'index'])->name('clients.faq');
 //         echo $file->getFilename() . "<br>";
 //     }
 // });
+
+//profile
+Route::middleware('auth')->get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+Route::middleware('auth')->put('/profile', [ProfileController::class, 'update'])->name('profile.update');
