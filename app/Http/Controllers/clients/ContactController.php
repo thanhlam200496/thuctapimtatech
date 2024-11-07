@@ -24,10 +24,16 @@ class ContactController extends Controller
 
         // Danh mục
         $categories = Category::select('categories.*')
-            ->join('articles', 'articles.category_id', '=', 'categories.id')
-            ->groupBy('categories.id')
-            ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
-            ->get();
+    ->leftJoin('categories as child_categories', 'child_categories.parent_id', '=', 'categories.id')
+    ->leftJoin('articles', function ($join) {
+        $join->on('articles.category_id', '=', 'categories.id')
+             ->orOn('articles.category_id', '=', 'child_categories.id');
+    })
+    ->where('categories.status', 1)
+    ->groupBy('categories.id')
+    ->selectRaw('COUNT(DISTINCT articles.id) as article_count')
+    ->get();
+
         return view('clients.contact', compact('bannerAds', 'sidebarAds', 'articlesTrending', 'categories', 'randomArticle'));
         
     }

@@ -279,7 +279,7 @@
                                                     </a>
                                                     <ul class="list-unstyled">
                                                         <li><a class="category"
-                                                                href="{{ route('result', [$item->id]) }}">{{ $item->category->name }}</a>
+                                                                href="{{ route('result', [$item->category->id]) }}">{{ $item->category->name }}</a>
                                                         </li>
                                                     </ul>
                                                 </div>

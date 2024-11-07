@@ -1,5 +1,12 @@
 @extends('clients.partials.default')
 <!-- @section('title', 'Chi Tiết') -->
+@section('sharewithfacebook')
+<meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
+<meta property="og:type"          content="website" />
+<meta property="og:title"         content="{{$article->name}}" />
+<meta property="og:description"   content="{!!substr($article->description, 0, 75)!!}" />
+<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+@endsection
 @section('content')
 
 <div class="blog-post-9 pt-20">
@@ -78,8 +85,9 @@
                     </div>
                 </div>
                 <div class="post-btn">
+                    @if ($previousArticle!=null)
                     <div class="privious-post-btn">
-                        <a href="#">
+                        <a href="{{ route('article.show', $previousArticle->slug) }}">
                             <svg class="arrow" width="11" height="11" viewBox="0 0 11 11"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M10 10L1 1M1 1C3 1.375 7.375 2.125 10 1M1 1C1.375 2.875 2.125 7 1 10"
@@ -87,8 +95,10 @@
                             </svg>
                             Bài viết trước</a>
                     </div>
-                    <div class="next-post-btn">
-                        <a href="#">
+                    @endif
+                    @if ($nextArticle!=null)
+                        <div class="next-post-btn">
+                        <a href="{{ route('article.show', $nextArticle->slug) }}">
                             <svg class="arrow" width="10" height="10" viewBox="0 0 10 10"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path d="M1 9L9 1M9 1C7.22222 1.33333 3.33333 2 1 1M9 1C8.66667 2.66667 8 6.33333 9 9"
@@ -96,6 +106,8 @@
                             </svg>
                             Tiếp theo</a>
                     </div>
+                    @endif
+                    
                 </div>
                 <div class="blog-post-area pt-90">
                     <h6>Có thể bạn cũng thích</h6>

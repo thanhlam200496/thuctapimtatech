@@ -6,11 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta property="og:url"           content="https://www.your-domain.com/your-page.html" />
-<meta property="og:type"          content="website" />
-<meta property="og:title"         content="Your Website Title" />
-<meta property="og:description"   content="Your description" />
-<meta property="og:image"         content="https://www.your-domain.com/path/image.jpg" />
+    @yield('sharewithfacebook')
+    
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
 
 
@@ -25,7 +22,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/boxicons.min.css')}}">
 
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
-    <title>Zorik - Modern & Lightweight Blog Template</title>
+    <title>WorldSchools - Nơi tụ họp tri thức!</title>
     <link rel="icon" href="https://demo-egenslab.b-cdn.net/html/zorik/assets/image/sm-logo.svg" type="image/gif"
         sizes="20x20">
         <style>
