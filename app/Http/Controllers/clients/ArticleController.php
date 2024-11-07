@@ -32,14 +32,31 @@ class ArticleController extends Controller
         // Bài viết ngẫu nhiên
         $randomArticle = Article::inRandomOrder()->take(4)->get();
 
+        // bài viết trước
+        $previousArticle=Article::where('id','>',$article->id)->orderBy('created_at', 'asc')
+        ->limit(1)
+        ->first();
+        // bài viết tiếp theo
+        $nextArticle = Article::where('id', '<', $article->id)
+                ->orderBy('created_at', 'desc')
+                ->limit(1)
+                ->first();
+
+// dd($previousArticle, $nextArticle);
         // Danh mục
         $categories = Category::select('categories.*')
-            ->join('articles', 'articles.category_id', '=', 'categories.id')
-            ->groupBy('categories.id')
-            ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
-            ->get();
+    ->leftJoin('categories as child_categories', 'child_categories.parent_id', '=', 'categories.id')
+    ->leftJoin('articles', function ($join) {
+        $join->on('articles.category_id', '=', 'categories.id')
+             ->orOn('articles.category_id', '=', 'child_categories.id');
+    })
+    ->where('categories.status', 1)
+    ->groupBy('categories.id')
+    ->selectRaw('COUNT(DISTINCT articles.id) as article_count')
+    ->get();
 
-        return view('clients.detail', compact('article', 'slug', 'comments', 'bannerAds', 'sidebarAds', 'articlesTrending', 'categories', 'randomArticle'));
+
+        return view('clients.detail', compact('previousArticle','nextArticle','article', 'slug', 'comments', 'bannerAds', 'sidebarAds', 'articlesTrending', 'categories', 'randomArticle'));
     }
 
 
@@ -57,10 +74,16 @@ class ArticleController extends Controller
 
         // Danh mục
         $categories = Category::select('categories.*')
-            ->join('articles', 'articles.category_id', '=', 'categories.id')
-            ->groupBy('categories.id')
-            ->selectRaw('COUNT(articles.category_id) as article_count')->where('categories.status', 1)
-            ->get();
+    ->leftJoin('categories as child_categories', 'child_categories.parent_id', '=', 'categories.id')
+    ->leftJoin('articles', function ($join) {
+        $join->on('articles.category_id', '=', 'categories.id')
+             ->orOn('articles.category_id', '=', 'child_categories.id');
+    })
+    ->where('categories.status', 1)
+    ->groupBy('categories.id')
+    ->selectRaw('COUNT(DISTINCT articles.id) as article_count')
+    ->get();
+
 
         // Bài viết mới nhất
         $newArticle = Article::select('articles.*')

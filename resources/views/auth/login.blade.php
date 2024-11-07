@@ -260,8 +260,8 @@
                 <button>Đăng nhập</button>
                 <p class="text-center">Hoặc<br><a href="{{ route('login-by-google') }}"><img
                             src="{{ asset('assets/image/icons8-google-48.png') }}" alt=""></a>
-                    <a href="{{ route('login-by-faceebook') }}"><img
-                            src="{{ asset('assets/image/icons8-google-48.png') }}" alt=""></a>
+                    {{-- <a href="{{ route('login-by-faceebook') }}"><img
+                            src="{{ asset('assets/image/icons8-google-48.png') }}" alt=""></a> --}}
                 </p>
                 <a href="{{ route('password.request') }}" style="color: #000000; margin-top: 10px; display: block;">Quên mật khẩu?</a>
 
