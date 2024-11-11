@@ -69,7 +69,11 @@
                                         <td><img src="{{ asset('storage/images') }}/{{ $item->image_url }}" width="150px">
                                         </td>
                                         {{-- <td>{{ $item->parent_id }}</td> --}}
-                                        <td>{{ $item->link }}</td>
+                                        <td>@if (strlen($item->link) > 70)
+                                            {{ substr($item->link, 0, 70) }}...
+                                        @else
+                                            {{ $item->link }}
+                                        @endif</td>
                                         <td>{{ $item->position }}</td>
                                         <td>
                                             <a href="{{ route('advertisement.edit', $item->id) }}"
