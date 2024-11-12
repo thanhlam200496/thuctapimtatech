@@ -60,7 +60,7 @@
                                     <td>{{ Str::limit($user->email, 30) }}</td>
                                     <td>{{ $user->role == 'client' ? 'Client' : 'Admin' }}</td>
                                     <td>{!! $user->status == 1 ? '<span class="label label-success">Hoạt động</span>' : '<span class="label label-danger">Ngừng hoạt động</span>' !!}</td>
-                                    <td>{{ $user->created_at->format('d/m/Y') }}</td>
+                                    <td>{{ $user->created_at }}</td>
                                     <td>
                                         <a href="{{ route('user.show', $user) }}" class="btn btn-warning me-2"><i class="fa fa-eye"></i> Show</a>
                                         <a href="{{ route('user.edit', $user) }}" class="btn btn-success"><i class="fa fa-pencil"></i> Update</a>
